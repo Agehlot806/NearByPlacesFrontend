@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import Footer from '../../directives/footer'
 
 
 function Campaignnewadd() {
@@ -66,6 +67,19 @@ function Campaignnewadd() {
                                                 <div className="product-card-body">
                                                     <div className='campaign-img'>
                                                         <h6>Android</h6>
+                                                        <img src='assets/images/img/android.png' />
+                                                        <div className='compaign-img-content'>
+                                                            <h6>Notification title</h6>
+                                                            <p>Notification title</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className='campaign-img'>
+                                                        <h6>iOS</h6>
+                                                        <img src='assets/images/img/android.png' />
+                                                        <div className='compaign-img-content'>
+                                                            <h6>Notification title</h6>
+                                                            <p>Notification title</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,6 +91,7 @@ function Campaignnewadd() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

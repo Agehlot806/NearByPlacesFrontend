@@ -31,7 +31,7 @@ function Login() {
                                         {/* <label>Password</label> */}
                                         <input type="password" className="form-control" placeholder="Password" />
                                     </div>
-                                    <button type="submit" className="login-btn">Submit</button>
+                                    <button type="submit" className="login-btn">Login</button>
 
                                     <div className="login-line-main">
                                         <div className="login-line" />
@@ -44,7 +44,7 @@ function Login() {
                                     </div>
                                     <div>
                                     <a href="#">Forgot your password?</a>
-                                        <div className="additional-link">Don't have an account? <a href="/sqfcoin/signup">Signup</a></div>
+                                        <div className="additional-link">Don't have an account? <a href="sign-up">Signup</a></div>
 
                                     </div>
                                 </form>

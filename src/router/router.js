@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Login from '../components/login';
+import Signup from '../components/sign-up';
 import Dashboard from '../components/dashboard';
 import Allstores from '../components/Manage Stores/allstores';
 import Mystores from '../components/Manage Stores/mystores';
@@ -25,12 +26,22 @@ import Myreservations from '../components/Reservations/my-reservations';
 import Mybookings from '../components/My bookings/my-bookings';
 import Campaigns from '../components/Campaigns/campaigns';
 import Campaignnewadd from '../components/Campaigns/campaign-new-add';
+import Messages from '../components/Messages/messages';
+import Payouts from '../components/Payouts/payouts';
+import Users from '../components/Campaigns/Manage Users/users';
+import Groupaccess from '../components/Campaigns/Manage Users/group-access';
+import Usersnewadd from '../components/Campaigns/Manage Users/users-new-add';
+import Groupaccessadd from '../components/Campaigns/Manage Users/group-access-add';
+import Invoice from '../components/Payment/invoice';
+import Paymentconfig from '../components/Payment/payment-config';
+import Allslider from '../components/Mobile Slider/all-slider';
 
 const RouterComponent = () => {
     return (
         <>
             <Routes>
                 <Route path='/' element={<Login />} />
+                <Route path='/sign-up' element={<Signup />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/all-stores' element={<Allstores />} />
                 <Route path='/all-store-edit' element={<Allstoresedit />} />
@@ -60,6 +71,22 @@ const RouterComponent = () => {
 
                 <Route path='/campaigns' element={<Campaigns />} />
                 <Route path='/campaigns-new-add' element={<Campaignnewadd />} />
+
+                <Route path='/message' element={<Messages />} />
+
+                <Route path='/users' element={<Users />} />
+                <Route path='/group-access' element={<Groupaccess />} />
+                <Route path='/group-access-add' element={<Groupaccessadd />} />
+                <Route path='/User-add' element={<Usersnewadd />} />
+
+
+                <Route path='/invoice' element={<Invoice />} />
+                <Route path='/payment-config' element={<Paymentconfig />} />
+
+                <Route path='/all-slider' element={<Allslider />} />
+
+
+                <Route path='/payout' element={<Payouts />} />
 
 
             </Routes>

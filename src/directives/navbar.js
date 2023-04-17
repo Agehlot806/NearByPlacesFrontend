@@ -32,7 +32,7 @@ const Navbar = () => {
           {/* <a href="#"><img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a> */}
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <a href="#"><img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a>
+              <a href="#"><img src="assets/images/img/user.jpeg" alt="user" />&nbsp;&nbsp;Admin</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button>
