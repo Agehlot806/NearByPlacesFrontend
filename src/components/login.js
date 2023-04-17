@@ -14,7 +14,7 @@ function Login() {
                                     <div className='text-center'>
                                         <h3 className="animate-charcter">Welcome To Book My Place</h3>
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <select className="form-control">
                                             <option>EN - English</option>
                                             <option>Hindi</option>
@@ -22,7 +22,7 @@ function Login() {
                                             <option>EN - English</option>
                                             <option>EN - English</option>
                                         </select>
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
                                         {/* <label>Email address</label> */}
                                         <input type="email" className="form-control" placeholder="Enter email" />
@@ -32,8 +32,20 @@ function Login() {
                                         <input type="password" className="form-control" placeholder="Password" />
                                     </div>
                                     <button type="submit" className="login-btn">Submit</button>
+
+                                    <div className="login-line-main">
+                                        <div className="login-line" />
+                                        <div data-bn-type="text" className="login-line-text">or</div>
+                                        <div className="login-line" /></div>
                                     <div>
-                                        <a href="#">Forgot your password?</a>
+                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/google.png' /> Sign in with Google</button>
+
+                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
+                                    </div>
+                                    <div>
+                                    <a href="#">Forgot your password?</a>
+                                        <div className="additional-link">Don't have an account? <a href="/sqfcoin/signup">Signup</a></div>
+
                                     </div>
                                 </form>
                             </div>
