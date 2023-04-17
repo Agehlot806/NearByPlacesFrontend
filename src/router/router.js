@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Routes, Route,Navigate } from 'react-router-dom';
 import Login from '../components/login';
+import Signup from '../components/sign-up';
 import Dashboard from '../components/dashboard';
 import Allstores from '../components/Manage Stores/allstores';
 import Mystores from '../components/Manage Stores/mystores';
@@ -27,6 +28,28 @@ import Myreservations from '../components/Reservations/my-reservations';
 import Mybookings from '../components/My bookings/my-bookings';
 import Campaigns from '../components/Campaigns/campaigns';
 import Campaignnewadd from '../components/Campaigns/campaign-new-add';
+import Messages from '../components/Messages/messages';
+import Groupaccessadd from '../components/Manage Users/group-access-add';
+import Users from '../components/Manage Users/users';
+import Groupaccess from '../components/Manage Users/group-access';
+import Usersnewadd from '../components/Manage Users/users-new-add';
+import Invoice from '../components/Payment/invoice';
+import Paymentconfig from '../components/Payment/payment-config';
+import Allslider from '../components/Mobile Slider/all-slider';
+import Profile from '../components/profile';
+import Forgotpassword from '../components/forgot-password';
+import Slidernewadd from '../components/Mobile Slider/slider-new-add';
+import Media from '../components/media/media'
+import Medianew from '../components/media/media-new'
+import Sliderview from '../components/Mobile Slider/slider-view';
+import Slideredit from '../components/Mobile Slider/slider-edit';
+import Payouts from '../components/Payouts/payouts';
+import Payoutadd from '../components/Payouts/payout-add';
+import Payoutedit from '../components/Payouts/payout-edit';
+import Managepages from '../components/CMS & Pages/manage-pages';
+import Managepageadd from '../components/CMS & Pages/manage-page-add';
+import Managepageedit from '../components/CMS & Pages/manage-page-edit';
+import Managemenu from '../components/CMS & Pages/manage-menu';
 
 function RouterComponent (){
 	const [user, setUser] = useState(null);
@@ -60,6 +83,7 @@ function RouterComponent (){
 				/>
                 {/* <Route path='/' element={<Login />} /> */}
                 <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/all-stores' element={<Allstores />} />
                 <Route path='/all-store-edit' element={<Allstoresedit />} />
                 <Route path='/my-stores' element={<Mystores />} />
@@ -89,6 +113,34 @@ function RouterComponent (){
                 <Route path='/campaigns' element={<Campaigns />} />
                 <Route path='/campaigns-new-add' element={<Campaignnewadd />} />
 
+                <Route path='/message' element={<Messages />} />
+
+                <Route path='/users' element={<Users />} />
+                <Route path='/group-access' element={<Groupaccess />} />
+                <Route path='/group-access-add' element={<Groupaccessadd />} />
+                <Route path='/User-add' element={<Usersnewadd />} />
+
+
+                <Route path='/invoice' element={<Invoice />} />
+                <Route path='/payment-config' element={<Paymentconfig />} />
+
+                <Route path='/all-slider' element={<Allslider />} />
+                <Route path='/slider-add' element={<Slidernewadd />} />
+                <Route path='/slider-view' element={<Sliderview />} />
+                <Route path='/slider-edit' element={<Slideredit />} />
+
+                <Route path='/media' element={<Media />} />
+                <Route path='/media-new' element={<Medianew />} />
+
+
+                <Route path='/payout' element={<Payouts />} />
+                <Route path='/payout-add' element={<Payoutadd />} />
+                <Route path='/payout-edit' element={<Payoutedit />} />
+
+                <Route path='/manage-pages' element={<Managepages />} />
+                <Route path='/manage-pages-add' element={<Managepageadd />} />
+                <Route path='/manage-pages-edit' element={<Managepageedit />} />
+                <Route path='/manage-menu' element={<Managemenu />} />
 
             </Routes>
         </>

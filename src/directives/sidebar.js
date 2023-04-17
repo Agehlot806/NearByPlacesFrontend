@@ -122,7 +122,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-                <a href=""><i className="fa fa-comments-o" aria-hidden="true" />&nbsp;&nbsp;<span>Messages</span></a>
+                <a href="message"><i className="fa fa-comments-o" aria-hidden="true" />&nbsp;&nbsp;<span>Messages</span></a>
                 <a onClick={toggleManageUsers}><i className="fa fa-users" aria-hidden="true" />
                 &nbsp;&nbsp;<span>Manage Users</span>
                     <i className={`arrow-icon fa fa-angle-left ${manageUsers ? 'rotate' : ''}`} />
@@ -130,9 +130,9 @@ const Sidebar = () => {
                 {manageUsers && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Users</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Group Access</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><a href='users' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Users</span></a></li>
+                            <li><a href='group-access' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Group Access</span></a></li>
+                            <li><a href='User-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
                         </ul>
                     </div>
                 )}
@@ -143,8 +143,8 @@ const Sidebar = () => {
                 {payment && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Invoices</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Payment config</span></a></li>
+                            <li><a href='invoice' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Invoices</span></a></li>
+                            <li><a href='payment-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Payment config</span></a></li>
                         </ul>
                     </div>
                 )}
@@ -155,13 +155,13 @@ const Sidebar = () => {
                 {mobileSlider && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All sliders</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><a href='all-slider' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All sliders</span></a></li>
+                            <li><a href='slider-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
                         </ul>
                     </div>
                 )}
-                <a href=""><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></a>
-                <a href=""><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></a>
+                <a href="media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></a>
+                <a href="payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></a>
                 <a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                     <span>&nbsp; CMS & Pages</span>
                     <i className={`arrow-icon fa fa-angle-left ${cms ? 'rotate' : ''}`} />
@@ -169,8 +169,8 @@ const Sidebar = () => {
                 {cms && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></a></li>
+                            <li><a href='manage-pages' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></a></li>
+                            <li><a href='manage-menu' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></a></li>
                         </ul>
                     </div>
                 )}

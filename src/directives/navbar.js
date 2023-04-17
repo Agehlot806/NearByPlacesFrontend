@@ -64,4 +64,4 @@ const Navbar = (userDetails) => {
   )
 }
 
-export default Navbar
+export default Navbar;
