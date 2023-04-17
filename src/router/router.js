@@ -35,6 +35,8 @@ import Usersnewadd from '../components/Manage Users/users-new-add';
 import Invoice from '../components/Payment/invoice';
 import Paymentconfig from '../components/Payment/payment-config';
 import Allslider from '../components/Mobile Slider/all-slider';
+import Profile from '../components/profile';
+import Forgotpassword from '../components/forgot-password';
 
 
 const RouterComponent = () => {
@@ -43,7 +45,9 @@ const RouterComponent = () => {
             <Routes>
                 <Route path='/' element={<Login />} />
                 <Route path='/sign-up' element={<Signup />} />
+                <Route path='/forgot-password' element={<Forgotpassword />} />
                 <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/all-stores' element={<Allstores />} />
                 <Route path='/all-store-edit' element={<Allstoresedit />} />
                 <Route path='/my-stores' element={<Mystores />} />

@@ -43,7 +43,7 @@ function Login() {
                                         <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
                                     </div>
                                     <div>
-                                    <a href="#">Forgot your password?</a>
+                                    <a href="forgot-password">Forgot your password?</a>
                                         <div className="additional-link">Don't have an account? <a href="sign-up">Signup</a></div>
 
                                     </div>
