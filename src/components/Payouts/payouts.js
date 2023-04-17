@@ -37,7 +37,7 @@ function Payouts() {
                                                     <div className="pull-right col-md-6">
                                                         <form className='text-right'>
                                                             <span className="input-group-btn ">
-                                                                <a href='' className="ml-2 btn btn-flat">
+                                                                <a href='payout-add' className="ml-2 btn btn-flat">
                                                                     <i className="fa fa-plus" aria-hidden="true" />
                                                                 </a>
                                                             </span>
@@ -58,13 +58,23 @@ function Payouts() {
                                                             <th scope="col">Note</th>
                                                             <th scope="col">Status</th>
                                                             <th scope="col">Date</th>
-
+                                                            <th scope="col">Actions</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            No payouts
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td>sdasdasd</td>
+                                                           <td className='action-btn'>
+                                                                <a href='payout-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href='' data-toggle="modal" data-target="#PayoutDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                            </td>
                                                         </tr>
 
                                                     </tbody>
@@ -80,6 +90,29 @@ function Payouts() {
             </div>
 
             <Footer />
+
+             {/* Modal */}
+             <div className="modal fade" id="PayoutDeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                        <p className="text-center text-red">Are you sure you want to delete concierto bad bunny ?</p>
+                        </div>
+                        <div className="modal-footer">
+                            <div className='user-head'>
+                                <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
+                                <a href=''><i className="fa fa-plus" /> Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

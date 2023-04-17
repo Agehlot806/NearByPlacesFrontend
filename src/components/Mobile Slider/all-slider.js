@@ -31,7 +31,7 @@ function Allslider() {
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>Event</b></h3>
+                                                        <h3><b>Mobile Slider</b></h3>
                                                     </div>
                                                     <div className="pull-right col-md-6">
 
@@ -42,7 +42,7 @@ function Allslider() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='event-new-add' className="ml-2 btn btn-flat">
+                                                                    <a href='slider-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
                                                                 </span>
@@ -62,7 +62,6 @@ function Allslider() {
                                                             <th scope="col">Owner</th>
                                                             <th scope="col">Date</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Participants</th>
                                                             <th scope="col">Actions</th>
 
 
@@ -82,11 +81,10 @@ function Allslider() {
                                                             </td>
                                                             <td className='click-color'>18-03-2023 - 18-03-2023</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
-                                                            <td className='click-color'><a href="event-participants"><i className="mdi mdi-account-multiple-outline" /> 0</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href='' data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -102,11 +100,10 @@ function Allslider() {
                                                             </td>
                                                             <td>07-06-2022 - 07-06-2028</td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
-                                                            <td className='click-color'><a href="event-participants"><i className="mdi mdi-account-multiple-outline" /> 2</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href=''  data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -122,11 +119,10 @@ function Allslider() {
                                                             </td>
                                                             <td>07-06-2022 - 07-06-2028</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
-                                                            <td className='click-color'><a href="event-participants"><i className="mdi mdi-account-multiple-outline" /> 5</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href=''  data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
 
@@ -144,6 +140,28 @@ function Allslider() {
 
             <Footer />
 
+{/* Modal */}
+<div className="modal fade" id="sliderDeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                        <p className="text-center text-red">Are you sure you want to delete concierto bad bunny ?</p>
+                        </div>
+                        <div className="modal-footer">
+                            <div className='user-head'>
+                                <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
+                                <a href=''><i className="fa fa-plus" /> Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </>
   )
 }

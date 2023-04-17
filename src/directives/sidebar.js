@@ -156,11 +156,11 @@ const Sidebar = () => {
                     <div className="sidebar-dropdown">
                         <ul>
                             <li><a href='all-slider' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All sliders</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><a href='slider-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
                         </ul>
                     </div>
                 )}
-                <a href=""><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></a>
+                <a href="media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></a>
                 <a href="payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></a>
                 <a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                     <span>&nbsp; CMS & Pages</span>
@@ -169,8 +169,8 @@ const Sidebar = () => {
                 {cms && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></a></li>
+                            <li><a href='manage-pages' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></a></li>
+                            <li><a href='manage-menu' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></a></li>
                         </ul>
                     </div>
                 )}
