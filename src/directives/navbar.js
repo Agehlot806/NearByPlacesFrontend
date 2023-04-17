@@ -8,11 +8,11 @@ const Navbar = (userDetails) => {
   const user = userDetails.user;
    
   const logout = () => {
-
-    console.log(user);
-		window.open(`${'http://localhost:9000'}/auth/logout`, "_self");
+  window.open(`${'http://localhost:9000'}/auth/logout`, "_self");
     localStorage.clear();
-    console.log("Logout successful");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userData");
+    // console.log("Logout successful");
     // cookies. remove() ;
   //   if (!this.state.user) {
   //     return <Redirect to="/" />;

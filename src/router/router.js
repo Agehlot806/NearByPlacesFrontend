@@ -59,7 +59,7 @@ function RouterComponent (){
 					element={user ? <Navigate to="/" /> : <Login />}
 				/>
                 {/* <Route path='/' element={<Login />} /> */}
-                {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+                <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/all-stores' element={<Allstores />} />
                 <Route path='/all-store-edit' element={<Allstoresedit />} />
                 <Route path='/my-stores' element={<Mystores />} />
