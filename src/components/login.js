@@ -1,7 +1,49 @@
 import React from 'react'
 import Particles from './particles'
+import { useState } from "react";
+import { APIURL } from "./Constant/common";
+import axios from 'axios';
 
 function Login() {
+    const [email, setEmail] = useState("");
+    // const [scsMsg, setScsMsg] = useState("");
+    const [password, setPassword] = useState("");
+    // const [errMsg, setErrMsg] = useState("");
+    // const [redirect, setRedirect] = useState("");
+
+
+    const googleAuth = () => {
+        window.open(
+            `${'http://localhost:9000'}/auth/google/callback`,
+            "_self"
+        );
+    };
+
+    const facebookauth = () => {
+        window.open(
+            `${'http://localhost:9000'}/auth/facebook/callback`,
+            "_self"
+        );
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
+            .post(APIURL + "login", {
+                email: email,
+                password: password,
+                // language: "english"
+            })
+            .then((response) => {
+                console.log(response);
+                localStorage.setItem("isLoggedIn", true);
+                // setRedirect(true);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+
+            });
+    }
     return (
         <>
             <Particles />
@@ -10,7 +52,8 @@ function Login() {
                     <div className='row justify-content-center'>
                         <div className='col-lg-6'>
                             <div className='login-box mt-1 mb-1'>
-                                <form>
+                                {/* <div className="text-success">{message ? <p>{message}</p> : null}</div> */}
+                                <form onSubmit={handleSubmit}>
                                     <div className='text-center'>
                                         <h3 className="animate-charcter">Welcome To Book My Place</h3>
                                     </div>
@@ -25,11 +68,13 @@ function Login() {
                                     </div> */}
                                     <div className="form-group">
                                         {/* <label>Email address</label> */}
-                                        <input type="email" className="form-control" placeholder="Enter email" />
+                                        <input type="email" className="form-control" placeholder="Enter email"
+                                            onChange={(e) => setEmail(e.target.value)} />
                                     </div>
                                     <div className="form-group">
                                         {/* <label>Password</label> */}
-                                        <input type="password" className="form-control" placeholder="Password" />
+                                        <input type="password" className="form-control" placeholder="Password"
+                                            onChange={(e) => setPassword(e.target.value)} />
                                     </div>
                                     <button type="submit" className="login-btn">Submit</button>
 
@@ -38,12 +83,12 @@ function Login() {
                                         <div data-bn-type="text" className="login-line-text">or</div>
                                         <div className="login-line" /></div>
                                     <div>
-                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/google.png' /> Sign in with Google</button>
+                                        <button type="submit" className="login-btn Loginicon" onClick={googleAuth}><img src='assets/images/icons/google.png' /> Sign in with Google</button>
 
-                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
+                                        <button type="submit" className="login-btn Loginicon" onClick={facebookauth}><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
                                     </div>
                                     <div>
-                                    <a href="#">Forgot your password?</a>
+                                        <a href="#">Forgot your password?</a>
                                         <div className="additional-link">Don't have an account? <a href="/sqfcoin/signup">Signup</a></div>
 
                                     </div>
@@ -57,4 +102,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

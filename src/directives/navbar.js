@@ -1,6 +1,23 @@
 import React from 'react'
+// import { Redirect } from 'react-router-dom';
 
-const Navbar = () => {
+
+
+const Navbar = (userDetails) => {
+
+  const user = userDetails.user;
+   
+  const logout = () => {
+
+    console.log(user);
+		window.open(`${'http://localhost:9000'}/auth/logout`, "_self");
+    localStorage.clear();
+    console.log("Logout successful");
+    // cookies. remove() ;
+  //   if (!this.state.user) {
+  //     return <Redirect to="/" />;
+  // }
+	};
   return (
     <>
 
@@ -32,11 +49,12 @@ const Navbar = () => {
           {/* <a href="#"><img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a> */}
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <a href="#"><img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a>
+            <a href="#">
+              <img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button>
-              <button className="dropdown-item" type="button"><i class="fa fa-sign-out" /> Logout</button>
+              <button className="dropdown-item" type="button" onClick={logout}><i class="fa fa-sign-out"  /> Logout</button>
             </div>
           </div>
         </div>

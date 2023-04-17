@@ -1,5 +1,7 @@
-import React, { Component, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route,Navigate } from 'react-router-dom';
 import Login from '../components/login';
 import Dashboard from '../components/dashboard';
 import Allstores from '../components/Manage Stores/allstores';
@@ -26,12 +28,38 @@ import Mybookings from '../components/My bookings/my-bookings';
 import Campaigns from '../components/Campaigns/campaigns';
 import Campaignnewadd from '../components/Campaigns/campaign-new-add';
 
-const RouterComponent = () => {
+function RouterComponent (){
+	const [user, setUser] = useState(null);
+
+    const getUser = async () => {
+		try {
+			const url = `${'http://localhost:9000'}/auth/login/success`;
+			const { data } = await axios.get(url, { withCredentials: true });
+			setUser(data.user._json);
+			console.log(data)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+    useEffect(() => {
+		getUser();
+	}, []);
+
     return (
         <>
             <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/dashboard' element={<Dashboard />} />
+            <Route
+					exact
+					path="/"
+					element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
+				/>
+                <Route
+					exact
+					path="/login"
+					element={user ? <Navigate to="/" /> : <Login />}
+				/>
+                {/* <Route path='/' element={<Login />} /> */}
+                {/* <Route path='/dashboard' element={<Dashboard />} /> */}
                 <Route path='/all-stores' element={<Allstores />} />
                 <Route path='/all-store-edit' element={<Allstoresedit />} />
                 <Route path='/my-stores' element={<Mystores />} />
