@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../../../directives/navbar'
-import Sidebar from '../../../directives/sidebar'
-import Footer from '../../../directives/footer'
+import Navbar from '../../directives/navbar'
+import Sidebar from '../../directives/sidebar'
+import Footer from '../../directives/footer'
 
 
 function Groupaccessadd() {

@@ -28,13 +28,14 @@ import Campaigns from '../components/Campaigns/campaigns';
 import Campaignnewadd from '../components/Campaigns/campaign-new-add';
 import Messages from '../components/Messages/messages';
 import Payouts from '../components/Payouts/payouts';
-import Users from '../components/Campaigns/Manage Users/users';
-import Groupaccess from '../components/Campaigns/Manage Users/group-access';
-import Usersnewadd from '../components/Campaigns/Manage Users/users-new-add';
-import Groupaccessadd from '../components/Campaigns/Manage Users/group-access-add';
+import Groupaccessadd from '../components/Manage Users/group-access-add';
+import Users from '../components/Manage Users/users';
+import Groupaccess from '../components/Manage Users/group-access';
+import Usersnewadd from '../components/Manage Users/users-new-add';
 import Invoice from '../components/Payment/invoice';
 import Paymentconfig from '../components/Payment/payment-config';
 import Allslider from '../components/Mobile Slider/all-slider';
+
 
 const RouterComponent = () => {
     return (
