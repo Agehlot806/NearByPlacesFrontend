@@ -49,10 +49,20 @@ import Managepageadd from '../components/CMS & Pages/manage-page-add';
 import Managepageedit from '../components/CMS & Pages/manage-page-edit';
 import Managemenu from '../components/CMS & Pages/manage-menu';
 import Useredit from '../components/Manage Users/user-edit';
-import Globalconfig from '../components/Application/global-config';
-import APIconfig from '../components/Application/API-config';
-import Currencies from '../components/Application/currencies';
-import Mailconfig from '../components/Application/mail-config';
+import Globalconfig from '../components/Application/Global Config/global-config';
+import APIconfig from '../components/Application/API Config/API-config';
+import Currencies from '../components/Application/Currencies/currencies';
+import Mailconfig from '../components/Application/Mail Config/mail-config';
+import Modulesmanager from '../components/Application/Modules Manager/modules-manager';
+import Modulesmanageradd from '../components/Application/Modules Manager/modules-manager-add';
+import Categories from '../components/Application/Categories/categories';
+import Categoriesadd from '../components/Application/Categories/categories-add';
+import Language from '../components/Application/Language/language';
+import Languageadd from '../components/Application/Language/language-add';
+import Languageedit from '../components/Application/Language/language-edit';
+import Subscription from '../components/Application/Subscription/subscription';
+import Subscriptionadd from '../components/Application/Subscription/subscription-add';
+import Subscriptionedit from '../components/Application/Subscription/subscription-edit';
 
 const RouterComponent = () => {
     return (
@@ -126,6 +136,16 @@ const RouterComponent = () => {
                 <Route path='/api-config' element={<APIconfig />} />
                 <Route path='/currencies' element={<Currencies />} />
                 <Route path='/mail-config' element={<Mailconfig />} />
+                <Route path='/categories' element={<Categories />} />
+                <Route path='/categories-add' element={<Categoriesadd />} />
+                <Route path='/modules-manager' element={<Modulesmanager />} />
+                <Route path='/modules-manager-add' element={<Modulesmanageradd />} />
+                <Route path='/language' element={<Language />} />
+                <Route path='/language-add' element={<Languageadd />} />
+                <Route path='/language-edit' element={<Languageedit />} />
+                <Route path='/subscription' element={<Subscription />} />
+                <Route path='/subscription-add' element={<Subscriptionadd />} />
+                <Route path='/subscription-edit' element={<Subscriptionedit />} />
 
 
             </Routes>

@@ -2,6 +2,7 @@
   "name": "near-by-booking",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://demo7.progressiveaidata.in/",
   "dependencies": {
     "@material-design-icons/font": "^0.14.5",
     "@testing-library/jest-dom": "^5.16.5",
