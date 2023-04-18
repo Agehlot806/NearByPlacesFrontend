@@ -32,21 +32,54 @@ function Currencies() {
                                         <div className="product-card-body">
                                             <form>
                                                 <div className="form-group">
-                                                    <label>App Name :</label>
+                                                    <label>Name :</label>
                                                     <input type="text" className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Code :</label>
+                                                    <input type="number" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group image-size">
-                                                    <label>Logo Upload (Multiple)</label>
+                                                    <label>Symbol</label>
                                                     <input type="file" className="form-control" placeholder="Enter..." />
                                                 </div>
+                                               
                                                 <div className="form-group">
-                                                    <label>Analytics :</label>
-                                                    <input type="text" className="form-control" placeholder="Enter..." />
+                                                    <label>Format</label>
+                                                    <select id="inputState" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                    </select>
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>Color</label>
-                                                    <input type="color" className="form-control" placeholder="Enter..." />
+                                                    <label>Formate Decimal</label>
+                                                    <input type="number" className="form-control" placeholder="Enter..." />
                                                 </div>
+                                                <div className="form-group">
+                                                    <label>Decimal Point</label>
+                                                    <input type="number" className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Thousands Separater</label>
+                                                    <select id="inputState" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                    </select>
+                                                </div><br />
                                                 <div className='user-head'>
                                                     <a href='#'><i className="fa fa-check-square-o" /> Create</a>
                                                 </div>

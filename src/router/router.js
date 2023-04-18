@@ -54,6 +54,7 @@ import Useredit from '../components/Manage Users/user-edit';
 import Globalconfig from '../components/Application/global-config';
 import APIconfig from '../components/Application/API-config';
 import Currencies from '../components/Application/currencies';
+import Mailconfig from '../components/Application/mail-config';
 
 function RouterComponent (){
 	const [user, setUser] = useState(null);
@@ -150,6 +151,7 @@ function RouterComponent (){
                 <Route path='/global-config' element={<Globalconfig />} />
                 <Route path='/api-config' element={<APIconfig />} />
                 <Route path='/currencies' element={<Currencies />} />
+                <Route path='/mail-config' element={<Mailconfig />} />
 
 
             </Routes>
