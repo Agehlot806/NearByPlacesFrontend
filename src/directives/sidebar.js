@@ -183,13 +183,13 @@ const Sidebar = () => {
                         <ul>
                             <li><a href='global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></a></li>
                             <li><a href='api-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API Config</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></a></li>
+                            <li><a href='currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deep Linking</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></a></li>
+                            <li><a href='mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Checkout Fields</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></a></li>

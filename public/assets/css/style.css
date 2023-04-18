@@ -564,3 +564,14 @@ table.table.booking-table td img {
     background: #fff;
     padding: 25px 88px 0;
 }
+
+
+/* ================================== Invoice area css ===================================== */
+.invoice-drop {
+    margin: 20px;
+}
+.filter-invoice {
+    border: 1px solid gray;
+    background: #FFF;
+    padding: 10px;
+}

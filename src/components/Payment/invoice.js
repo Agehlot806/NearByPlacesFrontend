@@ -54,23 +54,23 @@ function Invoice() {
                                             </div>
                                         </div>
                                         <div className="product-list-box-body main-table">
+                                            <div className='invoice-drop'>
+                                                <div className="btn-group">
+                                                    <button type="button" className="filter-invoice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <a href="#">Filter By data show</a>
+                                                    </button>
+                                                    <div className="dropdown-menu dropdown-menu-right">
+                                                        <button className="dropdown-item" type="button">All</button>
+                                                        <button className="dropdown-item" type="button">Unpaid</button>
+                                                        <button className="dropdown-item" type="button">Paid</button>
+                                                        <button className="dropdown-item" type="button">Canceled</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className="table-responsive">
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">
-                                                                <div className="btn-group">
-                                                                    <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <a href="#">Filter By data show</a>
-                                                                    </button>
-                                                                    <div className="dropdown-menu dropdown-menu-right">
-                                                                        <button className="dropdown-item" type="button">All</button>
-                                                                        <button className="dropdown-item" type="button">Unpaid</button>
-                                                                        <button className="dropdown-item" type="button">Paid</button>
-                                                                        <button className="dropdown-item" type="button">Canceled</button>
-                                                                    </div>
-                                                                </div>
-                                                            </th>
                                                             <th scope="col">#</th>
                                                             <th scope="col">Amount</th>
                                                             <th scope="col">Tax</th>
@@ -83,7 +83,6 @@ function Invoice() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td></td>
                                                             <td>1412</td>
                                                             <td>$5.00</td>
                                                             <td>----</td>
@@ -92,7 +91,6 @@ function Invoice() {
                                                             <td><span className='bg-orange'>Pending</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td></td>
                                                             <td>1412</td>
                                                             <td>$5.00</td>
                                                             <td>----</td>
@@ -101,7 +99,6 @@ function Invoice() {
                                                             <td><span className='bg-payment'>Pay Online</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td></td>
                                                             <td>1412</td>
                                                             <td>$5.00</td>
                                                             <td>----</td>
@@ -110,7 +107,6 @@ function Invoice() {
                                                             <td><span className='bg-payment'>Pay online</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td></td>
                                                             <td>1412</td>
                                                             <td>$5.00</td>
                                                             <td>----</td>
@@ -119,7 +115,6 @@ function Invoice() {
                                                             <td><span className='bg-orange'>Pending</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <td></td>
                                                             <td>1412</td>
                                                             <td>$5.00</td>
                                                             <td>----</td>
