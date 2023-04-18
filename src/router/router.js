@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Routes, Route,Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../components/login';
 import Signup from '../components/sign-up';
 import Dashboard from '../components/dashboard';
@@ -56,37 +56,37 @@ import APIconfig from '../components/Application/API-config';
 import Currencies from '../components/Application/currencies';
 import Mailconfig from '../components/Application/mail-config';
 
-function RouterComponent (){
-	const [user, setUser] = useState(null);
+function RouterComponent() {
+    const [user, setUser] = useState(null);
 
     const getUser = async () => {
-		try {
-			const url = `${'http://localhost:9000'}/auth/login/success`;
-			const { data } = await axios.get(url, { withCredentials: true });
-			setUser(data.user._json);
-			console.log(data)
-		} catch (err) {
-			console.log(err);
-		}
-	};
+        try {
+            const url = `${'http://localhost:9000'}/auth/login/success`;
+            const { data } = await axios.get(url, { withCredentials: true });
+            setUser(data.user._json);
+            console.log(data)
+        } catch (err) {
+            console.log(err);
+        }
+    };
     useEffect(() => {
-		getUser();
-	}, []);
+        getUser();
+    }, []);
 
     return (
         <>
             <Routes>
-            <Route
-					exact
-					path="/"
-					element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
-				/>
+                {/* <Route
+                    exact
+                    path="/"
+                    element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
+                />
                 <Route
-					exact
-					path="/login"
-					element={user ? <Navigate to="/" /> : <Login />}
-				/>
-                {/* <Route path='/' element={<Login />} /> */}
+                    exact
+                    path="/login"
+                    element={user ? <Navigate to="/" /> : <Login />}
+                /> */}
+                <Route path='/' element={<Login />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/all-stores' element={<Allstores />} />

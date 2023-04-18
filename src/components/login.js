@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Particles from './particles'
 import { useState } from "react";
 import { APIURL } from "./Constant/common";
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 // import { useNavigate } from 'react-router-dom/dist';
 // import { useNavigate } from "react-router-dom";
 // import { Redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import { useCookies } from 'react-cookie'
 
 function Login() {
     const navigate = useNavigate();
@@ -14,22 +16,38 @@ function Login() {
     // const [scsMsg, setScsMsg] = useState("");
     const [password, setPassword] = useState("");
     const [errMsg, setErrMsg] = useState("");
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState(false);
+
+    
+    // const googleAuth = () => {
+    //     window.open(
+    //         `${'http://localhost:9000'}/auth/google/callback`,
+    //         "_self"
+    //     );
+    // };
+
+    // const facebookauth = () => {
+    //     window.open(
+    //         `${'http://localhost:9000'}/auth/facebook/callback`,
+    //         "_self"
+    //     );
+    // };
 
 
-    const googleAuth = () => {
-        window.open(
-            `${'http://localhost:9000'}/auth/google/callback`,
-            "_self"
-        );
-    };
+//    const setCookie =() => {
+//         let d = new Date();
+//         d.setTime(d.getTime() + (minutes*60*1000));
+      
+//         cookie.set("onboarded", true, {path: "/", expires: d});
+//       };
+useEffect (()=>{
+    if (success) {
+        // <Redirect to="/dashboard" />
+        navigate("/dashboard");
+    }
+})
 
-    const facebookauth = () => {
-        window.open(
-            `${'http://localhost:9000'}/auth/facebook/callback`,
-            "_self"
-        );
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,13 +55,18 @@ function Login() {
             .post(APIURL + "login", {
                 email: email,
                 password: password,
-
-            })
+            },{
+                   withCredentials:true,
+            }
+          )
             .then((response) => {
-                console.log(response.data.message);
-                setSuccess(response.data.message);
+               setSuccess(response.data.message);
                 localStorage.setItem("isLoggedIn", true);
-                localStorage.setItem("userData", response.data.admin);
+               localStorage.setItem("token",response.data.token);
+                localStorage.setItem("email",response.data.admin.email);
+                localStorage.setItem("name",response.data.admin.name);
+                localStorage.setItem("password",response.data.admin.password);
+           
                 setSuccess(response.data.success);
                 if (success) {
                     // <Redirect to="/dashboard" />
@@ -52,8 +75,9 @@ function Login() {
 
             })
             .catch((error) => {
-                setSuccess(error.response.success);
-                setErrMsg(error.response.message);
+                // setSuccess(error.response.success);
+
+                // setErrMsg(error.response.message);
                 console.log(error.response.data);
 
             });
@@ -100,11 +124,11 @@ function Login() {
                                         <div className="login-line" />
                                         <div data-bn-type="text" className="login-line-text">or</div>
                                         <div className="login-line" /></div>
-                                    <div>
+                                    {/* <div>
                                         <button type="submit" className="login-btn Loginicon" onClick={googleAuth}><img src='assets/images/icons/google.png' /> Sign in with Google</button>
 
                                         <button type="submit" className="login-btn Loginicon" onClick={facebookauth}><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <a href="#">Forgot your password?</a>
                                         <div className="additional-link">Don't have an account? <a href="/sqfcoin/signup">Signup</a></div>

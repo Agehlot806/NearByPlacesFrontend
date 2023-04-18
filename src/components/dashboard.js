@@ -1,11 +1,15 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Sidebar from '../directives/sidebar'
 import Navbar from '../directives/navbar'
 import { CanvasJSChart } from 'canvasjs-react-charts'
-import Footer from '../directives/footer'
+import Footer from '../directives/footer';
+import { useNavigate } from "react-router-dom";
 
 
 function Dashboard() {
+    const navigate = useNavigate();
+    const user = localStorage.getItem("name");
+    console.log(user);
     const optionOne = {
         animationEnabled: true,
         exportEnabled: true,
@@ -25,7 +29,7 @@ function Dashboard() {
             type: "line",
             toolTipContent: "Week {x}: {y}%",
             dataPoints: [
-                { x: 1, y: 64 },
+                   { x: 1, y: 64 },
                 { x: 2, y: 61 },
                 { x: 3, y: 64 },
                 { x: 4, y: 62 },
@@ -76,7 +80,11 @@ function Dashboard() {
         }]
     }
     
-
+    useEffect (() => {
+      if(!user){
+        navigate("/");
+      }
+      });
     return (
         <>
             <Navbar />

@@ -1,23 +1,37 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 // import { Redirect } from 'react-router-dom';
+import { APIURL } from "../components/Constant/common";
+import { useNavigate } from "react-router-dom";
 
 
+const Navbar = (props) => {
+  const navigate = useNavigate();
+  const user = localStorage.getItem("name");
+  
+  console.log(props);
 
-const Navbar = (userDetails) => {
-
-  const user = userDetails.user;
+ 
    
   const logout = () => {
-  window.open(`${'http://localhost:9000'}/auth/logout`, "_self");
+    
+  // window.open(APIURL+"logout");
     localStorage.clear();
     localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userData");
-    // console.log("Logout successful");
-    // cookies. remove() ;
-  //   if (!this.state.user) {
-  //     return <Redirect to="/" />;
-  // }
+    localStorage.removeItem("name");
+    // localStorage.removeItem("userData");
+    console.log("Logout successful");
+    // cookies.remove() ;
+   
+      navigate("/");
+  
 	};
+
+
+  useEffect (() => {
+    if(!user){
+      navigate("/");
+    }
+    });
   return (
     <>
 
@@ -53,8 +67,9 @@ const Navbar = (userDetails) => {
               <img src="assets/images/img/user.jpeg" alt="user"/>&nbsp;&nbsp;Admin</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
-              <button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button>
-              <button className="dropdown-item" type="button" onClick={logout}><i class="fa fa-sign-out"  /> Logout</button>
+              <a href='profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></a>
+              <a onClick={logout} ><button className="dropdown-item" type="button"><i class="fa fa-sign-out" /> Logout</button></a>
+            
             </div>
           </div>
         </div>

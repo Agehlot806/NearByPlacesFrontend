@@ -1,8 +1,29 @@
-import React from 'react'
 import Navbar from '../directives/navbar'
 import Sidebar from '../directives/sidebar'
+import React, {useEffect, useState} from "react";
+import { APIURL } from "./Constant/common";
+// import axios from "axios";
+const  Profile =()=> {
+    const [user, setUser] = useState();
+    
+const token = localStorage.getItem("token");
+    const fetchPost = () => {
+        fetch(APIURL+"myprofile",{
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res)
+            setUser(res)
+          })
+      }
 
-function Profile() {
+
+    useEffect(() => {
+        fetchPost();
+    }, []);
     return (
         <>
             <Navbar />
