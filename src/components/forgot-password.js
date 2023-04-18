@@ -17,7 +17,7 @@ function Forgotpassword() {
                                     <div className="form-group">
                                         <input type="email" className="form-control" placeholder="Enter your email" />
                                     </div>
-                                    <button type="submit" className="login-btn">Send Password</button>
+                                    <button type="submit" className="login-btn">Send Email</button>
                                     <div className="additional-link"><a href="/">Login Now</a></div>
                                 </form>
                             </div>

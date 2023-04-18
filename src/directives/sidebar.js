@@ -181,8 +181,8 @@ const Sidebar = () => {
                 {application && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API Config</span></a></li>
+                            <li><a href='global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></a></li>
+                            <li><a href='api-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API Config</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deep Linking</span></a></li>
                             <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></a></li>

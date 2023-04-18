@@ -50,6 +50,10 @@ import Managepages from '../components/CMS & Pages/manage-pages';
 import Managepageadd from '../components/CMS & Pages/manage-page-add';
 import Managepageedit from '../components/CMS & Pages/manage-page-edit';
 import Managemenu from '../components/CMS & Pages/manage-menu';
+import Useredit from '../components/Manage Users/user-edit';
+import Globalconfig from '../components/Application/global-config';
+import APIconfig from '../components/Application/API-config';
+import Currencies from '../components/Application/currencies';
 
 function RouterComponent (){
 	const [user, setUser] = useState(null);
@@ -119,6 +123,7 @@ function RouterComponent (){
                 <Route path='/group-access' element={<Groupaccess />} />
                 <Route path='/group-access-add' element={<Groupaccessadd />} />
                 <Route path='/User-add' element={<Usersnewadd />} />
+                <Route path='/user-edit' element={<Useredit />} />
 
 
                 <Route path='/invoice' element={<Invoice />} />
@@ -141,6 +146,11 @@ function RouterComponent (){
                 <Route path='/manage-pages-add' element={<Managepageadd />} />
                 <Route path='/manage-pages-edit' element={<Managepageedit />} />
                 <Route path='/manage-menu' element={<Managemenu />} />
+
+                <Route path='/global-config' element={<Globalconfig />} />
+                <Route path='/api-config' element={<APIconfig />} />
+                <Route path='/currencies' element={<Currencies />} />
+
 
             </Routes>
         </>

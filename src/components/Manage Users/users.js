@@ -66,7 +66,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -74,7 +74,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td className='action-btn'>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -82,7 +82,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
