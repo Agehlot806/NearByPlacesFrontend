@@ -13,47 +13,67 @@ function Profile() {
                         <div className='container'>
                             <div className='row'>
                                 <div className='col-lg-6'>
-                                    <div className="product-list-box">
-                                        <div className="product-list-box-header">
-                                            <h3><b>Edit user information</b></h3>
+                                    <div className='row'>
+                                        <div className='col-sm-12'>
+                                            <div className="product-list-box">
+                                                <div className="product-list-box-header">
+                                                    <h3><b>Edit user information</b></h3>
+                                                </div>
+                                                <div className="product-card-body">
+                                                    <form>
+                                                        <div className="form-group image-size">
+                                                            <input type="file" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Full name :</label>
+                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Email :</label>
+                                                            <input type="email" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Username :</label>
+                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Phone Number</label>
+                                                            <input type="number" className="form-control" />
+                                                        </div>
+                                                        <br />
+                                                        <div className='user-head'>
+                                                            <a href='#'><i className="mdi mdi-content-save-outline" /> Save</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="product-card-body">
-                                            <form>
-                                                <div className="form-group image-size">
-                                                    <input type="file" className="form-control" placeholder="Enter..." />
+
+                                        <div className='col-sm-12'>
+                                            <div className="product-list-box">
+                                                <div className="product-list-box-header">
+                                                    <h3><b>Change Password</b></h3>
                                                 </div>
-                                                <div className="form-group">
-                                                    <label>Full name :</label>
-                                                    <input type="text" className="form-control" placeholder="Enter..." />
+                                                <div className="product-card-body">
+                                                    <form>
+                                                    <div className="form-group">
+                                                            <label>Password</label>
+                                                            <input type="password" className="form-control" />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Confirm Password</label>
+                                                            <input type="password" className="form-control" />
+                                                        </div>
+                                                        <br />
+                                                        <div className='user-head'>
+                                                            <a href='#'><i className="mdi mdi-content-save-outline" /> Change Password</a>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div className="form-group">
-                                                    <label>Email :</label>
-                                                    <input type="email" className="form-control" placeholder="Enter..." />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Username :</label>
-                                                    <input type="text" className="form-control" placeholder="Enter..." />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="number" className="form-control" />
-                                                </div>
-                                                <h6>CHANGE PASSWORD</h6>
-                                                <div className="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" className="form-control" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Confirm Password</label>
-                                                    <input type="password" className="form-control" />
-                                                </div>
-                                                <br />
-                                                <div className='user-head'>
-                                                    <a href='#'><i className="mdi mdi-content-save-outline" /> Save</a>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div className='col-lg-6'>
                                     <div className='row'>
@@ -95,7 +115,7 @@ function Profile() {
                                                 <div className="product-list-box-header">
                                                     <h3><b>Billing</b></h3>
                                                 </div>
-                                                
+
                                                 <div className="product-card-body">
                                                     <div>
                                                         <label>Last Invoice:</label><br />
