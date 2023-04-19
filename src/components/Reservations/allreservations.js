@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import {Link} from 'react-router-dom'
 
 
 function Allreservations() {
@@ -26,9 +27,9 @@ function Allreservations() {
 
                                                         <form className='text-right'>
                                                             <span className="input-group-btn ">
-                                                                <a href='event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
+                                                                <Link to='/event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
                                                                     <i class="fa fa-filter" aria-hidden="true"></i>
-                                                                </a>
+                                                                </Link>
                                                             </span>
                                                         </form>
                                                     </div>

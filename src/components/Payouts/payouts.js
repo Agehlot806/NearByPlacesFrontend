@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import {Link} from 'react-router-dom'
 
 
 function Payouts() {
@@ -25,9 +26,9 @@ function Payouts() {
                                                     <div className="pull-right col-md-6">
                                                         <form className='text-right'>
                                                             <span className="input-group-btn ">
-                                                                <a href='payout-add' className="ml-2 btn btn-flat">
+                                                                <Link to='/payout-add' className="ml-2 btn btn-flat">
                                                                     <i className="fa fa-plus" aria-hidden="true" />
-                                                                </a>
+                                                                </Link>
                                                             </span>
                                                         </form>
                                                     </div>
@@ -60,7 +61,7 @@ function Payouts() {
                                                            <td>sdasdasd</td>
                                                            <td>sdasdasd</td>
                                                            <td className='action-btn'>
-                                                                <a href='payout-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <Link to='/payout-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <a href='' data-toggle="modal" data-target="#PayoutDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>

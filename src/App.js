@@ -1,7 +1,8 @@
 import React, { Component, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from './components/login';
-import Signup from './components/sign-up';
+// import Signup from './components/sign-up';
+import Signup from './components/sign-up'
 import Dashboard from './components/dashboard';
 import Allstores from './components/Manage Stores/allstores';
 import Mystores from './components/Manage Stores/mystores';
@@ -58,6 +59,7 @@ import Languageedit from './components/Application/Language/language-edit';
 import Subscription from './components/Application/Subscription/subscription';
 import Subscriptionadd from './components/Application/Subscription/subscription-add';
 import Subscriptionedit from './components/Application/Subscription/subscription-edit';
+import Googlemapapi from './components/Application/Google Maps Api/google-map-api';
 
 const RouterComponent = () => {
   return (
@@ -137,6 +139,7 @@ const RouterComponent = () => {
           <Route exact path='/subscription' component={Subscription} />
           <Route exact path='/subscription-add' component={Subscriptionadd} />
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
+          <Route exact path='/google-map-api' component={Googlemapapi} />
 
 
         </Switch>

@@ -281,8 +281,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Nihat</b></a><br />
-                                                                <a href=''>Simple to Food</a><br />
+                                                                <a href='#'><b>Nihat</b></a><br />
+                                                                <a href='#'>Simple to Food</a><br />
                                                                 Super guzel
                                                             </td>
                                                             <td>
@@ -298,8 +298,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Sabri22</b></a><br />
-                                                                <a href=''>Radisson Blu Hotel</a><br />
+                                                                <a href='#'><b>Sabri22</b></a><br />
+                                                                <a href='#'>Radisson Blu Hotel</a><br />
                                                                 test
                                                             </td>
                                                             <td>
@@ -315,8 +315,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Hind</b></a><br />
-                                                                <a href=''>KFC Aîn Diab</a><br />
+                                                                <a href='#'><b>Hind</b></a><br />
+                                                                <a href='#'>KFC Aîn Diab</a><br />
                                                                 Bad service
                                                             </td>
                                                             <td>
@@ -332,8 +332,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Necati</b></a><br />
-                                                                <a href=''>Yemen kahvesi antalya</a><br />
+                                                                <a href='#'><b>Necati</b></a><br />
+                                                                <a href='#'>Yemen kahvesi antalya</a><br />
                                                                 vay amk
                                                             </td>
                                                             <td>

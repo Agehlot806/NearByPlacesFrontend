@@ -1,5 +1,7 @@
 import React from 'react'
 import Particles from './particles'
+import {Link} from 'react-router-dom'
+
 
 function Login() {
     return (
@@ -43,8 +45,8 @@ function Login() {
                                         <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
                                     </div>
                                     <div>
-                                    <a href="forgot-password">Forgot your password?</a>
-                                        <div className="additional-link">Don't have an account? <a href="sign-up">Signup</a></div>
+                                    <Link to="/forgot-password">Forgot your password?</Link>
+                                        <div className="additional-link">Don't have an account? <Link to="/sign-up">Signup</Link></div>
 
                                     </div>
                                 </form>

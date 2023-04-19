@@ -1,6 +1,8 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import {Link} from 'react-router-dom'
+
 
 function Eventparticipants() {
     return (
@@ -29,9 +31,9 @@ function Eventparticipants() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>

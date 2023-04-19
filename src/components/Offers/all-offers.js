@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import {Link} from 'react-router-dom'
 
 function Alloffers() {
     return (
@@ -30,9 +31,9 @@ function Alloffers() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='offer-add-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/offer-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -67,13 +68,13 @@ function Alloffers() {
                                                                 <a href=''><i className='mdi mdi-open-in-new' /></a>
                                                                 <a href=''><i className='mdi mdi-eye-outline' /></a>
                                                             </td>
-                                                            <td><a href='offer-published' className='Enabled-btn'><i className="mdi mdi-history"/> Published</a></td>
+                                                            <td><Link to='/offer-published' className='Enabled-btn'><i className="mdi mdi-history"/> Published</Link></td>
                                                             <td><span className='Disabled-btn'>$20.00</span></td>
                                                             <td>Disabled</td>
                                                             <td>----</td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='text-green fa fa-check' /></a>
-                                                                <a href='offer-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <Link to='/offer-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -88,13 +89,13 @@ function Alloffers() {
                                                                 <a href=''><i className='mdi mdi-open-in-new' /></a>
                                                                 <a href=''><i className='mdi mdi-eye-outline' /></a>
                                                             </td>
-                                                            <td><a href='offer-unpublished' className='Unpublished-btn'><i className="mdi mdi-history"/> Unpublished</a></td>
+                                                            <td><Link to='/offer-unpublished' className='Unpublished-btn'><i className="mdi mdi-history"/> Unpublished</Link></td>
                                                             <td><span className='Disabled-btn'>$20.00</span></td>
                                                             <td>Disabled</td>
                                                             <td>----</td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='fa fa-close' /></a>
-                                                                <a href='offer-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <Link to='/offer-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>

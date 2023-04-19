@@ -9,6 +9,13 @@
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .arrow-icon {
+        float: right;
+        margin: 15px 45px 0 45px !important;
+    }
+}
+
 @media only screen and (max-width: 540px) {
     .nav-right_area a {
         display: none;

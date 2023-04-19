@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
+import {Link} from 'react-router-dom'
 
 function Subscription() {
   return (
@@ -63,8 +64,8 @@ function Subscription() {
                                                     <td>30%</td>
                                                     <td>ahsjdsk</td>
                                                     <td className='action-btn'>
-                                                        <a href='subscription-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                        <a href='' data-toggle="modal" data-target="#SubscriptionDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                        <Link to='/subscription-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                        <a href='#' data-toggle="modal" data-target="#SubscriptionDeleteModel"><i class="fa fa-trash-o" /></a>
                                                     </td>
                                                 </tr>
                                             </tbody>

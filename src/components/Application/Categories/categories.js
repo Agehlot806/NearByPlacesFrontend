@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
+import {Link} from 'react-router-dom'
 
 function Categories() {
   return (
@@ -29,9 +30,9 @@ function Categories() {
                                                             <a className="btn btn-flat">
                                                                 <i className="mdi mdi-magnify" />
                                                             </a>
-                                                            <a href='categories-add' className="ml-2 btn btn-flat">
+                                                            <Link to='/categories-add' className="ml-2 btn btn-flat">
                                                                 <i className="fa fa-plus" aria-hidden="true" />
-                                                            </a>
+                                                            </Link>
                                                         </span>
                                                     </div>
                                                 </form>
@@ -55,21 +56,21 @@ function Categories() {
                                                     <td><img src='assets/images/img/img1.jpeg' /></td>
                                                     <td>dsfsdf</td>
                                                     <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
+                                                        <a href='#'><i class="fa fa-pencil-square-o" /></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><img src='assets/images/img/img1.jpeg' /></td>
                                                     <td>fgdxfdgdf</td>
                                                     <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
+                                                        <a href='#'><i class="fa fa-pencil-square-o" /></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><img src='assets/images/img/img1.jpeg' /></td>
                                                     <td>dasdada</td>
                                                     <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
+                                                        <a href='#'><i class="fa fa-pencil-square-o" /></a>
                                                     </td>
                                                 </tr>
 
