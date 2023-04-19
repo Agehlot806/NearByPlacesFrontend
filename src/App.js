@@ -60,6 +60,7 @@ import Subscription from './components/Application/Subscription/subscription';
 import Subscriptionadd from './components/Application/Subscription/subscription-add';
 import Subscriptionedit from './components/Application/Subscription/subscription-edit';
 import Googlemapapi from './components/Application/Google Maps Api/google-map-api';
+import Template from './components/Application/Template/template';
 
 const RouterComponent = () => {
   return (
@@ -140,6 +141,7 @@ const RouterComponent = () => {
           <Route exact path='/subscription-add' component={Subscriptionadd} />
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
           <Route exact path='/google-map-api' component={Googlemapapi} />
+          <Route exact path='/template' component={Template} />
 
 
         </Switch>

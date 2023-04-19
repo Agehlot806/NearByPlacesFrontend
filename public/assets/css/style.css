@@ -575,3 +575,56 @@ table.table.booking-table td img {
     background: #FFF;
     padding: 10px;
 }
+
+
+
+/* ========================== Template area css ========================================== */
+.dropify-wrapper {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    padding: 5px 10px;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
+    font-size: 14px;
+    line-height: 22px;
+    color: #777;
+    background-color: #FFF;
+    background-image: none;
+    text-align: center;
+    border: 2px solid #E5E5E5;
+    -webkit-transition: border-color 0.15s linear;
+    transition: border-color 0.15s linear;
+}
+.dropify-wrapper .dropify-message {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.dropify-wrapper .dropify-message span.file-icon {
+    font-size: 50px;
+    color: #CCC;
+}
+.dropify-wrapper .dropify-message p {
+    margin: 5px 0 0 0;
+}
+.dropify-wrapper .dropify-loader {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: none;
+    z-index: 9;
+}
+.dropify-wrapper.has-preview .dropify-clear {
+    display: block;
+}
+.template-area {
+    margin: 35px 0 0 0;
+}
+.template-area h3 {
+    margin: 10px 0 25px 0;
+}

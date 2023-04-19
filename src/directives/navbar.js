@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <>
@@ -35,7 +35,7 @@ const Navbar = () => {
               <a href="#"><img src="assets/images/img/user.jpeg" alt="user" />&nbsp;&nbsp;Admin</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
-            <a href='profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></a>
+            <Link to='/profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></Link>
               <a ><button className="dropdown-item" type="button"><i class="fa fa-sign-out" /> Logout</button></a>
             </div>
           </div>
