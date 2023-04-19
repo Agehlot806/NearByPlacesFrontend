@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
     const [managestores, setManageStores] = useState(false);
@@ -56,7 +57,7 @@ const Sidebar = () => {
         <>
             {/*sidebar start*/}
             <div className="sidebar">
-                <a href="dashboard"><i class="fa fa-line-chart"></i><span>&nbsp;&nbsp;Dashboard</span></a>
+                <Link to="/dashboard"><i class="fa fa-line-chart"></i><span>&nbsp;&nbsp;Dashboard</span></Link>
                 <a onClick={toggleManageStores}><i className="fa fa-archive" aria-hidden="true" />
                     <span>&nbsp;&nbsp;Manage Stores</span>
                     <i className={`arrow-icon fa fa-angle-left ${managestores ? 'rotate' : ''}`} />
@@ -64,10 +65,9 @@ const Sidebar = () => {
                 {managestores && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='all-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All stores</span></a></li>
-                            <li><a href='my-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My stores</span></a></li>
-                            <li><a href='store-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></a></li>
-                            <li><a href='checkout-fields' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Checkout Fields</span></a></li>
+                            <li><Link to='/all-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All stores</span></Link></li>
+                            <li><Link to='/my-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My stores</span></Link></li>
+                            <li><Link to='/store-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -78,9 +78,9 @@ const Sidebar = () => {
                 {offers && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='all-offers' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Offers</span></a></li>
-                            <li><a href='my-offer' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Offers</span></a></li>
-                            <li><a href='offer-add-new'><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></a></li>
+                            <li><Link to='/all-offers' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Offers</span></Link></li>
+                            <li><Link to='/my-offer' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Offers</span></Link></li>
+                            <li><Link to='/offer-add-new'><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -91,77 +91,77 @@ const Sidebar = () => {
                 {manageEvents && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='all-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All events</span></a></li>
-                            <li><a href='my-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My events</span></a></li>
-                            <li><a href='event-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><Link to='/all-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All events</span></Link></li>
+                            <li><Link to='/my-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My events</span></Link></li>
+                            <li><Link to='/event-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></Link></li>
                         </ul>
                     </div>
                 )}
                 <a onClick={toggleReservations}><i className="fa fa-calendar-o" aria-hidden="true" />
-                &nbsp;&nbsp;<span>Reservations</span>
+                    &nbsp;&nbsp;<span>Reservations</span>
                     <i className={`arrow-icon fa fa-angle-left ${reservations ? 'rotate' : ''}`} />
                 </a>
                 {reservations && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='all-reservations' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All reservations</span></a></li>
-                            <li><a href='my-reservations' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My reservations</span></a></li>
+                            <li><Link to='/all-reservations' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All reservations</span></Link></li>
+                            <li><Link to='/my-reservations' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My reservations</span></Link></li>
                         </ul>
                     </div>
                 )}
-                <a href="my-bookings"><i className="fa fa-shopping-bag" aria-hidden="true" />&nbsp;&nbsp;<span>My bookings</span></a>
+                <Link to="/my-bookings"><i className="fa fa-shopping-bag" aria-hidden="true" />&nbsp;&nbsp;<span>My bookings</span></Link>
                 <a onClick={toggleCampaigns}><i className="fa fa-bullseye" aria-hidden="true" />
-                &nbsp;&nbsp;<span>Campaigns</span>
+                    &nbsp;&nbsp;<span>Campaigns</span>
                     <i className={`arrow-icon fa fa-angle-left ${campaigns ? 'rotate' : ''}`} />
                 </a>
                 {campaigns && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='campaigns' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Campaigns</span></a></li>
-                            <li><a href='campaigns-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Create New</span></a></li>
+                            <li><Link to='/campaigns' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Campaigns</span></Link></li>
+                            <li><Link to='/campaigns-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Create New</span></Link></li>
                         </ul>
                     </div>
                 )}
-                <a href="message"><i className="fa fa-comments-o" aria-hidden="true" />&nbsp;&nbsp;<span>Messages</span></a>
+                <Link to="/message"><i className="fa fa-comments-o" aria-hidden="true" />&nbsp;&nbsp;<span>Messages</span></Link>
                 <a onClick={toggleManageUsers}><i className="fa fa-users" aria-hidden="true" />
-                &nbsp;&nbsp;<span>Manage Users</span>
+                    &nbsp;&nbsp;<span>Manage Users</span>
                     <i className={`arrow-icon fa fa-angle-left ${manageUsers ? 'rotate' : ''}`} />
                 </a>
                 {manageUsers && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='users' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Users</span></a></li>
-                            <li><a href='group-access' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Group Access</span></a></li>
-                            <li><a href='User-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><Link to='/users' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Users</span></Link></li>
+                            <li><Link to='/group-access' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Group Access</span></Link></li>
+                            <li><Link to='/User-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></Link></li>
                         </ul>
                     </div>
                 )}
                 <a onClick={togglePayment}><i className="fa fa-credit-card" aria-hidden="true" />
-                &nbsp;&nbsp;<span>Payment </span>
+                    &nbsp;&nbsp;<span>Payment </span>
                     <i className={`arrow-icon fa fa-angle-left ${payment ? 'rotate' : ''}`} />
                 </a>
                 {payment && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='invoice' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Invoices</span></a></li>
-                            <li><a href='payment-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Payment config</span></a></li>
+                            <li><Link to='/invoice' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Invoices</span></Link></li>
+                            <li><Link to='/payment-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Payment config</span></Link></li>
                         </ul>
                     </div>
                 )}
                 <a onClick={toggleMobileSlider}><i className="fa fa-picture-o" aria-hidden="true" />
-                &nbsp;&nbsp;<span>Mobile Slider</span>
+                    &nbsp;&nbsp;<span>Mobile Slider</span>
                     <i className={`arrow-icon fa fa-angle-left ${mobileSlider ? 'rotate' : ''}`} />
                 </a>
                 {mobileSlider && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='all-slider' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All sliders</span></a></li>
-                            <li><a href='slider-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></a></li>
+                            <li><Link to='/all-slider' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All sliders</span></Link></li>
+                            <li><Link to='/slider-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></Link></li>
                         </ul>
                     </div>
                 )}
-                <a href="media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></a>
-                <a href="payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></a>
+                <Link to="/media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></Link>
+                <Link to="/payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></Link>
                 <a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                     <span>&nbsp; CMS & Pages</span>
                     <i className={`arrow-icon fa fa-angle-left ${cms ? 'rotate' : ''}`} />
@@ -169,8 +169,8 @@ const Sidebar = () => {
                 {cms && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='manage-pages' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></a></li>
-                            <li><a href='manage-menu' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></a></li>
+                            <li><Link to='/manage-pages' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage pages</span></Link></li>
+                            <li><Link to='/manage-menu' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage menu</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -181,20 +181,15 @@ const Sidebar = () => {
                 {application && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><a href='global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></a></li>
-                            <li><a href='api-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API Config</span></a></li>
-                            <li><a href='currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deep Linking</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></a></li>
-                            <li><a href='subscription' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></a></li>
-                            <li><a href='mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Checkout Fields</span></a></li>
-                            <li><a href='categories' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></a></li>
-                            <li><a href='language' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></a></li>
-                            <li><a href='modules-manager' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Modules Manager</span></a></li>
-                            <li><a href='' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Template</span></a></li>
+                            <li><Link to='/global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></Link></li>
+                            <li><Link to='/currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></Link></li>
+                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
+                            <li><Link to='/subscription' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></Link></li>
+                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
+                            <li><Link to='/mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></Link></li>
+                            <li><Link to='/categories' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></Link></li>
+                            <li><Link to='/language' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></Link></li>
+                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Template</span></Link></li>
 
                         </ul>
                     </div>

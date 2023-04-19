@@ -14,17 +14,6 @@ function Languageadd() {
                     <div className='section-panel'>
                         <div className='container'>
                             <div className='row'>
-                                <div className="col-sm-12">
-                                    <div className='pack-content'>
-                                        <h4>Your pack "FREE" has been expired!!</h4>
-                                        <p>
-                                            <a href="#">=&gt;Upgrade it</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='row'>
                                 <div className='col-lg-6'>
                                     <div className="product-list-box">
                                         <div className="product-list-box-header">
@@ -34,7 +23,7 @@ function Languageadd() {
                                             <form>
                                                 <div className="form-group">
                                                     <label>Language Code</label>
-                                                    <input type="number" className="form-control" placeholder="Enter..." />
+                                                    <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Language Name</label>
@@ -42,7 +31,11 @@ function Languageadd() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Language Direction</label>
-                                                    <input type="text" className="form-control" placeholder="Enter..." />
+                                                    <select id="inputState" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                    </select>
                                                 </div><br />
                                                 <div className='user-head'>
                                                     <a href='#'><i className="fa fa-check-square-o" /> Create</a>

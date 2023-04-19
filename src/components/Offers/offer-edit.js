@@ -18,16 +18,6 @@ function Offeredit() {
                 <div className="main-panel-content">
                     <div className='section-panel'>
                         <div className='container'>
-                            <div className='row'>
-                                <div className="col-sm-12">
-                                    <div className='pack-content'>
-                                        <h4>Your pack "FREE" has been expired!!</h4>
-                                        <p>
-                                            <a href="#">=&gt;Upgrade it</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div className='row'>
                                 <div className='col-lg-6'>
