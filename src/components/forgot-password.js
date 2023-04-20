@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Particles from './particles'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Forgotpassword() {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+            const data = await response.json();
+            setMessage(data.message);
+        } catch (error) {
+            setMessage('An error occurred. Please try again.');
+        }
+    };
     return (
         <>
             <Particles />
@@ -11,12 +28,15 @@ function Forgotpassword() {
                     <div className='row justify-content-center'>
                         <div className='col-lg-6'>
                             <div className='login-box mt-5 mb-5'>
-                                <form>
+                                {message && <div>{message}</div>}
+                                <form onSubmit={handleSubmit}>
+
                                     <div className='text-center'>
                                         <h3 className="animate-charcter">Forgot Your Password</h3>
                                     </div>
                                     <div className="form-group">
-                                        <input type="email" className="form-control" placeholder="Enter your email" />
+                                        <input type="email" className="form-control" placeholder="Enter your email"
+                                            onChange={(e) => setEmail(e.target.value)} required />
                                     </div>
                                     <button type="submit" className="login-btn">Send Email</button>
                                     <div className="additional-link"><Link to="/">Login Now</Link></div>
