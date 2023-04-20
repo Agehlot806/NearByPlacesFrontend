@@ -14,6 +14,9 @@
         float: right;
         margin: 15px 45px 0 45px !important;
     }
+    .login-box {
+        padding: 40px;
+    }
 }
 
 @media only screen and (max-width: 540px) {
@@ -32,4 +35,10 @@
         margin-right: 5px;
         padding: 10px;
     }
+}
+@media only screen and (max-width: 320px) {
+.login-box {
+    padding: 15px;
+    border-radius: 20px;
+}
 }
