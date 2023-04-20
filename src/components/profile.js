@@ -1,8 +1,32 @@
 import React from 'react'
 import Navbar from '../directives/navbar'
 import Sidebar from '../directives/sidebar'
+import { useEffect } from 'react'
+import { useState } from 'react';
+import { Button } from 'reactstrap';
 
 function Profile() {
+
+const[user, setUser] = useState([]);
+
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
+            .then((res) => res.json())
+            .then((responsive) => {
+              console.log("tsaryhxdashgxfahsxasx",responsive);
+              setUser(responsive)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
+
+useEffect(()=>{
+   console.log("user",user);
+    // allStore();
+})
+
     return (
         <>
             <Navbar />
@@ -18,6 +42,7 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
+                                                    <Button onClick={allStore}>user</Button>
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>

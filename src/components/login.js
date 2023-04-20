@@ -6,18 +6,26 @@ function Login() {
     // const [cookies, setCookie] = useCookies(['user']);
     const [password, setpassword] = useState()
     const [email, setemail] = useState()
-    const loginpage = async () => {
+    
+    const loginpage = async (credentials) => {
         var headers = {
+            withCredentials: true,
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+           
         };
-        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`, {
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`, credentials,{
+            withCredentials: true,
+            credentials: 'include',
             method: 'POST',
             body: JSON.stringify({
                 password: password,
                 email: email,
             }),
+           
             headers: headers,
+          
+          
         })
             .then((Response) => Response.json())
             .then((Response) => {
