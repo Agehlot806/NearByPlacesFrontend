@@ -132,7 +132,7 @@ label {
 
 .login-btn {
     background: #f39c12;
-    border: none;
+    border: none !important;
     color: #fff;
     width: 100%;
     line-height: 40px;

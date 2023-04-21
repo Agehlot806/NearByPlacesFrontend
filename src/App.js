@@ -59,7 +59,7 @@ import Subscriptionadd from './components/Application/Subscription/subscription-
 import Subscriptionedit from './components/Application/Subscription/subscription-edit';
 import Googlemapapi from './components/Application/Google Maps Api/google-map-api';
 import Template from './components/Application/Template/template';
-// import Resetpassword from './components/reset-password';
+import Resetpassword from './components/reset-password';
 
 const RouterComponent = () => {
   return (
@@ -68,7 +68,7 @@ const RouterComponent = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
-          {/* <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} /> */}
+          <Route exact path='/resetpassword' component={Resetpassword} />
           <Route exact path='/profile' component={Profile} />
 
           <Route exact path='/dashboard' component={Dashboard} />

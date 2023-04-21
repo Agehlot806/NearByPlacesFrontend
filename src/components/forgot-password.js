@@ -22,7 +22,7 @@ function Forgotpassword() {
                 toast.error("admin not found")
             }
             if (data.message == 'Reset Token has been sent to admin@gmail.com') {
-                toast.success("Reset Token has been sent to admin@gmail.com")
+                toast.success ("Reset Token has been sent to admin@gmail.com")
             }
 
         } catch (error) {

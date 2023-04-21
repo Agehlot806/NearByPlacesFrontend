@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../directives/navbar'
 import Sidebar from '../directives/sidebar'
 
 function Profile() {
+    const[user, setUser] = useState([]);
+    const profile = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
+            .then((res) => res.json())
+            .then((responsive) => {
+              console.log("tsaryhxdashgxfahsxasx",responsive);
+              setUser(responsive)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
     return (
         <>
             <Navbar />
@@ -18,6 +31,7 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
+                                                    <button onClick={profile}>profile</button>
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>

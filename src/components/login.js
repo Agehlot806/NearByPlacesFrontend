@@ -15,6 +15,8 @@ function Login() {
         };
         await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`, {
             method: 'POST',
+            withCredentials: true,
+            credentials: 'include',
             body: JSON.stringify({
                 password: password,
                 email: email,
