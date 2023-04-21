@@ -7,14 +7,15 @@ function Login() {
     const [password, setpassword] = useState()
     const [email, setemail] = useState()
     
-    const loginpage = async (credentials) => {
+    const loginpage = async () => {
         var headers = {
             withCredentials: true,
+           
             'Accept': 'application/json',
             'Content-Type': 'application/json',
            
         };
-        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`, credentials,{
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`,{
             withCredentials: true,
             credentials: 'include',
             method: 'POST',
