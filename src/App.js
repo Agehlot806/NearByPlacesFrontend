@@ -7,7 +7,7 @@ import Mystores from './components/Manage Stores/mystores';
 import Storeaddnew from './components/Manage Stores/store-add-new';
 import Reviews from './components/Manage Stores/reviews';
 import Allstoresedit from './components/Manage Stores/allstores-edit';
-import Alloffers from './components/Offers/all-offers';
+import Alloffers from './components/Offers/alloffers';
 import Offeraddnew from './components/Offers/offer-add-new';
 import Offerpublished from './components/Offers/offer-published';
 import Offeredit from './components/Offers/offer-edit';
@@ -68,7 +68,7 @@ const RouterComponent = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
-          <Route exact path='/resetpassword' component={Resetpassword} />
+          <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
           <Route exact path='/profile' component={Profile} />
 
           <Route exact path='/dashboard' component={Dashboard} />
@@ -83,7 +83,7 @@ const RouterComponent = () => {
           <Route exact path='/offer-add-new' component={Offeraddnew} />
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
-          <Route exact path='/offer-edit' component={Offeredit} />
+          <Route exact path='/offer-edit/:id' component={Offeredit} />
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />

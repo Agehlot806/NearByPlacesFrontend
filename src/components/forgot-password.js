@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Particles from './particles'
 import { Link } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
-
 function Forgotpassword() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -17,14 +15,12 @@ function Forgotpassword() {
             });
             const data = await response.json();
             // setMessage(data.message);
-
             if (data.message == 'admin not found') {
                 toast.error("admin not found")
             }
             if (data.message == 'Reset Token has been sent to admin@gmail.com') {
                 toast.success ("Reset Token has been sent to admin@gmail.com")
             }
-
         } catch (error) {
             setMessage('An error occurred. Please try again.');
         }
@@ -40,7 +36,6 @@ function Forgotpassword() {
                             <div className='login-box mt-5 mb-5'>
                                 {/* {message && <div>{message}</div>} */}
                                 <form onSubmit={handleSubmit}>
-
                                     <div className='text-center'>
                                         <h3 className="animate-charcter">Forgot Your Password</h3>
                                     </div>
@@ -59,5 +54,4 @@ function Forgotpassword() {
         </>
     )
 }
-
 export default Forgotpassword
