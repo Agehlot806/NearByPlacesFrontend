@@ -435,6 +435,10 @@ select.form-control:not([size]):not([multiple]) {
     white-space: nowrap;
 }
 
+.main-table table {
+    margin: 0;
+}
+
 .main-table tr td img {
     width: 45px;
     height: 45px;

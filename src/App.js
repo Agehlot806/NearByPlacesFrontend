@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
 import Allstores from './components/Manage Stores/allstores';
