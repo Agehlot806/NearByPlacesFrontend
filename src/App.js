@@ -83,13 +83,13 @@ const RouterComponent = () => {
           <Route exact path='/offer-add-new' component={Offeraddnew} />
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
-          <Route exact path='/offer-edit' component={Offeredit} />
+          <Route exact path="/offer-edit/:_id" component={Offeredit} />
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />
           <Route exact path='/event-participants' component={Eventparticipants} />
           <Route exact path='/event-new-add' component={Eventnewadd} />
-          <Route exact path='/event-edit' component={Eventedit} />
+          <Route exact path='/event-edit/:_id' component={Eventedit} />
 
           <Route exact path='/all-reservations' component={Allreservations} />
           <Route exact path='/my-reservations' component={Myreservations} />

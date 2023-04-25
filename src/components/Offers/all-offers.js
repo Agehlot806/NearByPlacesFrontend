@@ -1,18 +1,99 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
-import {Link} from 'react-router-dom'
-
+import Footer from '../../directives/footer'
+import { Link, useParams } from 'react-router-dom'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import toast, { Toaster } from 'react-hot-toast'
 function Alloffers() {
+
+    const [Id, setId] = useState("");
+    const [offerData, setOfferData] = useState([]);
+    const [data, setData] = useState([])
+    const [searchoffer, setSearchOffer] = useState('');
+    const [searchoffersave, setSearchOfferSave] = useState([])
+    useEffect(() => {
+        allOffer()
+    }, [setOfferData])
+    const allOffer = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                // console.log("tsaryhxdashgxfahsxasx", responsive.offer);
+                setOfferData(responsive.offer)
+                setData(responsive.offer[0].couponConfig)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    // Search data in All Offers
+    useEffect(() => {
+        const searchOfferData = async () => {
+            const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers`);
+            const apiData = await response.json();
+            setOfferData(apiData.offer);
+            setSearchOfferSave(apiData.offer);
+            // console.log("tarun birla",apiData.stores);
+        };
+        searchOfferData();
+    }, []);
+    const inputSearchOffer = (e) => {
+        if (e.target.value == '') {
+            setOfferData(searchoffersave)
+        }
+        else {
+            const filterres = searchoffersave.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase()))
+            setOfferData(filterres)
+        }
+        setSearchOffer(e.target.value)
+    }
+    // Function to delete data from API
+    const Deletedata = (id) => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'authorization': `Bearer ${access_token}`,
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${id}`, {
+            method: "DELETE",
+            headers: headers,
+        })
+            .then((resp) => {
+                console.log("4444444444444", resp.message)
+                // toast(resp.message);
+                // if (resp.message == 'Please enter all field') {
+                //     toast.error("Please enter all field")
+                // // }
+                // alert("hhhhh")
+                toast.success("Offer Deleted Successfully")
+            })
+    }
+    const [modal, setModal] = useState(false);
+    const toggle = (id) => {
+        setId(id)
+        setModal(!modal);
+    }
+    // pagination area
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 3; // for example
+    const totalPages = Math.ceil(offerData.length / itemsPerPage);
+    const currentItems = offerData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
     return (
         <>
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
                 <div className="main-panel-content">
                     <div className='section-panel'>
                         <div className='container'>
-
                             <div className='row'>
                                 <div className='col-lg-12'>
                                     <div className="product-list-box">
@@ -23,10 +104,11 @@ function Alloffers() {
                                                         <h3><b>Offers</b></h3>
                                                     </div>
                                                     <div className="pull-right col-md-6">
-
                                                         <form>
                                                             <div className="input-group input-group-sm">
-                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search" />
+                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search"
+                                                                    value={searchoffer}
+                                                                    onChange={(e) => inputSearchOffer(e)} />
                                                                 <span className="input-group-btn">
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
@@ -53,90 +135,65 @@ function Alloffers() {
                                                             <th scope="col">Offer</th>
                                                             <th scope="col">Deal</th>
                                                             <th scope='col'>Coupons</th>
+                                                            <th scope='col'>Description</th>
                                                             <th scope="col">Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
-                                                            <td>
-                                                                <b>NEW YEAR</b><br />
-                                                               <i className='mdi mdi-map-marker' /> Daliya<br />
-                                                            </td>
-                                                            <td className='click-color'>
-                                                                <a href=''><u>Admin</u></a>
-                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
-                                                            </td>
-                                                            <td><Link to='/offer-published' className='Enabled-btn'><i className="mdi mdi-history"/> Published</Link></td>
-                                                            <td><span className='Disabled-btn'>$20.00</span></td>
-                                                            <td>Disabled</td>
-                                                            <td>----</td>
-                                                            <td className='action-btn'>
-                                                                <a href=''><i className='text-green fa fa-check' /></a>
-                                                                <Link to='/offer-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
-                                                            <td>
-                                                                <b>NEW YEAR</b><br />
-                                                               <i className='mdi mdi-map-marker' /> Daliya<br />
-                                                            </td>
-                                                            <td className='click-color'>
-                                                                <a href=''><u>Admin</u></a>
-                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
-                                                            </td>
-                                                            <td><Link to='/offer-unpublished' className='Unpublished-btn'><i className="mdi mdi-history"/> Unpublished</Link></td>
-                                                            <td><span className='Disabled-btn'>$20.00</span></td>
-                                                            <td>Disabled</td>
-                                                            <td>----</td>
-                                                            <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-close' /></a>
-                                                                <Link to='/offer-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
+                                                        {currentItems.map((items, index) => (
+                                                            <tr key={index}>
+                                                                <td><img src={items.offerImage.url} alt='offer' /></td>
+                                                                <td><b>{items.name}</b></td>
+                                                                <td className='click-color'>
+                                                                    <a href=''><u>Admin</u></a>
+                                                                    <a href=''><i className='mdi mdi-open-in-new' /></a>
+                                                                    <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                </td>
+                                                                <td><Link to='/offer-published' className='Enabled-btn'><i className="mdi mdi-history" /> Published</Link></td>
+                                                                <td><span className='Disabled-btn'>{items.PricingOfferValue}</span></td>
+                                                                <td>-----</td>
+                                                                <td >{items.coupon_code}</td>
+                                                                <td>{items.description}</td>
+                                                                <td className='action-btn'>
+                                                                    <Link to=''><i className='text-green fa fa-check' /></Link>
+                                                                    <Link to={"/offer-edit/" +items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Button onClick={(e) => toggle(items._id, e)}><i class="fa fa-trash-o" /></Button>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </table>
+                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                                                    // <div >
+                                                        <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+                                                            {pageNumber}
+                                                        </button>
+                                                    // </div>
+                                                ))}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            <Footer />
             {/* Modal */}
-            <div className="modal fade" id="DeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Confirmation!</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                        <h3 className="text-center text-red">Are you sure?</h3>
-                        </div>
-                        <div className="modal-footer">
-                            <div className='user-head'>
-                                <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
-                                <a href=''><i className="fa fa-plus" /> Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Modal isOpen={modal}>
+                <ModalHeader toggle={toggle}>Confirmation!</ModalHeader>
+                <ModalBody>
+                    <h3 className="text-center text-red">Are you sure? { }</h3>
+                </ModalBody>
+                <ModalFooter>
+                    <Button onClick={toggle}><i className="fa fa-times" /> No</Button>
+                    <Button onClick={(e) => Deletedata(Id, e)}>
+                        <i className="fa fa-check" /> Yes
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </>
     )
 }
-
 export default Alloffers

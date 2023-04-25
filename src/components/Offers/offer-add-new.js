@@ -5,8 +5,7 @@ import Footer from "../../directives/footer";
 import { Button, Input } from "reactstrap";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
-// import {toast} from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function Offeraddnew() {
@@ -67,9 +66,9 @@ function Offeraddnew() {
         // console.log("error", error);
       })
   }
-// useEffect(()=>{
-//   allStore();
-// },[user])
+useEffect(()=>{
+  allStore();
+},[user])
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,6 +97,7 @@ function Offeraddnew() {
         }, 300);
       })
       .catch(error => {
+        toast.error("Please Fill all  Field");
         console.log(error);
       });
   };
@@ -167,7 +167,7 @@ const handleMeaage = ()=>{
                         </div>
                         <div className="form-group image-size">
                           <label>Images</label>
-                          <input type="file" onChange={onFileChange}
+                          <Input type="file" onChange={onFileChange}
                             className="form-control" placeholder="Enter..." />
                         </div>
 
@@ -229,7 +229,7 @@ const handleMeaage = ()=>{
                               </div>
                               <div className="form-group col-md-12">
                                 <label>Coupon code</label>
-                                <input type="text" className="form-control" placeholder='Enter...'
+                                <Input type="text" className="form-control" placeholder='Enter...'
                                   value={coupon_code}
                                   onChange={(e) => onChangeHandleCouponCode(e)}
                                 />
@@ -265,7 +265,7 @@ const handleMeaage = ()=>{
                                     <div className='col-sm-6'>
                                       <div className="form-group">
                                         <label>Date End</label>
-                                        <input type="date" className="form-control"
+                                        <Input type="date" className="form-control"
                                           value={dateend}
                                           onChange={(e) => setDateEnd(e.target.value)} />
                                       </div>
