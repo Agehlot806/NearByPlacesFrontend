@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Navbar from '../directives/navbar'
 import Sidebar from '../directives/sidebar'
+import { useEffect } from 'react'
+import { useState } from 'react';
+import { Button } from 'reactstrap';
 
 function Profile() {
-    const[user, setUser] = useState([]);
-    const profile = () => {
+    const [user, setUser] = useState([]);
+    const allStore = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
             .then((res) => res.json())
             .then((responsive) => {
-              console.log("tsaryhxdashgxfahsxasx",responsive);
-              setUser(responsive)
+                console.log("tsaryhxdashgxfahsxasx", responsive);
+                setUser(responsive)
             })
             .catch((error) => {
                 console.log("error", error);
             })
     }
-
+    useEffect(() => {
+        console.log("user", user);
+        // allStore();
+    })
     return (
         <>
             <Navbar />
@@ -31,7 +37,7 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
-                                                    <button onClick={profile}>profile</button>
+                                                    <Button onClick={allStore}>user</Button>
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>
@@ -62,7 +68,6 @@ function Profile() {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
@@ -70,7 +75,7 @@ function Profile() {
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>
-                                                    <div className="form-group">
+                                                        <div className="form-group">
                                                             <label>Password</label>
                                                             <input type="password" className="form-control" />
                                                         </div>
@@ -87,12 +92,9 @@ function Profile() {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className='col-lg-6'>
                                     <div className='row'>
-
-
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
@@ -107,7 +109,6 @@ function Profile() {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
@@ -120,16 +121,13 @@ function Profile() {
                                                     <br />
                                                     <br />
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Billing</b></h3>
                                                 </div>
-
                                                 <div className="product-card-body">
                                                     <div>
                                                         <label>Last Invoice:</label><br />
@@ -144,10 +142,8 @@ function Profile() {
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

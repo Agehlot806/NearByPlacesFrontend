@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import Particles from './particles'
 import toast, { Toaster } from 'react-hot-toast'
-import { Redirect, Link } from 'react-router-dom'
-
-
+import { Redirect } from 'react-router-dom'
 function Login() {
     // const [cookies, setCookie] = useCookies(['user']);
     const [password, setpassword] = useState()
     const [email, setemail] = useState()
+    
     const loginpage = async () => {
         var headers = {
+            withCredentials: true,
+           
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+           
         };
-        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`, {
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/login`,{
+            withCredentials: true,
+            credentials: 'include',
             method: 'POST',
             withCredentials: true,
             credentials: 'include',
@@ -21,7 +25,10 @@ function Login() {
                 password: password,
                 email: email,
             }),
+           
             headers: headers,
+          
+          
         })
             .then((Response) => Response.json())
             .then((Response) => {
@@ -69,8 +76,9 @@ function Login() {
                                 </div>
                                 <button type="submit" className="login-btn" onClick={loginpage} >Login</button>
 
+                                
                                 <div>
-                                    <Link to="/forgot-password">Forgot your password?</Link>
+                                    <a href="forgot-password">Forgot your password?</a>
                                 </div>
                                 {/* </form> */}
                             </div>

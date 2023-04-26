@@ -13,6 +13,7 @@ function Allstores() {
     const [modalstore, setModalStore] = useState(false);
     const [Id, setId] = useState("");
 
+
     // useEffect(() => {
     //     allStore()
     // })
@@ -41,6 +42,7 @@ function Allstores() {
         };
         searchStoreData();
     }, []);
+    
     const inputSearchStore = (e) => {
         if (e.target.value == '') {
             setStoreData(searchstoresave)

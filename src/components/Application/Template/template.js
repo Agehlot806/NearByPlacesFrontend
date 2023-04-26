@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
-import FroalaEditor from 'froala-editor';
+import FroalaEditor from "froala-editor"
 
 
 function Template() {
     const [content, setContent] = useState('<p>Initial content</p>');
     let editor;
-  
+
     useEffect(() => {
-      editor = new FroalaEditor('#editor', {
-        placeholderText: 'Edit content here...',
-        charCounterCount: false,
-        events: {
-          'contentChanged': function () {
-            setContent(editor.html.get());
-          }
-        }
-      });
-  
-    //   return () => {
-    //     editor.destroy();
-    //   };
+        editor = new FroalaEditor('#editor', {
+            placeholderText: 'Edit content here...',
+            charCounterCount: false,
+            events: {
+                'contentChanged': function () {
+                    setContent(editor.html.get());
+                }
+            }
+        });
+
+        //   return () => {
+        //     editor.destroy();
+        //   };
     }, []);
     return (
         <>
@@ -88,7 +88,7 @@ function Template() {
                                                         </div>
                                                     </div>
                                                     <div className="tab-pane fade" id="SMS-Template" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                                    <div className='template-area'>
+                                                        <div className='template-area'>
                                                             <h3><b><u>Create SMS Body Template</u></b></h3>
                                                             <div className='row'>
                                                                 <div className='col-sm-6'>

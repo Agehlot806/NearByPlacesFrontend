@@ -1,1 +1,1 @@
-const APIURL ="https://nearbyplaceadminpanner.onrender.com/api/v1/";
+export const APIURL ="https://nearbyplaceadminpanner.onrender.com/api/v1/";

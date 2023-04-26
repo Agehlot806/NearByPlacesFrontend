@@ -6,7 +6,6 @@ import { Link, useParams } from 'react-router-dom'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 
-
 function Alloffers() {
     const { _id } = useParams()
 
@@ -21,6 +20,7 @@ function Alloffers() {
     useEffect(() => {
         allOffer()
     }, [setOfferData])
+    
     const allOffer = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers`)
             .then((res) => res.json())
@@ -167,7 +167,7 @@ function Alloffers() {
                                                                 <td>{items.description}</td>
                                                                 <td className='action-btn'>
                                                                     <Link to=''><i className='text-green fa fa-check' /></Link>
-                                                                    <Link to="/offer-edit"><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Link to={"/offer-edit/" +items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
