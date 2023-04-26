@@ -5,9 +5,10 @@ import Footer from '../../directives/footer'
 import { useState } from 'react'
 import axios from 'axios';
 import {Button} from "reactstrap";
-
+import toast, { Toaster } from 'react-hot-toast'
 function Eventnewadd() {
-
+    
+    const [response, setResponse] = useState([]);
     const [getcountry1, setCountry1] = useState([]);
     const [getCountryid1, setCountryid1] = useState("");
     const [getrowdata1, setGetrowdata1] = useState([]);
@@ -70,7 +71,10 @@ function Eventnewadd() {
       headers: { "Content-Type": "multipart/form-data" },
     })
       .then(response => {
-      console.log("response",response);
+        toast.success(" offer update successfully")
+        setResponse(response);
+        toast.success("Evenet created successfully");
+        toast.success(" offer update successfully")
         
       })
       .catch(error => {
