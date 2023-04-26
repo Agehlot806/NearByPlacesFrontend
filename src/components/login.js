@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Particles from './particles'
 import toast, { Toaster } from 'react-hot-toast'
 import { Redirect } from 'react-router-dom'
+import google from "../assets/images/icons/google.png";
+import facebook from "../assets/images/icons/facebook.png"
 function Login() {
     // const [cookies, setCookie] = useCookies(['user']);
     const [password, setpassword] = useState()
@@ -78,8 +80,8 @@ function Login() {
                                     <div data-bn-type="text" className="login-line-text">or</div>
                                     <div className="login-line" /></div>
                                 <div>
-                                    <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/google.png' /> Sign in with Google</button>
-                                    <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
+                                    <button type="submit" className="login-btn Loginicon"><img src={google}/> Sign in with Google</button>
+                                    <button type="submit" className="login-btn Loginicon"><img src={facebook} />Sign in with Facebook</button>
                                 </div>
                                 <div>
                                     <a href="forgot-password">Forgot your password?</a>

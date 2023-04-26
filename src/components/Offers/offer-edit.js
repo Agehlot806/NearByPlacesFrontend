@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 function Offeredit() {
 
     const { _id } = useParams();
-
     const [user, setUser] = useState([]);
     const [store, setStores] = useState([]);
     const [name, setName] = useState("");
@@ -22,7 +21,7 @@ function Offeredit() {
     const [isChecked, setIsChecked] = useState(false);
     const [datebegin, setDatebegin] = useState("")
     const [dateend, setDateEnd] = useState("");
-    const [Id, setId] = useState("");
+    const [Id, setId] = useState("null");
     // const [couponConfig, setCouponCode] = useState([{coupon_type:""},{value:""},{coupon_code:""}])
     const [message, setMessage] = useState("")
 
@@ -63,16 +62,38 @@ function Offeredit() {
                 dateend(data.offer.PricingOfferValue)
                 setFileData(data.offerImage.url)
                 setId(data.offer._id);
+                console.log(data.offer._id);
             })
     }, []);
 
-const handleSubmit = ()=>{
-    console.log("jhkkkkkkkkkkkksd");
-}
+    const UpdateOfferDetail = (e) => {
+        e.preventDefault();
+       const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('file', fileData);
+        formData.append('PricingOfferValue', selectValue);
+        formData.append('coupon_type', coupon_type);
+        formData.append('value', coupon_value);
+        formData.append('coupon_code', coupon_code);
+        formData.append('datebegin', datebegin);
+        formData.append('dateend', dateend);
+        axios
+            .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            })
+            .then((response) => {
+               console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+               
+            });
+    };
     // const handleSubmit = (e) => {
-    //     alert("9886879")
-    //     e.preventDefault();
-    //     console.log("hdfdsgsv")
+    //       e.preventDefault();
+          
+    //     console.log("hdfdsgsv",Id)
     //     var formData = new FormData();
     //     formData.append('name', name);
     //     formData.append('description', description);
@@ -84,8 +105,8 @@ const handleSubmit = ()=>{
     //     formData.append('datebegin', datebegin);
     //     formData.append('dateend', dateend);
     //     axios({
-    //         method: "PUT",
-    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateofferimage/${Id}`,
+    //         method: "put",
+    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`,
     //         data: formData,
     //         headers: { "Content-Type": "multipart/form-data" },
     //     })
@@ -100,6 +121,9 @@ const handleSubmit = ()=>{
     //             console.log(error);
     //         });
     // };
+
+
+
     const onFileChange = (event) => {
         setFileData(event.target.files[0]);
         console.log(event.target.files[0])
@@ -147,7 +171,7 @@ const handleSubmit = ()=>{
                                             <h3><b>Edit Offer</b></h3>
                                         </div>
                                         <div className="product-card-body">
-                                            <form onSubmit={handleSubmit}>
+                                            <form >
                                                 <div className="form-group">
                                                     <label>Store</label>
                                                     <select id="inputState" className="form-control">
@@ -295,7 +319,7 @@ const handleSubmit = ()=>{
                                                         </div >
                                                     }
                                                     <div className='user-head'>
-                                                        <Button type="submit"><i className="fa fa-check-square-o" /> Save Changes</Button>
+                                                        <Button type="submit" onClick={UpdateOfferDetail}><i className="fa fa-check-square-o" /> Save Changes</Button>
                                                     </div>
                                                 </div>
                                             </div>

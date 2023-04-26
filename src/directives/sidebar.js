@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import "../assets/css/side-nav.css";
 const Sidebar = () => {
     const [managestores, setManageStores] = useState(false);
     const [offers, setOffers] = useState(false);

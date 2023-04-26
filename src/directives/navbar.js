@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-
+import  logo from "../assets/images/logo.png";
+import userPhoto from "../assets/images/img/user.jpeg";
 
 const Navbar = () => {
 
@@ -32,7 +33,7 @@ const Navbar = () => {
       <input type="checkbox" id="check" />
       <header>
         <div className='header-section'>
-          <img className='header-img' src='assets/images/logo.png' />
+          <img className='header-img' src={logo} alt="logo"/>
         </div>
         <label htmlFor="check">
           <i className="fa fa-bars" aria-hidden="true" id="sidebar_btn" />
@@ -40,7 +41,7 @@ const Navbar = () => {
         <div className="nav-right_area">
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <a href="#"><img src="assets/images/img/user.jpeg" alt="user" />&nbsp;&nbsp;Admin</a>
+              <a href="#"><img src={userPhoto} alt="user" />&nbsp;&nbsp;Admin</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <Link to='/profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></Link>
