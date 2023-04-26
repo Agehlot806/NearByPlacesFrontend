@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 
 function Eventnewadd() {
+    const [storeSelectData, setStoreSelectData] = useState([])
+    useEffect(() => {
+        allStore()
+    })
+
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                console.log("tsaryhxdashgxfahsxasx", responsive.stores);
+                setStoreSelectData(responsive.stores)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
     return (
         <>
             <Navbar />
@@ -26,16 +43,10 @@ function Eventnewadd() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Store</label>
-                                                    <select id="inputState" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
+                                                    <select className="form-control">
+                                                        {storeSelectData.map((items, index) => (
+                                                            <option key={index}>{items.name}</option>
+                                                        ))}
                                                     </select>
                                                 </div>
                                                 <div className="form-group">

@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
@@ -84,7 +84,7 @@ const RouterComponent = () => {
           <Route exact path='/offer-add-new' component={Offeraddnew} />
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
-          <Route exact path='/offer-edit/:id' component={Offeredit} />
+          <Route exact path='/offer-edit' component={Offeredit} />
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />

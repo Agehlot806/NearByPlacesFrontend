@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import Footer from '../../directives/footer'
 import { Link, useParams } from 'react-router-dom'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
@@ -14,6 +15,9 @@ function Alloffers() {
     const [data, setData] = useState([])
     const [searchoffer, setSearchOffer] = useState('');
     const [searchoffersave, setSearchOfferSave] = useState([])
+    const [modaloffer, setModalOffer] = useState(false);
+
+
     useEffect(() => {
         allOffer()
     }, [setOfferData])
@@ -51,7 +55,7 @@ function Alloffers() {
         setSearchOffer(e.target.value)
     }
     // Function to delete data from API
-    const Deletedata = (id) => {
+    const Delete = (id) => {
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -62,26 +66,36 @@ function Alloffers() {
             headers: headers,
         })
             .then((resp) => {
-                console.log("4444444444444",resp.message)
+                console.log("4444444444444", resp.message)
                 // toast(resp.message);
                 // if (resp.message == 'Please enter all field') {
                 //     toast.error("Please enter all field")
                 // // }
-               
-                    // alert("hhhhh")
-                    toast.success("Offer Deleted Successfully")
-               
+
+                // alert("hhhhh")
+                toast.success("Offer Deleted Successfully")
+
             })
-           
+
     }
 
-    const [modal, setModal] = useState(false);
-
-    const toggle = (id) => {
+    //  Delete Model area
+    const toggleOfferModel = (id) => {
         setId(id)
-        setModal(!modal);
+        setModalOffer(!modaloffer);
     }
 
+    // pagination area 
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 3; // for example
+    const totalPages = Math.ceil(offerData.length / itemsPerPage);
+    const currentItems = offerData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
     return (
         <>
             <Toaster />
@@ -137,7 +151,7 @@ function Alloffers() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {offerData.map((items, index) => (
+                                                        {currentItems.map((items, index) => (
                                                             <tr key={index}>
                                                                 <td><img src={items.offerImage.url} /></td>
                                                                 <td><b>{items.name}</b></td>
@@ -153,14 +167,22 @@ function Alloffers() {
                                                                 <td>{items.description}</td>
                                                                 <td className='action-btn'>
                                                                     <Link to=''><i className='text-green fa fa-check' /></Link>
-                                                                    <Link to={`/offer-edit/${items.id}`}><i class="fa fa-pencil-square-o" /></Link>
-                                                                    <Button onClick={(e) => toggle(items._id, e)}><i class="fa fa-trash-o" /></Button>
+                                                                    <Link to="/offer-edit"><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
                                                         ))}
                                                     </tbody>
                                                 </table>
+
                                             </div>
+                                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                                                // <div >
+                                                <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+                                                    {pageNumber}
+                                                </button>
+                                                // </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -169,15 +191,17 @@ function Alloffers() {
                     </div>
                 </div>
             </div>
+            <Footer />
+
             {/* Modal */}
-            <Modal isOpen={modal}>
-                <ModalHeader toggle={toggle}>Confirmation!</ModalHeader>
+            <Modal isOpen={modaloffer}>
+                <ModalHeader toggle={toggleOfferModel}>Confirmation!</ModalHeader>
                 <ModalBody>
                     <h3 className="text-center text-red">Are you sure? { }</h3>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={toggle}><i className="fa fa-times" /> No</Button>
-                    <Button onClick={(e) => Deletedata(Id, e)}>
+                    <Button onClick={toggleOfferModel}><i className="fa fa-times" /> No</Button>
+                    <Button onClick={(e) => Delete(Id, e)}>
                         <i className="fa fa-check" /> Yes
                     </Button>
                 </ModalFooter>

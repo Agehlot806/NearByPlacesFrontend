@@ -101,8 +101,37 @@ label {
     margin-right: 5px;
     color: #dd4b39;
 }
+.action-btn button {
+    background: none;
+    color: #dd4b39;
+    border: none;
+    padding: 0px 0 6px;
+}
+.action-btn button:hover {
+    background: none;
+    border: none;
+    color: #dd4b39 !important;
+}
 
-
+.action-btn button:focus{
+    box-shadow: none !important;
+    background: none !important;
+    color: #dd4b39 !important;
+}
+.action-btn button:active {
+    background: none !important;
+    color: #dd4b39;
+}
+.pagination-area {
+    display: inline-block;
+    margin: 15px 2px 15px 2px;
+    background: #5a189a;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 5px 15px 5px;
+    border-radius: 4px;
+}
 .section-padding {
     padding-top: 58px;
     padding-bottom: 58px;
@@ -437,6 +466,9 @@ select.form-control:not([size]):not([multiple]) {
 
 .main-table table {
     margin: 0;
+}
+.main-table tbody tr td {
+    vertical-align: middle;
 }
 
 .main-table tr td img {

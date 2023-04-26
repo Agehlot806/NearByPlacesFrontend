@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import toast, { Toaster } from 'react-hot-toast'
+import { Link, useParams } from 'react-router-dom'
+
 function Allstores() {
     const [storeData, setStoreData] = useState([])
     const [searchstore, setSearchStore] = useState('');
     const [searchstoresave, setSearchStoreSave] = useState([])
+    const [modalstore, setModalStore] = useState(false);
+    const [Id, setId] = useState("");
 
     // useEffect(() => {
     //     allStore()
@@ -24,8 +30,6 @@ function Allstores() {
     // }
     // console.log("ajuyhtlgrfl", storeData);
 
-
-    
     // Search data in All Store   
     useEffect(() => {
         const searchStoreData = async () => {
@@ -48,14 +52,43 @@ function Allstores() {
         setSearchStore(e.target.value)
     }
 
+    // Function to delete data from API
+    const deleteStore = (id) => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'authorization': `Bearer ${access_token}`,
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${id}`, {
+            method: "DELETE",
+            headers: headers,
+        })
+            .then((resp) => {
+                console.log("4444444444444", resp.message)
+                // toast(resp.message);
+                // if (resp.message == 'Please enter all field') {
+                //     toast.error("Please enter all field")
+                // // }
 
+                // alert("hhhhh")
+                toast.success("Store Deleted Successfully")
 
+            })
+
+    }
+
+    // delete model 
+    const toggleStoreModel = (id) => {
+        setId(id)
+        setModalStore(!modalstore);
+    }
 
 
 
 
     return (
         <>
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -74,9 +107,9 @@ function Allstores() {
                                                     <div className="pull-right col-md-6">
                                                         <form>
                                                             <div className="input-group input-group-sm">
-                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search" 
-                                                                value={searchstore}
-                                                                onChange={(e) => inputSearchStore(e)}/>
+                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search"
+                                                                    value={searchstore}
+                                                                    onChange={(e) => inputSearchStore(e)} />
                                                                 <span className="input-group-btn">
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
@@ -110,14 +143,14 @@ function Allstores() {
                                                     <tbody>
                                                         {storeData.map((items, index) => (
                                                             <tr>
-                                                                <td> <img src={items.storephoto.url} /></td>
-                                                                <td>
+                                                                <td className='text-center'> <img src={items.storephoto.url} /></td>
+                                                                <td className='text-center'>
                                                                     <img src={items.storegallery.url} />
                                                                 </td>
                                                                 <td>
                                                                     <b>{items.name}</b><br />
                                                                     <i className='mdi mdi-map-marker' /> {items.latitude}<br />
-                                                                    <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
+                                                                    {/* <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span> */}
                                                                 </td>
                                                                 <td className='click-color'>
                                                                     <a href=''><u>Admin</u></a>
@@ -132,9 +165,9 @@ function Allstores() {
                                                                 <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
                                                                 <td className='action-btn'>
                                                                     <a href=''><i className='fa fa-times' /></a>
-                                                                    <a href='all-store-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                    <Link href='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a href=''><i class="fa fa-list" /> Services</a>
-                                                                    <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                    <a><Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
                                                         ))}
@@ -150,28 +183,20 @@ function Allstores() {
                 </div>
             </div>
             <Footer />
+
             {/* Modal */}
-            <div className="modal fade" id="DeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Confirmation!</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <h3 className="text-center text-red">Are you sure?</h3>
-                        </div>
-                        <div className="modal-footer">
-                            <div className='user-head'>
-                                <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
-                                <a href=''><i className="fa fa-plus" /> Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Modal isOpen={modalstore}>
+                <ModalHeader toggle={toggleStoreModel}>Confirmation!</ModalHeader>
+                <ModalBody>
+                    <h3 className="text-center text-red">Are you sure? { }</h3>
+                </ModalBody>
+                <ModalFooter>
+                    <Button onClick={toggleStoreModel}><i className="fa fa-times" /> No</Button>
+                    <Button onClick={(e) => deleteStore(Id, e)}>
+                        <i className="fa fa-check" /> Yes
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </>
     )
 }
