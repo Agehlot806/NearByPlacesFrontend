@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from "../../directives/footer";
-import { Button, Input } from "reactstrap";
+import { Button, Input, Form } from "reactstrap";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
 import { useParams } from "react-router-dom";
+
+
 function Offeredit() {
 
     const { _id } = useParams();
@@ -24,22 +26,27 @@ function Offeredit() {
     const [Id, setId] = useState("null");
     // const [couponConfig, setCouponCode] = useState([{coupon_type:""},{value:""},{coupon_code:""}])
     const [message, setMessage] = useState("")
+    const [file, setFile] = useState();
+    const [imageTrue, setImageTrue] = useState("false");
+    const [makeAdeal, setMakeAdeal] = useState([]);
 
+
+    
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
-
-    const allStore = () => {
+    useEffect(() => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
             .then((res) => res.json())
             .then((responsive) => {
-
                 setUser(responsive.stores)
             })
             .catch((error) => {
                 console.log("error", error);
             })
-    }
+
+    }, [])
+
 
 
     useEffect(() => {
@@ -52,81 +59,66 @@ function Offeredit() {
             .then(response => response.json())
             .then(data => {
                 setName(data.offer.name);
-                setSelectValue(data.offer.PricingOfferValue)
+                setSelectValue(data.offer.selectValue)
                 setDescription(data.offer.description)
-                setFileData(data.offer.PricingOfferValue)
                 setCoupon_type(data.offer.coupon_type)
                 SetCoupon_code(data.offer.coupon_code)
                 SetCoupon_value(data.offer.value)
-                setDatebegin(data.offer.PricingOfferValue)
-                dateend(data.offer.PricingOfferValue)
-                setFileData(data.offerImage.url)
+                setDatebegin(data.offer.datebegin)
+                setDateEnd(data.offer.dateend)
+                setFileData(data.offer.offerImage.url)
                 setId(data.offer._id);
-                console.log(data.offer._id);
+                setImageTrue(true)
             })
     }, []);
 
     const UpdateOfferDetail = (e) => {
         e.preventDefault();
-       const formData = new FormData();
-        formData.append('name', name);
-        formData.append('description', description);
+        const data = {
+            "name": name,
+            "description": description,
+            "file": fileData,
+            "PricingOfferValue": selectValue,
+            "coupon_type": coupon_type,
+            "value": coupon_value,
+            "coupon_code": coupon_code,
+            "datebegin": datebegin,
+            "dateend": dateend
+        }
+        const config = {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        };
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`, data, { config }).then(
+            response => response.data,
+            toast.success(" offer update successfully")
+        );
+    }
+
+    const ImageUpload = (e) => {
+        e.preventDefault();
+        var formData = new FormData();
         formData.append('file', fileData);
-        formData.append('PricingOfferValue', selectValue);
-        formData.append('coupon_type', coupon_type);
-        formData.append('value', coupon_value);
-        formData.append('coupon_code', coupon_code);
-        formData.append('datebegin', datebegin);
-        formData.append('dateend', dateend);
-        axios
-            .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
+        axios({
+            method: "put",
+            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateofferimage/${_id}`,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then(response => {
+                setMessage(response.data.message);
+                toast.success("Image upload successfully");
             })
-            .then((response) => {
-               console.log(response);
-            })
-            .catch((error) => {
-                console.log(error.response.data);
-               
+            .catch(error => {
+                console.log(error);
             });
-    };
-    // const handleSubmit = (e) => {
-    //       e.preventDefault();
-          
-    //     console.log("hdfdsgsv",Id)
-    //     var formData = new FormData();
-    //     formData.append('name', name);
-    //     formData.append('description', description);
-    //     formData.append('file', fileData);
-    //     formData.append('PricingOfferValue', selectValue);
-    //     formData.append('coupon_type', coupon_type);
-    //     formData.append('value', coupon_value);
-    //     formData.append('coupon_code', coupon_code);
-    //     formData.append('datebegin', datebegin);
-    //     formData.append('dateend', dateend);
-    //     axios({
-    //         method: "put",
-    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`,
-    //         data: formData,
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //     })
-    //         .then(response => {
-    //             setMessage(response.data.message);
-    //             toast.success("offer Update successfully");
+    }
 
-
-    //         })
-    //         .catch(error => {
-    //             toast.error("Please Fill all  Field");
-    //             console.log(error);
-    //         });
-    // };
-
-
-
+   
     const onFileChange = (event) => {
+        setImageTrue(false);
         setFileData(event.target.files[0]);
-        console.log(event.target.files[0])
+        setFile(URL.createObjectURL(event.target.files[0]));
+
     }
     const onChangeHandle = (event) => {
         setSelectValue(event.target.value);
@@ -147,12 +139,6 @@ function Offeredit() {
         SetCoupon_value(event.target.value);
     };
 
-
-    // useEffect(() => {
-    //     allStore();
-    // }, [user])
-
-
     return (
         <>
             <Toaster />
@@ -163,15 +149,15 @@ function Offeredit() {
                 <div className="main-panel-content">
                     <div className='section-panel'>
                         <div className='container'>
+                            <Form onSubmit={UpdateOfferDetail}>
+                                <div className='row'>
+                                    <div className='col-lg-6'>
+                                        <div className="product-list-box">
+                                            <div className="product-list-box-header">
+                                                <h3><b>Edit Offer</b></h3>
+                                            </div>
+                                            <div className="product-card-body">
 
-                            <div className='row'>
-                                <div className='col-lg-6'>
-                                    <div className="product-list-box">
-                                        <div className="product-list-box-header">
-                                            <h3><b>Edit Offer</b></h3>
-                                        </div>
-                                        <div className="product-card-body">
-                                            <form >
                                                 <div className="form-group">
                                                     <label>Store</label>
                                                     <select id="inputState" className="form-control">
@@ -182,6 +168,7 @@ function Offeredit() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Name</label>
+                                                   
                                                     <Input type="text" className="form-control"
                                                         value={name} onChange={(e) => setName(e.target.value)}
                                                         placeholder="Enter..." />
@@ -198,36 +185,42 @@ function Offeredit() {
                                                     <label>Images</label>
                                                     <Input type="file" onChange={onFileChange}
                                                         className="form-control" placeholder="Enter..." />
-                                                    <img src={fileData} alt="file"></img>
+                                                        {imageTrue ?
+                                                         <img src={fileData} alt="file"></img>: <img src={file} alt="file"></img>}
+                                                <br />
+                                                <div className='user-head'>
+                                                <Button type="submit" onClick={ImageUpload}> Upload</Button>
                                                 </div>
-                                            </form>
+                                                  
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className='col-lg-6'>
-                                    <div className='row'>
-                                        <div className='col-sm-12'>
-                                            <div className="product-list-box">
-                                                <div className="product-list-box-header">
-                                                    <h3><b>Featured Options</b></h3>
-                                                </div>
-                                                <div className="product-card-body">
-                                                    <form>
+                                    <div className='col-lg-6'>
+                                        <div className='row'>
+                                            <div className='col-sm-12'>
+                                                <div className="product-list-box">
+                                                    <div className="product-list-box-header">
+                                                        <h3><b>Featured Options</b></h3>
+                                                    </div>
+                                                    <div className="product-card-body">
+
                                                         <input type="radio" name="fav_language" defaultValue="HTML" />
                                                         &nbsp; <label>Disabled Featured</label><br />
                                                         <input type="radio" name="fav_language" defaultValue="CSS" />
                                                         &nbsp; <label>Make it as featured</label><br />
-                                                    </form>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className='col-sm-12'>
-                                            <div className="product-list-box">
-                                                <div className="product-list-box-header">
-                                                    <h3><b>Pricing & Offer value</b></h3>
-                                                </div>
-                                                <div className="product-card-body">
-                                                    <form>
+                                            <div className='col-sm-12'>
+                                                <div className="product-list-box">
+                                                    <div className="product-list-box-header">
+                                                        <h3><b>Pricing & Offer value</b></h3>
+                                                    </div>
+                                                    <div className="product-card-body">
+
                                                         <div className="form-group">
                                                             <select id="inputState" onChange={onChangeHandle}
                                                                 className="form-control"
@@ -243,18 +236,18 @@ function Offeredit() {
                                                                 <option value="100000">1,00000</option>
                                                             </select>
                                                         </div>
-                                                    </form>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className='col-sm-12'>
-                                            <div className="product-list-box">
-                                                <div className="product-list-box-header">
-                                                    <h3><b>Coupon Config</b></h3>
-                                                </div>
-                                                <div className="product-card-body">
-                                                    <form>
+                                            <div className='col-sm-12'>
+                                                <div className="product-list-box">
+                                                    <div className="product-list-box-header">
+                                                        <h3><b>Coupon Config</b></h3>
+                                                    </div>
+                                                    <div className="product-card-body">
+
                                                         <div className="form-row">
                                                             <div className="form-group col-md-6">
                                                                 <label>Coupon type</label>
@@ -278,55 +271,57 @@ function Offeredit() {
                                                         </div>
 
                                                         <p className="text-blue">This feature allows users to acquire and save coupons within the app. If you set a limited coupon, the value will decrease after each redemption.To view who has redeemed coupons from offers, go to 'Manage coupons'.</p>
-                                                    </form>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className='col-sm-12'>
-                                            <div className="product-list-box">
-                                                <div className="product-list-box-header">
-                                                    <h3><b>Deal Option</b></h3>
-                                                </div>
-                                                <div className="product-card-body">
-                                                    <div className="form-group">
-                                                        <input type="checkbox" checked={isChecked}
-                                                            onChange={handleCheckboxChange} className='all-create-checkbox' />
-                                                        <label> Make as a deal</label>
+                                            <div className='col-sm-12'>
+                                                <div className="product-list-box">
+                                                    <div className="product-list-box-header">
+                                                        <h3><b>Deal Option</b></h3>
                                                     </div>
-                                                    {isChecked &&
-                                                        <div className='row mt-3' >
-                                                            <div className="col-lg-12">
-                                                                <div className='row'>
-                                                                    <div className='col-sm-6'>
-                                                                        <div className="form-group">
-                                                                            <label>Date Begin</label>
-                                                                            <Input type="date" className="form-control"
-                                                                                value={datebegin}
-                                                                                onChange={(e) => setDatebegin(e.target.value)} />
+                                                    <div className="product-card-body">
+                                                        <div className="form-group">
+                                                            <input type="checkbox" checked={isChecked}
+                                                                onChange={handleCheckboxChange} className='all-create-checkbox' />
+                                                            <label> Make as a deal</label>
+                                                        </div>
+                                                        {isChecked &&
+                                                            <div className='row mt-3' >
+                                                                <div className="col-lg-12">
+                                                                    <div className='row'>
+                                                                        <div className='col-sm-6'>
+                                                                            <div className="form-group">
+                                                                                <label>Date Begin</label>
+                                                                                <Input type="date" className="form-control"
+                                                                                    value={datebegin}
+                                                                                    onChange={(e) => setDatebegin(e.target.value)} />
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className='col-sm-6'>
-                                                                        <div className="form-group">
-                                                                            <label>Date End</label>
-                                                                            <Input type="date" className="form-control"
-                                                                                value={dateend}
-                                                                                onChange={(e) => setDateEnd(e.target.value)} />
+                                                                        <div className='col-sm-6'>
+                                                                            <div className="form-group">
+                                                                                <label>Date End</label>
+                                                                                <Input type="date" className="form-control"
+                                                                                    value={dateend}
+                                                                                    onChange={(e) => setDateEnd(e.target.value)} />
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div >
-                                                    }
-                                                    <div className='user-head'>
-                                                        <Button type="submit" onClick={UpdateOfferDetail}><i className="fa fa-check-square-o" /> Save Changes</Button>
+                                                            </div >
+                                                        }
+                                                        <div className='user-head'>
+                                                            <Button type="submit" ><i className="fa fa-check-square-o" /> Save Changes</Button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Form>
+
                         </div>
                     </div>
                 </div>

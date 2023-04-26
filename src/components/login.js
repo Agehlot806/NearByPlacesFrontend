@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Particles from './particles'
 import toast, { Toaster } from 'react-hot-toast'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import google from "../assets/images/icons/google.png";
 import facebook from "../assets/images/icons/facebook.png"
 function Login() {
+    const history = useHistory();
     // const [cookies, setCookie] = useCookies(['user']);
     const [password, setpassword] = useState()
     const [email, setemail] = useState()
@@ -12,7 +13,6 @@ function Login() {
     const loginpage = async () => {
         var headers = {
             withCredentials: true,
-           
             'Accept': 'application/json',
             'Content-Type': 'application/json',
            
@@ -38,7 +38,8 @@ function Login() {
                 if (Response.success == true) {
                     // window.open("/dashboard")
                     // window.open("/dashboard")
-                    window.location.replace("/dashboard")
+                    // window.location.replace("/dashboard")
+                    history.push("/dashboard")
                     // <Redirect  to ="/dashboard" />
                 }
                 if (Response.message == 'Please enter all field') {
