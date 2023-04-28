@@ -20,7 +20,7 @@ function Alloffers() {
     useEffect(() => {
         allOffer()
     }, [setOfferData])
-    
+
     const allOffer = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers`)
             .then((res) => res.json())
@@ -167,22 +167,25 @@ function Alloffers() {
                                                                 <td>{items.description}</td>
                                                                 <td className='action-btn'>
                                                                     <Link to=''><i className='text-green fa fa-check' /></Link>
-                                                                    <Link to={"/offer-edit/" +items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Link to={"/offer-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
                                                         ))}
+                                                        
                                                     </tbody>
                                                 </table>
 
                                             </div>
-                                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-                                                // <div >
-                                                <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
-                                                    {pageNumber}
-                                                </button>
-                                                // </div>
-                                            ))}
+                                            <div className='pagination-section'>
+                                                <i className="fa fa-angle-double-left" />
+                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                                                    <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+                                                        {pageNumber}
+                                                    </button>
+                                                ))}
+                                                <i className="fa fa-angle-double-right" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

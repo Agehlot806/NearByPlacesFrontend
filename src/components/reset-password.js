@@ -50,7 +50,7 @@ function Resetpassword() {
                                          />
                                     </div>
                                     <button type="submit" className="login-btn" onClick={ResetPassword}>Submit</button>
-                                    <div className="additional-link"><Link to="/">Login Now</Link></div>
+                                    <div className="additional-link"><Link to="/"><i className="fa fa-angle-double-right" /> Login Now</Link></div>
                             </div>
                         </div>
                     </div>

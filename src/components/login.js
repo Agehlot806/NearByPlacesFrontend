@@ -78,7 +78,7 @@ function Login() {
 
                                 
                                 <div>
-                                    <a href="forgot-password">Forgot your password?</a>
+                                    <a href="forgot-password"><i className="fa fa-angle-double-right" /> Forgot your password?</a>
                                 </div>
                                 {/* </form> */}
                             </div>

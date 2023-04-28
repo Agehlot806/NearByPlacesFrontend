@@ -17,7 +17,7 @@ function Allevents() {
 
     useEffect(() => {
         allStore()
-    },[])
+    }, [])
 
     const allStore = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents`)
@@ -97,7 +97,7 @@ function Allevents() {
 
     return (
         <>
-          <Toaster />
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -168,7 +168,7 @@ function Allevents() {
                                                                 <td className='click-color'><Link to="/event-participants"><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
                                                                 <td className='action-btn'>
                                                                     <a href=''><i className='fa fa-times' /></a>
-                                                                    <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
