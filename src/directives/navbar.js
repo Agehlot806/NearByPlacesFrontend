@@ -35,9 +35,9 @@ const Navbar = () => {
         <div className='header-section'>
           <img className='header-img' src={logo} alt="logo"/>
         </div>
-        <label htmlFor="check">
+        {/* <label htmlFor="check">
           <i className="fa fa-bars" aria-hidden="true" id="sidebar_btn" />
-        </label>
+        </label> */}
         <div className="nav-right_area">
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

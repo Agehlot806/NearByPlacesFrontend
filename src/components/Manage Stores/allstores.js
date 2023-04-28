@@ -14,21 +14,18 @@ function Allstores() {
     const [Id, setId] = useState("");
 
 
-    // useEffect(() => {
-    //     allStore()
-    // })
-
-    // const allStore = () => {
-    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
-    //         .then((res) => res.json())
-    //         .then((responsive) => {
-    //             console.log("tsaryhxdashgxfahsxasx", responsive.stores);
-    //             setStoreData(responsive.stores)
-    //         })
-    //         .catch((error) => {
-    //             console.log("error", error);
-    //         })
-    // }
+   
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                console.log("tsaryhxdashgxfahsxasx", responsive.stores);
+                setStoreData(responsive.stores)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
     // console.log("ajuyhtlgrfl", storeData);
 
     // Search data in All Store   
@@ -55,7 +52,7 @@ function Allstores() {
     }
 
     // Function to delete data from API
-    const deleteStore = (id) => {
+    const handleDeleteStore = (id) => {
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -74,7 +71,8 @@ function Allstores() {
 
                 // alert("hhhhh")
                 toast.success("Store Deleted Successfully")
-
+                setModalStore(false)
+                allStore()
             })
 
     }
@@ -215,7 +213,7 @@ function Allstores() {
                 </ModalBody>
                 <ModalFooter>
                     <Button onClick={toggleStoreModel}><i className="fa fa-times" /> No</Button>
-                    <Button onClick={(e) => deleteStore(Id, e)}>
+                    <Button onClick={(e) => handleDeleteStore(Id, e)}>
                         <i className="fa fa-check" /> Yes
                     </Button>
                 </ModalFooter>

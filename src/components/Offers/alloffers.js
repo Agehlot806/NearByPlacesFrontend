@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../directives/navbar'
-import Sidebar from '../../directives/sidebar'
-import Footer from '../../directives/footer'
-import { Link, useParams } from 'react-router-dom'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import toast, { Toaster } from 'react-hot-toast'
+import Navbar from "../../directives/navbar"
+import Sidebar from "../../directives/sidebar"
+import Footer from "../../directives/footer"
+import { Link, useParams } from "react-router-dom";
+import Pagination from "react-js-pagination";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import toast, { Toaster } from "react-hot-toast"
 
 function Alloffers() {
     const { _id } = useParams()
-
+    const [activePage, setActivePage] = useState(1);
+    const [offercount, setOffercount] = useState(1);
     const [Id, setId] = useState("");
     const [offerData, setOfferData] = useState([]);
     const [data, setData] = useState([])
@@ -18,18 +20,20 @@ function Alloffers() {
 
 
     const [response, setResponse] = useState([])
-    
+
     useEffect(() => {
         allOffer()
     }, [setOfferData])
 
-    const allOffer = () => {
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers`)
+    const allOffer = (page) => {
+        // console.log(activePage);
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/alloffers?page=${page}`)
             .then((res) => res.json())
             .then((responsive) => {
-                console.log("tsaryhxdashgxfahsxasx", responsive.offer);
+                // console.log("tsaryhxdashgxfahsxasx", responsive.offer);
                 setOfferData(responsive.offer)
-                setData(responsive.offer[0].couponConfig)
+                setData(responsive.offer[0].couponConfig);
+                setOffercount(responsive.offercount);
             })
             .catch((error) => {
                 console.log("error", error);
@@ -58,7 +62,7 @@ function Alloffers() {
         setSearchOffer(e.target.value)
     }
     // Function to delete data from API
-    const Delete = (id) => {
+    const handleDelete = (id) => {
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -70,7 +74,9 @@ function Alloffers() {
         })
             .then((resp) => {
                setResponse(resp)
-              toast.success("Offer Deleted Successfully")
+                toast.success("Offer Deleted Successfully")
+                setModalOffer(false);
+                allOffer();
             })
 
     }
@@ -82,16 +88,23 @@ function Alloffers() {
     }
 
     // pagination area 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5; // for example
-    const totalPages = Math.ceil(offerData.length / itemsPerPage);
-    const currentItems = offerData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const itemsPerPage = 5; // for example
+    // const totalPages = Math.ceil(offerData.length / itemsPerPage);
+    // const currentItems = offerData.slice(
+    //     (currentPage - 1) * itemsPerPage,
+    //     currentPage * itemsPerPage
+    // );
     const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        allOffer(pageNumber);
+        console.log(pageNumber);
+        setActivePage(pageNumber);
+
     };
+
+
+
+
     return (
         <>
             <Toaster />
@@ -147,9 +160,9 @@ function Alloffers() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {currentItems.map((items, index) => (
+                                                        {offerData.map((items, index) => (
                                                             <tr key={index}>
-                                                                <td><img src={items.offerImage.url} /></td>
+                                                                <td><img src={items.offerImage.url} alt="image" /></td>
                                                                 <td><b>{items.name}</b></td>
                                                                 <td className='click-color'>
                                                                     <a href=''><u>Admin</u></a>
@@ -168,12 +181,26 @@ function Alloffers() {
                                                                 </td>
                                                             </tr>
                                                         ))}
-                                                        
+
                                                     </tbody>
                                                 </table>
 
                                             </div>
-                                            <div className='pagination-section'>
+                                            <div className="pagination-section">
+                                                {offercount > 6 &&
+                                                    <div className="pagination-rounded">
+                                                        <Pagination
+                                                            activePage={activePage}
+                                                            itemsCountPerPage={5}
+                                                            totalItemsCount={offercount}
+                                                            pageRangeDisplayed={5}
+                                                            className="pagination-list"
+                                                            onChange={handlePageChange}
+                                                        />
+                                                    </div>
+                                                }
+                                            </div>
+                                            {/* <div className='pagination-section'>
                                                 <i className="fa fa-angle-double-left" />
                                                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
                                                     <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
@@ -181,7 +208,7 @@ function Alloffers() {
                                                     </button>
                                                 ))}
                                                 <i className="fa fa-angle-double-right" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +227,7 @@ function Alloffers() {
                 </ModalBody>
                 <ModalFooter>
                     <Button onClick={toggleOfferModel}><i className="fa fa-times" /> No</Button>
-                    <Button onClick={(e) => Delete(Id, e)}>
+                    <Button onClick={(e) => handleDelete(Id, e)}>
                         <i className="fa fa-check" /> Yes
                     </Button>
                 </ModalFooter>
@@ -208,4 +235,4 @@ function Alloffers() {
         </>
     )
 }
-export default Alloffers
+export default Alloffers;

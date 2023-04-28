@@ -15,11 +15,8 @@ function Allevents() {
     const [Id, setId] = useState("");
 
 
-    useEffect(() => {
-        allStore()
-    }, [])
 
-    const allStore = () => {
+    const allEvent = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents`)
             .then((res) => res.json())
             .then((responsive) => {
@@ -61,14 +58,15 @@ function Allevents() {
         }
         else {
             const filterres = searcheventsave.filter(item => item.eventname.toLowerCase().includes(e.target.value.toLowerCase()))
-            seteventData(filterres)
+            seteventData(false)
+            allEvent()
         }
         setSearchEvent(e.target.value)
     }
 
 
     // Function to delete data from API
-    const eventDelete = (id) => {
+    const handleDeleteEvent = (id) => {
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -80,7 +78,7 @@ function Allevents() {
         })
             .then((resp) => {
                 toast.success("Event Deleted Successfully")
-
+                setModalEvent(false)
             })
 
     }
@@ -91,9 +89,6 @@ function Allevents() {
         setModalEvent(!modalevent);
     }
 
-    const pageRefresh = () => {
-        window.location.reload(false);
-    }
 
     return (
         <>
@@ -204,8 +199,8 @@ function Allevents() {
                     <h3 className="text-center text-red">Are you sure? { }</h3>
                 </ModalBody>
                 <ModalFooter>
-                    <Button onClick={pageRefresh}><i className="fa fa-times" /> No</Button>
-                    <Button onClick={(e) => eventDelete(Id, e)}>
+                    <Button><i className="fa fa-times" /> No</Button>
+                    <Button onClick={(e) => handleDeleteEvent(Id, e)}>
                         <i className="fa fa-check" /> Yes
                     </Button>
                 </ModalFooter>

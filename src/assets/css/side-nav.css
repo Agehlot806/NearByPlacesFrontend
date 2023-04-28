@@ -141,13 +141,10 @@ label #sidebar_btn {
 }
 
 .main-panel-content {
-  margin-top: 60px;
   padding: 20px;
   margin-left: 224px;
   width: (100% - 250px);
-    /* margin-top: 60px; */
-    /* padding: 20px; */
-    /* margin-left: 250px; */
+    margin-top: 60px;
     /* background: url(background.png) no-repeat; */
     background-position: center;
     background-size: cover;
