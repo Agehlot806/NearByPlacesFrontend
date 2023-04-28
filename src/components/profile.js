@@ -9,29 +9,45 @@ function Profile() {
 
     const [user, setUser] = useState([]);
 
-
+    useEffect(() => {
+        // handleProfile()
+    }, [])
+    const handleProfile = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("tsaryhxdashgxfahsxasx",data );
+                setUser(data)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    // const handleProfile =()=>{
+    //     alert("hi")
+    //     const requestOptions = {
+    //         method: 'GET',
+    //         headers: {
+    //             withCredential: true,
+    //            " Access-Control-Allow-Credentials":true,
+    //             'Content-Type': 'application/json',
+              
+    //         },
+    
+    //     };
+    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`, requestOptions)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setUser(data)
+    //             console.log(data);;
+    //             // setName(data.offer.name);
+    
+    //         })
+    // }
 
     useEffect(() => {
-
-
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                withCredential: true,
-               " Access-Control-Allow-Credentials":true,
-                'Content-Type': 'application/json',
-              
-            },
-
-        };
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                setUser(data)
-                console.log(data);;
-                // setName(data.offer.name);
-
-            })
+    // handleProfile();
+      
     });
     return (
         <>
@@ -48,7 +64,7 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
-                                                
+                                                <Button onClick={handleProfile}>Profile</Button>
 
                                                 </div>
                                                 <div className="product-card-body">

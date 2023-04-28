@@ -72,7 +72,7 @@ function Eventnewadd() {
     })
       .then(response => {
         setResponse(response);
-        toast.success("Evenet created successfully");
+        toast.success("Event created successfully");
           
       })
       .catch(error => {
