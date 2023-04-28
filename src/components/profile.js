@@ -7,7 +7,7 @@ import { Button } from 'reactstrap';
 
 function Profile() {
     const [user, setUser] = useState([]);
-    const allStore = () => {
+    const handleProfile = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
             .then((res) => res.json())
             .then((responsive) => {
@@ -37,7 +37,8 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
-                                                    <Button onClick={allStore}>user</Button>
+                                                <Button onClick={handleProfile}>Profile</Button>
+
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>

@@ -17,6 +17,8 @@ function Alloffers() {
     const [modaloffer, setModalOffer] = useState(false);
 
 
+    const [response, setResponse] = useState([])
+    
     useEffect(() => {
         allOffer()
     }, [setOfferData])
@@ -44,8 +46,9 @@ function Alloffers() {
         };
         searchOfferData();
     }, []);
+
     const inputSearchOffer = (e) => {
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             setOfferData(searchoffersave)
         }
         else {
@@ -66,15 +69,8 @@ function Alloffers() {
             headers: headers,
         })
             .then((resp) => {
-                console.log("4444444444444", resp.message)
-                // toast(resp.message);
-                // if (resp.message == 'Please enter all field') {
-                //     toast.error("Please enter all field")
-                // // }
-
-                // alert("hhhhh")
-                toast.success("Offer Deleted Successfully")
-
+               setResponse(resp)
+              toast.success("Offer Deleted Successfully")
             })
 
     }

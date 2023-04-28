@@ -32,7 +32,7 @@ import Usersnewadd from './components/Manage Users/users-new-add';
 import Invoice from './components/Payment/invoice';
 import Paymentconfig from './components/Payment/payment-config';
 import Allslider from './components/Mobile Slider/all-slider';
-// import Profile from './components/profile';
+import Profile from './components/Profile';
 import Forgotpassword from './components/forgot-password';
 import Slidernewadd from './components/Mobile Slider/slider-new-add';
 import Media from './components/media/media'
@@ -73,7 +73,7 @@ const RouterComponent = () => {
           <Route exact path="/" component={Login} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
-          {/* <Route exact path='/profile' component={Profile} /> */}
+          <Route exact path='/profile' component={Profile} />
 
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/all-stores' component={Allstores} />
