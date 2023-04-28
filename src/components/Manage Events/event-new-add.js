@@ -71,11 +71,9 @@ function Eventnewadd() {
       headers: { "Content-Type": "multipart/form-data" },
     })
       .then(response => {
-        toast.success(" offer update successfully")
         setResponse(response);
         toast.success("Evenet created successfully");
-        toast.success(" offer update successfully")
-        
+          
       })
       .catch(error => {
      
@@ -90,6 +88,7 @@ function Eventnewadd() {
     console.log("ghfhgbirla",fileData);
     return (
         <>
+        <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -135,7 +134,7 @@ function Eventnewadd() {
                                                     <label>Description</label>
                                                     <textarea rows={10} className="form-control" placeholder="Enter..." value={description} onChange={(e) => setDescription(e.target.value)} />
                                                 </div>
-                                                <div className='row'>
+                                                {/* <div className='row'>
                                                     <div className='col-sm-6'>
                                                         <div className="form-group">
                                                             <label>Date Begin :</label>
@@ -148,7 +147,7 @@ function Eventnewadd() {
                                                             <input type="number" className="form-control" />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <div className="form-group">
                                                     <label>Phone Number</label>
                                                     <input type="number" className="form-control" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} />
