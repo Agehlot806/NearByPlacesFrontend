@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { Button, Input } from "reactstrap";
+import toast, { Toaster } from 'react-hot-toast'
 
 
 function Eventedit() {
@@ -23,12 +24,11 @@ function Eventedit() {
 
     useEffect(() => {
         allStore();
-    })
+    }, [])
     const allStore = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
             .then((res) => res.json())
             .then((responsive) => {
-
                 setUser(responsive.stores)
             })
             .catch((error) => {
@@ -46,21 +46,16 @@ function Eventedit() {
             .then(response => response.json())
             .then(data => {
                 setEventName(data.events.eventname);
-                // setSelectValue(data.events.PricingOfferValue)
                 setDescription(data.events.description)
                 setFile(data.events.file)
                 setPhonenumber(data.events.phonenumber)
                 setAddress(data.events.address)
-                // SetCoupon_value(data.events.value)
-                setDatebegin(data.events.PricingOfferValue)
-                dateend(data.events.PricingOfferValue)
-                // setFileData(data.eventsImage.url)
                 setId(data.events._id);
-                console.log(data.events._id);
+                // console.log(data.events._id);
             })
     }, []);
 
-    const UpdateOfferDetail = (e) => {
+    const UpdateOfferDetailss = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('eventname', eventname);
@@ -84,9 +79,27 @@ function Eventedit() {
 
             });
     };
+    const UpdateOfferDetail = (e) => {
+        e.preventDefault();
+        const data = {
+            "eventname": eventname,
+            "description": description,
+            "file": file,
+            "phonenumber": phonenumber,
+            "address": address,
+        }
+        const config = {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        };
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, { config }).then(
+            response => response.data,
+            toast.success(" Events Updated Successfully")
+        );
+    }
 
     return (
         <>
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -98,7 +111,7 @@ function Eventedit() {
                                     <div className='col-lg-6'>
                                         <div className="product-list-box">
                                             <div className="product-list-box-header">
-                                                <h3><b>Add new offer</b></h3>
+                                                <h3><b>Edit Offer</b></h3>
                                             </div>
                                             <div className="product-card-body">
                                                 <div className="form-group image-size">

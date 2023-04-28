@@ -31,7 +31,7 @@ function Offeredit() {
     const [makeAdeal, setMakeAdeal] = useState([]);
 
 
-    
+
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
     };
@@ -113,7 +113,7 @@ function Offeredit() {
             });
     }
 
-   
+
     const onFileChange = (event) => {
         setImageTrue(false);
         setFileData(event.target.files[0]);
@@ -167,7 +167,7 @@ function Offeredit() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Name</label>
-                                                   
+
                                                     <Input type="text" className="form-control"
                                                         value={name} onChange={(e) => setName(e.target.value)}
                                                         placeholder="Enter..." />
@@ -184,13 +184,12 @@ function Offeredit() {
                                                     <label>Images</label>
                                                     <Input type="file" onChange={onFileChange}
                                                         className="form-control" placeholder="Enter..." />
-                                                        {imageTrue ?
-                                                         <img src={fileData} alt="file"></img>: <img src={file} alt="file"></img>}
-                                                <br />
-                                                <div className='user-head'>
-                                                <Button type="submit" onClick={ImageUpload}> Upload</Button>
-                                                </div>
-                                                  
+                                                    {imageTrue ?
+                                                        <img src={fileData} alt="file"></img> : <img src={file} alt="file"></img>}
+                                                    <br />
+                                                    <div className='user-head'>
+                                                        <Button type="submit" onClick={ImageUpload}> Upload</Button>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -310,12 +309,14 @@ function Offeredit() {
                                                                 </div>
                                                             </div >
                                                         }
-                                                        <div className='user-head'>
-                                                            <Button type="submit" ><i className="fa fa-check-square-o" /> Save Changes</Button>
-                                                        </div>
+
                                                     </div>
+                                                   
                                                 </div>
                                             </div>
+                                            <div className='user-head'>
+                                                        <Button type="submit" ><i className="fa fa-check-square-o" /> Save Changes</Button>
+                                                    </div>
                                         </div>
                                     </div>
 

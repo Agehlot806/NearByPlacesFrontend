@@ -33,7 +33,7 @@ function Allevents() {
 
     // pagination area 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3; // for example
+    const itemsPerPage = 5; // for example
     const totalPages = Math.ceil(eventData.length / itemsPerPage);
     const currentItems = eventData.slice(
         (currentPage - 1) * itemsPerPage,

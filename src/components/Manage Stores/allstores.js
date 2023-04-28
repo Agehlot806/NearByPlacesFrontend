@@ -86,6 +86,18 @@ function Allstores() {
     }
 
 
+    // pagination area 
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5; // for example
+    const totalPages = Math.ceil(storeData.length / itemsPerPage);
+    const currentItems = storeData.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
 
 
     return (
@@ -175,6 +187,15 @@ function Allstores() {
                                                         ))}
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div className='pagination-section'>
+                                                <i className="fa fa-angle-double-left" />
+                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                                                    <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+                                                        {pageNumber}
+                                                    </button>
+                                                ))}
+                                                <i className="fa fa-angle-double-right" />
                                             </div>
                                         </div>
                                     </div>
