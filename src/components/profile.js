@@ -12,6 +12,8 @@ function Profile() {
 
 
     useEffect(() => {
+
+
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -46,6 +48,7 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
+                                                
 
                                                 </div>
                                                 <div className="product-card-body">
