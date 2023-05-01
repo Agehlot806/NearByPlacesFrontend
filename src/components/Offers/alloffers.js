@@ -186,7 +186,8 @@ function Alloffers() {
                                                 </table>
 
                                             </div>
-                                            <div className="pagination-section justify-content-center">
+                                                <div className="d-flex justify-content-center">
+                                            <div className="pagination-section">
                                                 {offercount > 6 &&
                                                     <div className="pagination-rounded">
                                                         <Pagination
@@ -200,6 +201,7 @@ function Alloffers() {
                                                     </div>
                                                 }
                                             </div>
+                                                </div>
                                             {/* <div className='pagination-section'>
                                                 <i className="fa fa-angle-double-left" />
                                                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (

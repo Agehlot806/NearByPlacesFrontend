@@ -94,6 +94,17 @@ label {
     border-color: #ddd;
 }   
 
+.pagination-rounded a{
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+    /* justify-content:center; */
+    /* margin-top: 15px; */
+    /* text-align: center; */
+
+    /* background-color: #000; */
+}
 .action-btn a {
     background: #f0f0f0;
     padding: 6px;
@@ -151,6 +162,8 @@ label {
     -webkit-transition: all .4s;
     transition: all .4s;
 }
+
+
 .pagination-section {
     float: right;
     margin: 0px 16px;
