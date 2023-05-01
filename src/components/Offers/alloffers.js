@@ -188,7 +188,7 @@ function Alloffers() {
                                             </div>
                                                 <div className="d-flex justify-content-center">
                                             <div className="pagination-section">
-                                                {offercount > 6 &&
+                                                {offercount > 5 &&
                                                     <div className="pagination-rounded">
                                                         <Pagination
                                                             activePage={activePage}

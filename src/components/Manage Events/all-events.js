@@ -10,6 +10,9 @@ import { format } from 'date-fns'
 
 
 function Allevents() {
+    const [activePage, setActivePage] = useState(1);
+    const [eventcount, setEventcount] = useState(1);
+
     const [eventData, seteventData] = useState([])
     const [searchevent, setSearchEvent] = useState('');
     const [searcheventsave, setSearchEventSave] = useState([])
@@ -27,7 +30,7 @@ function Allevents() {
             .then((responsive) => {
                 // console.log("tsaryhxdashgxfahsxasx", responsive.events);
                 seteventData(responsive.events)
-                setOffercount(responsive.EventCounts);
+                setEventcount(responsive.EventCounts);
 
             })
             .catch((error) => {
@@ -97,8 +100,7 @@ function Allevents() {
     }
 
 
-    const [activePage, setActivePage] = useState(1);
-    const [offercount, setOffercount] = useState(1);
+
 
     const handlePageChange = (pageNumber) => {
         allEvent(pageNumber);
@@ -176,7 +178,10 @@ function Allevents() {
                                                                     <a href='#'><i className='mdi mdi-open-in-new' /></a>
                                                                     <a href='#'><i className='mdi mdi-eye-outline' /></a>
                                                                 </td>
-                                                                <td className='click-color'>{items.datebegin.slice(0, 10)} to {items.dateend.slice(0, 10)}</td>
+                                                                <td className='click-color'>
+                                                                    {items.datebegin.slice(0, 10)}
+                                                                     {/* {new Date(`${items.datebegin.slice(0,10)}`).toDateString()} */}
+                                                                 to {items.dateend.slice(0, 10)}</td>
                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
                                                                 <td className='click-color'><Link to="/event-participants"><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
                                                                 <td className='action-btn'>
@@ -191,12 +196,12 @@ function Allevents() {
                                             </div>
                                             <div className="d-flex justify-content-center">
                                                 <div className="pagination-section">
-                                                    {offercount > 6 &&
+                                                    {eventcount > 5 &&
                                                         <div className="pagination-rounded">
                                                             <Pagination
                                                                 activePage={activePage}
                                                                 itemsCountPerPage={5}
-                                                                totalItemsCount={offercount}
+                                                                totalItemsCount={eventcount}
                                                                 pageRangeDisplayed={5}
                                                                 className="pagination-list"
                                                                 onChange={handlePageChange}
