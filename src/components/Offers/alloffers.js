@@ -186,7 +186,7 @@ function Alloffers() {
                                                 </table>
 
                                             </div>
-                                            <div className="pagination-section">
+                                            <div className="pagination-section justify-content-center">
                                                 {offercount > 6 &&
                                                     <div className="pagination-rounded">
                                                         <Pagination

@@ -160,7 +160,7 @@ function Allevents() {
                                                                 </td>
                                                                 <td className='click-color'>{items.datebegin} - {items.dateend}</td>
                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
-                                                                <td className='click-color'><Link to="/event-participants"><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
+                                                                <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
                                                                 <td className='action-btn'>
                                                                     <a href=''><i className='fa fa-times' /></a>
                                                                     <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>

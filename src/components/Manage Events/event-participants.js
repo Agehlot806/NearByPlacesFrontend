@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
-import {Link} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 function Eventparticipants() {
+    const { _id } = useParams();
+
+    const [participant, setParticipant] = useState([]);
+
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allparticipant?id=${_id}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setParticipant(data.usersparticipated);
+
+            })
+
+    }, []);
+    console.log(participant)
+    // console.log(participant[1].map(item=>(
+    //     item.name
+    // )));
     return (
         <>
             <Navbar />
@@ -62,7 +85,17 @@ function Eventparticipants() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>No user participated</tr>
+                                                        {/* <tr><td>hello</td></tr> */}
+                                                        {participant ? participant.map((item, index) => (
+                                                            <tr key={index}>
+                                                                <td>{index+1}</td>
+                                                                <td>{item.user}</td>
+                                                                <td>{item.name}</td>
+                                                                </tr>
+                                                        )
+
+                                                        ) : "No data"}
+
                                                     </tbody>
                                                 </table>
                                             </div>

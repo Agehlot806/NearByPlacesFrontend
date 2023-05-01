@@ -91,7 +91,7 @@ const RouterComponent = () => {
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />
-          <Route exact path='/event-participants' component={Eventparticipants} />
+          <Route exact path='/event-participants/:_id' component={Eventparticipants} />
           <Route exact path='/event-new-add' component={Eventnewadd} />
           <Route exact path='/event-edit/:_id' component={Eventedit} />
 
