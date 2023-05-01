@@ -5,22 +5,29 @@ import Footer from '../../directives/footer'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 import { Link, useParams } from 'react-router-dom'
+import Pagination from 'react-js-pagination';
 
 function Allstores() {
+    const [activePage, setActivePage] = useState(1);
+    const [storecount, setStorecount] = useState(1);
+
     const [storeData, setStoreData] = useState([])
     const [searchstore, setSearchStore] = useState('');
     const [searchstoresave, setSearchStoreSave] = useState([])
     const [modalstore, setModalStore] = useState(false);
     const [Id, setId] = useState("");
 
+    useEffect(() => {
+        allStore()
+    }, [setStoreData])
 
-   
-    const allStore = () => {
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
+    const allStore = (page) => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores?page=${page}`)
             .then((res) => res.json())
             .then((responsive) => {
                 console.log("tsaryhxdashgxfahsxasx", responsive.stores);
                 setStoreData(responsive.stores)
+                setStorecount(responsive.storeCount)
             })
             .catch((error) => {
                 console.log("error", error);
@@ -39,7 +46,7 @@ function Allstores() {
         };
         searchStoreData();
     }, []);
-    
+
     const inputSearchStore = (e) => {
         if (e.target.value == '') {
             setStoreData(searchstoresave)
@@ -84,19 +91,13 @@ function Allstores() {
     }
 
 
-    // pagination area 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5; // for example
-    const totalPages = Math.ceil(storeData.length / itemsPerPage);
-    const currentItems = storeData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
     const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        allStore(pageNumber);
+        console.log(pageNumber);
+        setActivePage(pageNumber);
+
     };
-
-
+// console.log("tarun",storecount);
 
     return (
         <>
@@ -186,14 +187,21 @@ function Allstores() {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div className='pagination-section'>
-                                                <i className="fa fa-angle-double-left" />
-                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-                                                    <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
-                                                        {pageNumber}
-                                                    </button>
-                                                ))}
-                                                <i className="fa fa-angle-double-right" />
+                                            <div className="d-flex justify-content-center">
+                                                <div className="pagination-section">
+                                                    {storecount > 5 &&
+                                                        <div className="pagination-rounded">
+                                                            <Pagination
+                                                                activePage={activePage}
+                                                                itemsCountPerPage={5}
+                                                                totalItemsCount={storecount}
+                                                                pageRangeDisplayed={5}
+                                                            
+                                                                onChange={handlePageChange}
+                                                            />
+                                                        </div>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

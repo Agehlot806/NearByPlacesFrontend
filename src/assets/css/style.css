@@ -99,11 +99,10 @@ label {
     margin-left: 5px;
     margin-right: 5px;
     font-size: 20px;
-    /* justify-content:center; */
-    /* margin-top: 15px; */
-    /* text-align: center; */
-
-    /* background-color: #000; */
+}
+.pagination-rounded a:hover{
+    color:#f4f4f4;
+    background-color:#5a189a;
 }
 .action-btn a {
     background: #f0f0f0;
@@ -166,7 +165,7 @@ label {
 
 .pagination-section {
     float: right;
-    margin: 0px 16px;
+    margin: 10px 16px;
 }
 .pagination-section i {
     color: #5a189a;
