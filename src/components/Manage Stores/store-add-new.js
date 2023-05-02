@@ -5,6 +5,7 @@ import Footer from '../../directives/footer'
 import { Button } from "reactstrap";
 import toast, { Toaster } from 'react-hot-toast'
 import { useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 const countries = {
     France: ["Paris", "Marseille", "Lille", "Lyon"],
     Usa: ["New York", "San Francisco", "Austin", "Dallas"]
@@ -23,6 +24,10 @@ function Storeaddnew() {
     const [storephotofiles, setStorephotofiles] = useState("");
     const [storegalleryfiles, setStoregalleryfiles] = useState("");
     const [address, setAddress] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [storeData, setStoreData] = useState([])
+
+
 
 
     const loginpage = async () => {
@@ -36,7 +41,7 @@ function Storeaddnew() {
             body: JSON.stringify({
                 name: name,
                 category: "",
-                address:address,
+                address: address,
                 website: website,
                 latitude: latitude,
                 longitude: longitude,
@@ -83,10 +88,26 @@ function Storeaddnew() {
     };
 
     useEffect(() => {
+        allStore();
         Object.keys(countries).forEach(country => {
             checkInsertInArray(country);
         });
     });
+
+
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                console.log("tsaryhxdashgxfahsxasx", responsive.stores);
+                setStoreData(responsive.stores)
+                // setStorecount(responsive.storeCount)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+  
     return (
         <>
             <Navbar />
@@ -198,13 +219,62 @@ function Storeaddnew() {
 
                                                 </div>
                                                 <div className="tab-pane fade" id="More" role="tabpanel" aria-labelledby="nav-contact-tab">
-
+                                                <div className="table-responsive">
+                                                <table className="table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Rating</th>
+                                                            <th scope="col">Reviews</th>
+                                                            <th scope="col">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {storeData.map((items, index) => (
+                                                            <tr key={index}>
+                                                               
+                                                                <td>
+                                                                    <b>{items.name}</b><br />
+                                                                    <i className='mdi mdi-map-marker' /> {items.latitude}<br />
+                                                                  
+                                                                </td>
+                                                               
+                                                                <td className='click-color'>
+                                                                    <Link to=''><u>{items.category}</u></Link>
+                                                                </td>
+                                                                
+                                                                <td>{items.ratings}</td>
+                                                                <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
+                                                                <td>  
+                                                                <Link to='/book-table'><button className='btn btn-danger'>view-table</button> </Link>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                                <select id="inputState" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                    </select>
+                                            </div>
+                                                       
+                                                    </div>
+                                             
+                
                                                 </div>
-                                            </div>
-                                            <div className='user-head'>
-                                                <Button><i className="fa fa-check-square-o" /> Create</Button>
-                                                <Button><i className="fa fa-times" /> Clear</Button>
-                                            </div>
+                                                <div className='user-head'>
+                                                    <Button><i className="fa fa-check-square-o" /> Create</Button>
+                                                    <Button><i className="fa fa-times" /> Clear</Button>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>

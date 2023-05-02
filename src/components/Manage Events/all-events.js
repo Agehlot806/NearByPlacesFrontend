@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 import Pagination from 'react-js-pagination'
-import { format } from 'date-fns'
+import dateFormat from 'dateformat';
+
 
 
 function Allevents() {
@@ -68,8 +69,8 @@ function Allevents() {
         }
         else {
             const filterres = searcheventsave.filter(item => item.eventname.toLowerCase().includes(e.target.value.toLowerCase()))
-            seteventData(false)
-            allEvent()
+            seteventData(filterres)
+            // allEvent()
         }
         setSearchEvent(e.target.value)
     }
@@ -174,18 +175,20 @@ function Allevents() {
                                                                     <i className='mdi mdi-map-marker' /> {items.address}<br />
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <a href='#'><u>Owner</u></a>
-                                                                    <a href='#'><i className='mdi mdi-open-in-new' /></a>
-                                                                    <a href='#'><i className='mdi mdi-eye-outline' /></a>
+                                                                    <Link to='#'><u>Owner</u></Link>
+                                                                    <Link to='#'><i className='mdi mdi-open-in-new' /></Link>
+                                                                    <Link to='#'><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    {items.datebegin.slice(0, 10)}
+                                                                {dateFormat(items.datebegin, "dd-mm-yyyy")} To {dateFormat(items.dateend, "dd-mm-yyyy")}
+                                                                    {/* {items.datebegin.slice(0, 10)} */}
                                                                      {/* {new Date(`${items.datebegin.slice(0,10)}`).toDateString()} */}
-                                                                 to {items.dateend.slice(0, 10)}</td>
+                                                                 {/* to {items.dateend.slice(0, 10)} */}
+                                                                 </td>
                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
                                                                 <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
                                                                 <td className='action-btn'>
-                                                                    <a href=''><i className='fa fa-times' /></a>
+                                                                    <Link to=''><i className='fa fa-times' /></Link>
                                                                     <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>

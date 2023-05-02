@@ -21,6 +21,10 @@ function Eventedit() {
     const [dateend, setDateEnd] = useState("");
     const [phonenumber, setPhonenumber] = useState("");
     const [address, setAddress] = useState("");
+    const [fileData, setFileData] = useState();
+    const [imageTrue, setImageTrue] = useState("false");
+    const [message, setMessage] = useState("")
+
 
     useEffect(() => {
         allStore();
@@ -47,7 +51,7 @@ function Eventedit() {
             .then(data => {
                 setEventName(data.events.eventname);
                 setDescription(data.events.description)
-                setFile(data.events.file)
+                setFile(data.events.EventPhoto.url)
                 setPhonenumber(data.events.phonenumber)
                 setAddress(data.events.address)
                 setId(data.events._id);
@@ -55,30 +59,30 @@ function Eventedit() {
             })
     }, []);
 
-    const UpdateOfferDetailss = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('eventname', eventname);
-        formData.append('description', description);
-        formData.append('file', file);
-        // formData.append('PricingOfferValue', selectValue);
-        // formData.append('coupon_type', coupon_type);
-        // formData.append('value', coupon_value);
-        // formData.append('coupon_code', coupon_code);
-        formData.append('datebegin', datebegin);
-        formData.append('dateend', dateend);
-        axios
-            .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error.response.data);
+    // const UpdateOfferDetailss = (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('eventname', eventname);
+    //     formData.append('description', description);
+    //     formData.append('file', file);
+    //     // formData.append('PricingOfferValue', selectValue);
+    //     // formData.append('coupon_type', coupon_type);
+    //     // formData.append('value', coupon_value);
+    //     // formData.append('coupon_code', coupon_code);
+    //     formData.append('datebegin', datebegin);
+    //     formData.append('dateend', dateend);
+    //     axios
+    //         .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, formData, {
+    //             headers: { "Content-Type": "multipart/form-data" },
+    //         })
+    //         .then((response) => {
+    //             console.log(response);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.response.data);
 
-            });
-    };
+    //         });
+    // };
     const UpdateOfferDetail = (e) => {
         e.preventDefault();
         const data = {
@@ -97,6 +101,32 @@ function Eventedit() {
         );
     }
 
+
+    const ImageUpload = (e) => {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('file', file);
+        axios({
+            method: "put",
+            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateeventimage/${_id}`,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then(response => {
+                setMessage(response.data.message);
+                toast.success("Image upload successfully");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const onFileChange = (event) => {
+        setImageTrue(false);
+        setFile(event.target.files[0]);
+        setFileData(URL.createObjectURL(event.target.files[0]));
+
+    }
     return (
         <>
             <Toaster />
@@ -115,7 +145,14 @@ function Eventedit() {
                                             </div>
                                             <div className="product-card-body">
                                                 <div className="form-group image-size">
-                                                    <input type="file" className="form-control" placeholder="Enter..." />
+                                                    <input type="file" className="form-control" placeholder="Enter..." onChange={onFileChange}/>
+                                                    {/* <img src={file} alt="file"></img> */}
+                                                    {imageTrue ?
+                                                        <img src={file} alt="file"></img> : <img src={fileData} alt="file"></img>}
+                                                    <br />
+                                                    <div className='user-head'>
+                                                        <Button type="submit" onClick={ImageUpload}> Upload</Button>
+                                                    </div>
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Store</label>

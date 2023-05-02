@@ -166,20 +166,20 @@ function Allstores() {
                                                                     {/* <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span> */}
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <a href=''><u>Admin</u></a>
-                                                                    <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                    <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                    <Link to=''><u>Admin</u></Link>
+                                                                    <Link to=''><i className='mdi mdi-open-in-new' /></Link>
+                                                                    <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <a href=''><u>{items.category}</u></a>
+                                                                    <Link to=''><u>{items.category}</u></Link>
                                                                 </td>
                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
                                                                 <td>{items.ratings}</td>
                                                                 <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
                                                                 <td className='action-btn'>
-                                                                    <a href=''><i className='fa fa-times' /></a>
-                                                                    <Link href='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                    <a href=''><i class="fa fa-list" /> Services</a>
+                                                                    <Link to=''><i className='fa fa-times' /></Link>
+                                                                    <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Link to=''><i class="fa fa-list" /> Services</Link>
                                                                     <a><Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
                                                             </tr>
