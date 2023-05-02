@@ -180,12 +180,17 @@ function Allevents() {
                                                                 </td>
                                                                 <td className='click-color'>
                                                                     {items.datebegin.slice(0, 10)}
-                                                                     {/* {new Date(`${items.datebegin.slice(0,10)}`).toDateString()} */}
-                                                                 to {items.dateend.slice(0, 10)}</td>
-                                                                <td><span className='Disabled-btn'>Disabled</span></td>
-                                                                <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
+                                                                    {/* {new Date(`${items.datebegin.slice(0,10)}`).toDateString()} */}
+                                                                    to {items.dateend.slice(0, 10)}</td>
+                                                                <td>{items.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
+                                                                <td className='click-color'><Link to={"/event-participants/" + items._id}>
+                                                                    {items.usersparticipated.length > 0 ? (
+                                                                        <i className="mdi mdi-account-multiple-outline" style={{ color: "green" }} />
+                                                                    ) : <i className="mdi mdi-account-multiple-outline" />}
+                                                                 
+                                                                    {items.usersparticipated.length > 0 ? <span style={{color:"green"}}>{items.usersparticipated.length }</span>: 0}</Link></td>
                                                                 <td className='action-btn'>
-                                                                    <a href=''><i className='fa fa-times' /></a>
+                                                                    <a href=''><i className='fa fa-times text' /></a>
                                                                     <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>

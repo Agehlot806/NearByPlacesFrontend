@@ -171,16 +171,16 @@ function Allstores() {
                                                                     <a href=''><i className='mdi mdi-eye-outline' /></a>
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <a href=''><u>{items.category}</u></a>
+                                                                    <Link to=''><u>{items.category}</u></Link>
                                                                 </td>
-                                                                <td><span className='Disabled-btn'>Disabled</span></td>
+                                                                <td>{items.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
                                                                 <td>{items.ratings}</td>
                                                                 <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
                                                                 <td className='action-btn'>
-                                                                    <a href=''><i className='fa fa-times' /></a>
-                                                                    <Link href='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                    <a href=''><i class="fa fa-list" /> Services</a>
-                                                                    <a><Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
+                                                                    <Link to=''><i className='fa fa-times' /></Link>
+                                                                    <Link to={"/all-store-edit/"+ items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <Link to=''><i class="fa fa-list" /> Services</Link>
+                                                                    <Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button>
                                                                 </td>
                                                             </tr>
                                                         ))}
