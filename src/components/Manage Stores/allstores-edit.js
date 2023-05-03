@@ -1,11 +1,120 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import { useParams } from 'react-router'
+import { Button, Input, Form } from "reactstrap";
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast'
 
 function Allstoresedit() {
+
+    const { _id } = useParams();
+
+    const [file, setFile] = useState([]);
+    
+    const [ratings, setRatings] = useState();
+    const [reviews, setReviews] = useState([]);
+    const [galleryImage, setGalleryImage] = useState([]);
+    const [filegallery, setFilegallery] = useState();
+    const [storeData, setStores] = useState([]);
+    const [name, setName] = useState("");
+    const [categories, setCategories] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [storePhoto, setStorePhoto] = useState([]);
+    const [website, setWebsite] = useState("");
+    const [longitude, setLongitude] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [storegallery, setStoregallery] = useState("");
+    const [imageTrue, setImageTrue] = useState("false");
+    
+    useEffect(() => {
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setStores(data.store);
+                setName(data.store.name);
+                setPhoneNumber(data.store.phonenumber)
+                setCategories(data.store.category)
+                setStorePhoto(data.store.storephoto);
+                setWebsite(data.store.website);
+                setStoregallery(data.store.storegallery)
+                setRatings(data.store.ratings);
+                setReviews(data.store.reviews)
+                setLatitude(data.store.latitude);
+                setLongitude(data.store.longitude);
+                // setId(data.events._id);
+                // console.log(data.events._id);
+                setImageTrue(true);
+                setGalleryImage(true);
+            })
+    }, []);
+
+    const onFileChange = (event) => {
+        setImageTrue(false);
+        setStorePhoto(event.target.files[0]);
+        setFile(URL.createObjectURL(event.target.files[0]));
+
+    }
+
+    const handleStoreGallery = (event) => {
+        setGalleryImage(false);
+        setStoregallery(event.target.files[0]);
+        setFilegallery(URL.createObjectURL(event.target.files[0]));
+
+    }
+    const ImageUpload = (e) => {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('storephotofiles', storePhoto);
+        formData.append('storegalleryfiles', storegallery);
+        axios({
+            method: "put",
+            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updatestoreimage/${_id}`,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+            .then(response => {
+                // setMessage(response.data.message);
+                toast.success("Image upload successfully");
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const UpdateStoreDetail = (e) => {
+        e.preventDefault();
+        const data = {
+            "name": name,
+            "category": categories,
+            "storephoto": storePhoto,
+            "storegallery":"storegallery",
+            "website": website,
+            "ratings": ratings,
+            "reviews":reviews,
+            "latitude":latitude,
+            "longitude":longitude
+
+           
+        }
+        const config = {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        };
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, data, { config }).then(
+            response => response.data,
+            toast.success(" offer update successfully")
+        );
+    }
+   console.log(categories);
     return (
         <>
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -28,35 +137,35 @@ function Allstoresedit() {
                                         </nav>
                                         <div className="tab-content" id="nav-tabContent">
                                             <div className="tab-pane fade show active" id="Detail" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <form>
+                                                <Form onSubmit={UpdateStoreDetail}>
                                                     <div className="form-row">
                                                         <div className="form-group col-md-6">
                                                             <label>Name :</label>
-                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                            <input type="text" className="form-control"
+                                                                value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter..." />
                                                         </div>
                                                         <div className="form-group col-md-6">
                                                             <label>Phone Number :</label>
-                                                            <input type="number" className="form-control" placeholder="Enter..." />
+                                                            <input type="number" className="form-control"
+                                                                value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Enter..." />
                                                         </div>
                                                     </div>
                                                     <div className="form-row">
                                                         <div className="form-group col-md-6">
                                                             <label htmlFor="inputState">Category :</label>
-                                                            <select id="inputState" className="form-control">
+                                                            <select id="inputState"
+                                                                select={categories} onChange={(e) => setCategories(e.target.value)} className="form-control">
+
                                                                 <option selected>Choose...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
-                                                                <option>...</option>
+                                                                <option>Hotel</option>
+                                                                <option>Restaurant</option>
+
                                                             </select>
                                                         </div>
                                                         <div className="form-group col-md-6">
-                                                            <label>WebSite</label>
-                                                            <input type="number" className="form-control" placeholder="Enter..." />
+                                                            <label>WebSite </label>
+                                                            <Input type="text" className="form-control"
+                                                                value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Enter..." />
                                                         </div>
                                                     </div>
                                                     <div className="form-row">
@@ -70,26 +179,38 @@ function Allstoresedit() {
                                                         </div>
                                                     </div>
                                                     <div className='user-head'>
-                                                        <a href='#'><i className="fa fa-check-square-o" /> Update</a>
+                                                        <Button type="submit"><i className="fa fa-check-square-o" /> Update</Button>
                                                     </div>
-                                                </form>
+                                                </Form>
                                             </div>
                                             <div className="tab-pane fade" id="Images" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                <form>
-                                                    <div className="form-row image-size">
-                                                        <div className="form-group col-md-6">
-                                                            <label>Store photos</label>
-                                                            <input type="file" className="form-control" placeholder="Enter..." />
-                                                        </div>
-                                                        <div className="form-group col-md-6">
-                                                            <label><i class="mdi mdi-image-album" /> Store gallery</label>
-                                                            <input type="file" className="form-control" placeholder="Enter..." />
-                                                        </div>
+
+                                                <div className="form-row image-size">
+                                                    <div className="form-group col-md-6">
+                                                        <label>Store photos</label>
+                                                        <Input type="file"
+                                                            onChange={onFileChange} className="form-control"
+                                                            placeholder="Enter..." />
+
+                                                        <img src={imageTrue ? storePhoto.url : file} alt="file"></img>
+                                                        <br />
+                                                        {/* <img src={file} alt="file"></img>  */}
                                                     </div>
-                                                    <div className='user-head'>
-                                                        <a href='#'><i className="fa fa-check-square-o" /> Update</a>
+                                                    <div className="form-group col-md-6">
+                                                        <label><i class="mdi mdi-image-album" /> Store gallery</label>
+                                                        <Input type="file" className="form-control"
+                                                            onChange={handleStoreGallery}
+                                                            placeholder="Enter..." />
+
+                                                        <img src={galleryImage ? storegallery.url : filegallery} alt="gallery" />
+
                                                     </div>
-                                                </form>
+                                                </div>
+                                                <div className='user-head'>
+                                                    <Button type='submit' onClick={ImageUpload}><i className="fa fa-check-square-o" /> Update</Button>
+
+                                                </div>
+
                                             </div>
                                             <div className="tab-pane fade" id="Location" role="tabpanel" aria-labelledby="nav-contact-tab">
                                                 <h6>Drag the marker to get the exact position</h6>
@@ -176,4 +297,4 @@ function Allstoresedit() {
     )
 }
 
-export default Allstoresedit
+export default Allstoresedit;

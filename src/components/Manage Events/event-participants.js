@@ -29,7 +29,7 @@ function Eventparticipants() {
         })
             .then((resp) => {
                 setResponse(resp);
-                toast.error("Event Deleted Successfully");
+                // toast.success("Event Deleted Successfully");
                 getparticipant();
 
             })

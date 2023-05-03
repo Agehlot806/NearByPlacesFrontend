@@ -77,7 +77,7 @@ const RouterComponent = () => {
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/all-stores' component={Allstores} />
-          <Route exact path='/all-store-edit' component={Allstoresedit} />
+          <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
           <Route exact path='/my-stores' component={Mystores} />
           <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
