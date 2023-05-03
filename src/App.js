@@ -131,7 +131,7 @@ const RouterComponent = () => {
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
           <Route exact path='/google-map-api' component={Googlemapapi} />
           <Route exact path='/template' component={Template} />
-          <Route exact path='/book-table' component={Booktable} />
+          <Route exact path='/book-table/:_id' component={Booktable} />
         </Switch>
       </Router>
     </>

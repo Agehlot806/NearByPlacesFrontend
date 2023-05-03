@@ -721,6 +721,13 @@ table.table.booking-table td img {
 
 
 /* ??????////tarun css//// */
-.booking{
-    font-size: 65px;
+.icon-area i{
+    font-size: 60px;
+    margin-top: 10px;
+}
+.available-area{
+    margin: 18px;
+}
+#booking-name{
+    font-size: 20px;
 }

@@ -248,27 +248,17 @@ function Storeaddnew() {
                                                                 <td>{items.ratings}</td>
                                                                 <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
                                                                 <td>  
-                                                                <Link to='/book-table'><button className='btn btn-danger'>view-table</button> </Link>
+                                                                <Link to={`/book-table/${items._id}`}><button className='btn btn-danger'>view-table</button> </Link>
                                                                 </td>
                                                             </tr>
                                                         ))}
                                                     </tbody>
                                                 </table>
-                                                <select id="inputState" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                    </select>
+                                              
                                             </div>
                                                        
                                                     </div>
-                                             
+                                           
                 
                                                 </div>
                                                 <div className='user-head'>
