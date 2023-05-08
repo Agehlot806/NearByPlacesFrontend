@@ -722,7 +722,7 @@ table.table.booking-table td img {
 
 /* ??????////tarun css//// */
 .icon-area i{
-    font-size: 60px;
+    font-size: 80px;
     margin-top: 10px;
 }
 .available-area{
@@ -731,3 +731,12 @@ table.table.booking-table td img {
 #booking-name{
     font-size: 20px;
 }
+.icon-area i:hover{
+    color:blue;
+}
+.modal .modal-dialog {
+    width: 80%;
+  }
+  label.acces-user {
+    margin-left: 10px;
+}  

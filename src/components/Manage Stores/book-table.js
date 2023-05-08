@@ -43,6 +43,12 @@ const Booktable = () => {
                 })
         
     }
+    const [Opentable,setOpenTable]=useState(false)
+    const handlerOpenTable=(e)=>{
+        setOpenTable(true)
+// console.log("tarun",e);
+    }
+    
     return (
         <>
             <Navbar />
@@ -58,7 +64,7 @@ const Booktable = () => {
                                             <h3><b>Table-Booking</b></h3>
                                         </div>
 
-                                        {/* <div className='row'>
+                                        <div className='row'>
                                             <div className='col-sm-3'>
                                                 <select id="inputState" className="form-control">
                                                     <option selected>Choose..Day.</option>
@@ -72,9 +78,9 @@ const Booktable = () => {
                                                 </select>
                                             </div>
                                             <div className='col-sm-3'>
-                                                <select id="inputState" className="form-control">
+                                                <select onChange={(e)=> handlerOpenTable(e)} id="inputState" className="form-control">
                                                     <option selected>Select a time open</option>
-                                                    <option>10am</option>
+                                                    <option value='' >10am</option>
                                                     <option>11am</option>
                                                     <option>12pm</option>
                                                     <option>1pm</option>
@@ -124,7 +130,7 @@ const Booktable = () => {
 
                                                 </select>
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className='booking-area'>
                                             <div className='available-area'>
                                                 <div className="form-group">
@@ -139,9 +145,10 @@ const Booktable = () => {
 
                                                 </div>
                                             </div>
+                                            {Opentable ?
                                             <div className='row'>
 
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <div data-toggle="modal" data-target="#exampleModal" className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -149,7 +156,7 @@ const Booktable = () => {
                                                         <p> Table-1</p>
                                                     </div>
                                                 </div>
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <h3 className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -157,7 +164,7 @@ const Booktable = () => {
                                                         <p> Table-2</p>
                                                     </div>
                                                 </div>
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <h3 className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -165,7 +172,7 @@ const Booktable = () => {
                                                         <p> Table-3</p>
                                                     </div>
                                                 </div>
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <h3 className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -173,7 +180,7 @@ const Booktable = () => {
                                                         <p> Table-4</p>
                                                     </div>
                                                 </div>
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <h3 className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -181,7 +188,7 @@ const Booktable = () => {
                                                         <p> Table-5</p>
                                                     </div>
                                                 </div>
-                                                <div className='col-sm-2'>
+                                                <div className='col-sm-3'>
                                                     <div className='booking-area'>
                                                         <h3 className='icon-area'>
                                                             <i class="fa fa-table" aria-hidden="true"></i>
@@ -190,7 +197,7 @@ const Booktable = () => {
                                                     </div>
                                                 </div>
 
-                                            </div>
+                                            </div>:""}
                                         </div>
                                     </div>
                                 </div>

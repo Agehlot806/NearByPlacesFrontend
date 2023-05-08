@@ -65,6 +65,7 @@ import Resetpassword from './components/reset-password';
 import "./assets/css/responsive.css";
 import "./assets/css/style.css"
 import Booktable from './components/Manage Stores/book-table';
+import Demouser from './components/Manage Stores/Demouser';
 
 const RouterComponent = () => {
   return (
@@ -132,6 +133,8 @@ const RouterComponent = () => {
           <Route exact path='/google-map-api' component={Googlemapapi} />
           <Route exact path='/template' component={Template} />
           <Route exact path='/book-table/:_id' component={Booktable} />
+          <Route exact path='/demouser' component={Demouser} />
+
         </Switch>
       </Router>
     </>

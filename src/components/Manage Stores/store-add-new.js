@@ -30,7 +30,7 @@ function Storeaddnew() {
 
 
 
-    const loginpage = async () => {
+    const storeaddpage = async () => {
 
         var headers = {
             'Accept': 'application/json',
@@ -92,7 +92,7 @@ function Storeaddnew() {
         Object.keys(countries).forEach(country => {
             checkInsertInArray(country);
         });
-    });
+    },[]);
 
 
     const allStore = () => {
@@ -119,7 +119,7 @@ function Storeaddnew() {
                             <div className='row'>
                                 <div className='col-lg-12'>
                                     <div className='add-card'>
-                                        <form onSubmit={loginpage}>
+                                        <form onSubmit={storeaddpage}>
                                             <nav>
                                                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                                     <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#Detail" role="tab" aria-controls="nav-home" aria-selected="true">Detail</a>

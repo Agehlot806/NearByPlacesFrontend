@@ -23,10 +23,14 @@ function Allevents() {
 
     useEffect(() => {
         allEvent()
-    }, [seteventData])
+    }, [])
 
     const allEvent = (page) => {
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents?page=${page}`)
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents?page=${page}`,{
+            method:'GET',
+            credentials: 'include',
+
+        })
             .then((res) => res.json())
             .then((responsive) => {
                 // console.log("tsaryhxdashgxfahsxasx", responsive.events);
@@ -38,18 +42,8 @@ function Allevents() {
                 console.log("error", error);
             })
     }
-
-    // pagination area 
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const itemsPerPage = 5; // for example
-    // const totalPages = Math.ceil(eventData.length / itemsPerPage);
-    // const currentItems = eventData.slice(
-    //     (currentPage - 1) * itemsPerPage,
-    //     currentPage * itemsPerPage
-    // );
-    // const handlePageChange = (pageNumber) => {
-    //     setCurrentPage(pageNumber);
-    // };
+console.log("tarun1818188",eventData);
+  
 
     // Search data in All Offers
     useEffect(() => {
@@ -81,7 +75,6 @@ function Allevents() {
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            // 'authorization': `Bearer ${access_token}`,
         };
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${id}`, {
             method: "DELETE",
@@ -167,33 +160,34 @@ function Allevents() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {eventData.map((items, index) => (
-                                                            <tr>
+                                                        {eventData ? eventData.map((items,index)=>(
+                                                            <tr key={index}>
                                                                 <td><img src={items.EventPhoto.url} /></td>
-                                                                <td>
-                                                                    <b>{items.eventname}</b><br />
-                                                                    <i className='mdi mdi-map-marker' /> {items.address}<br />
+                                                                 <td>
+                                                                 <b>{items.eventname}</b><br />
+                                                                 <i className='mdi mdi-map-marker' /> {items.address}<br />
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <Link to='#'><u>Owner</u></Link>
+                                                                   <Link to='#'><u>Owner</u></Link>
                                                                     <Link to='#'><i className='mdi mdi-open-in-new' /></Link>
                                                                     <Link to='#'><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
-                                                                <td className='click-color'>
-                                                                {dateFormat(items.datebegin, "dd-mm-yyyy")} To {dateFormat(items.dateend, "dd-mm-yyyy")}
-                                                                    {/* {items.datebegin.slice(0, 10)} */}
-                                                                     {/* {new Date(`${items.datebegin.slice(0,10)}`).toDateString()} */}
-                                                                 {/* to {items.dateend.slice(0, 10)} */}
+                                                                 <td className='click-color'>
+                                                                 {dateFormat(items.datebegin, "dd-mm-yyyy")} To {dateFormat(items.dateend, "dd-mm-yyyy")}
+                                                                  
                                                                  </td>
-                                                                <td><span className='Disabled-btn'>Disabled</span></td>
-                                                                <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
-                                                                <td className='action-btn'>
+                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
+                                                                 <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
+                                                             <td className='action-btn'>
                                                                     <Link to=''><i className='fa fa-times' /></Link>
-                                                                    <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                              <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                 </td>
-                                                            </tr>
-                                                        ))}
+                                                             </tr>
+                                                        )):""} 
+                                                      
+                                                            
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
