@@ -166,9 +166,9 @@ function Allstores() {
                                                                     {/* <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span> */}
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <a href=''><u>Admin</u></a>
-                                                                    <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                    <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                    <Link to=''><u>Admin</u></Link>
+                                                                    <Link to=''><i className='mdi mdi-open-in-new' /></Link>
+                                                                    <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
                                                                 <td className='click-color'>
                                                                     <Link to=''><u>{items.category}</u></Link>

@@ -165,9 +165,9 @@ function Alloffers() {
                                                                 <td><img src={items.offerImage.url} alt="image" /></td>
                                                                 <td><b>{items.name}</b></td>
                                                                 <td className='click-color'>
-                                                                    <a href=''><u>Admin</u></a>
-                                                                    <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                    <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                    <Link to=''><u>Admin</u></Link>
+                                                                    <Link to=''><i className='mdi mdi-open-in-new' /></Link>
+                                                                    <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
                                                                 <td><Link to='/offer-published' className='Enabled-btn'><i className="mdi mdi-history" /> Published</Link></td>
                                                                 <td><span className='Disabled-btn'>{items.PricingOfferValue}</span></td>

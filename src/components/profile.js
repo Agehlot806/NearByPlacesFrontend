@@ -5,27 +5,92 @@ import { useEffect } from 'react'
 import { useState } from 'react';
 import { Button, Input } from 'reactstrap';
 import axios from "axios";
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Profile() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const [user, setUser] = useState([]);
+    const [User, setUser] = useState([]);
+    const[Username,setUserName]=useState();
+    const[Useremail,setuserEmail]=useState();
+    const[userPhoto,setUserPhoto]=useState();
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+      credentials: 'include',
+
+            headers: { 'Content-Type': 'application/json' },
+
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setUserName(data.user.name);
+                setuserEmail(data.user.email)
+            })
+    }, []);
+
+    const updateProfilerDetail = (e) => {
+        e.preventDefault();
+        const data = {
+            "name": Username,
+            "email": Useremail,
+           
+        }
+        const config = {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        };
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, { 
+            config ,
+      credentials: 'include',
+
+        })
+        .then(
+            response => response.data,
+        );
+    }
+    // useEffect(()=>{
+    //     handleProfile()
+    // })
     // const handleProfile = () => {
-    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`)
+    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`,{
+    //         method:'GET',
+    //         credentials: 'include',
+
+    //     })
     //         .then((res) => res.json())
     //         .then((responsive) => {
     //             console.log("tsaryhxdashgxfahsxasx", responsive);
-    //             setUser(responsive)
+    //             setUser(responsive.user)
+    //             setUserName(responsive.user.name)
+    //             setuserEmail(responsive.user.email)
+    //             setUserPhoto(responsive.user.AdminAvatar.url)
     //         })
     //         .catch((error) => {
     //             console.log("error", error);
     //         })
     // }
+   
     // useEffect(() => {
     //     console.log("user", user);
     //     // allStore();
     // })
 
+    // const updateProfilerDetail = (e) => {
+    //     e.preventDefault();
+    //     const data = {
+    //         "name": Username,
+    //         "email": Useremail,
+           
+    //     }
+    //     const config = {
+    //         headers: { 'content-type': 'application/x-www-form-urlencoded' }
+    //     };
+    //     return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, { config })
+    //     .then((response)=>{
+    //         console.log("response",response);
+    //     })
+    // }
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -53,35 +118,32 @@ function Profile() {
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
                                                     <h3><b>Edit user information</b></h3>
-                                                    {/* <Button onClick={handleProfile}>Profile</Button> */}
 
                                                 </div>
                                                 <div className="product-card-body">
-                                                    <form>
+                
+                                                    <form onSubmit={updateProfilerDetail}>
+
                                                         <div className="form-group image-size">
                                                             <input type="file" className="form-control" placeholder="Enter..." />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label>Full name :</label>
-                                                            <input type="text" className="form-control" placeholder="Enter..." />
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label>Email :</label>
-                                                            <input type="email" className="form-control" placeholder="Enter..." />
+                                                            <img src={userPhoto} alt=''/>
                                                         </div>
                                                         <div className="form-group">
                                                             <label>Username :</label>
-                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                            <input type="text" className="form-control" placeholder="Enter..." name='username' value={Username} onChange={(e)=>setUserName(e.target.value)} />
                                                         </div>
                                                         <div className="form-group">
-                                                            <label>Phone Number</label>
-                                                            <input type="number" className="form-control" />
+                                                            <label>Email :</label>
+                                                            <input type="email" className="form-control" placeholder="Enter..." value={Useremail}  onChange={(e)=>setuserEmail(e.target.value)}/>
                                                         </div>
-                                                        <br />
+                                                        
+                                                      
                                                         <div className='user-head'>
-                                                            <a href='#'><i className="mdi mdi-content-save-outline" /> Save</a>
+                                                            <a href='#'><i className="mdi mdi-content-save-outline"/> Save</a>
+                                                            <button>click</button>
                                                         </div>
                                                     </form>
+                
                                                 </div>
                                             </div>
                                         </div>

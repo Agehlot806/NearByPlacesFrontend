@@ -64,6 +64,8 @@ import Resetpassword from './components/reset-password';
 import Map from "./components/Map/Index"
 import "./assets/css/responsive.css";
 import "./assets/css/style.css"
+import Booktable from './components/Manage Stores/book-table';
+import Demouser from './components/Manage Stores/Demouser';
 
 const RouterComponent = () => {
   return (
@@ -75,65 +77,49 @@ const RouterComponent = () => {
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
           <Route exact path='/profile' component={Profile} />
-
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/all-stores' component={Allstores} />
           <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
           <Route exact path='/my-stores' component={Mystores} />
           <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
-
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
           <Route exact path='/offer-add-new' component={Offeraddnew} />
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
           <Route exact path='/offer-edit/:_id' component={Offeredit} />
-
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />
           <Route exact path='/event-participants/:_id' component={Eventparticipants} />
           <Route exact path='/event-new-add' component={Eventnewadd} />
           <Route exact path='/event-edit/:_id' component={Eventedit} />
-
           <Route exact path='/all-reservations' component={Allreservations} />
           <Route exact path='/my-reservations' component={Myreservations} />
-
           <Route exact path='/my-bookings' component={Mybookings} />
-
           <Route exact path='/campaigns' component={Campaigns} />
           <Route exact path='/campaigns-new-add' component={Campaignnewadd} />
-
           <Route exact path='/message' component={Messages} />
-
           <Route exact path='/users' component={Users} />
           <Route exact path='/group-access' component={Groupaccess} />
           <Route exact path='/group-access-add' component={Groupaccessadd} />
           <Route exact path='/User-add' component={Usersnewadd} />
           <Route exact path='/user-edit' component={Useredit} />
-
-
           <Route exact path='/invoice' component={Invoice} />
           <Route exact path='/payment-config' component={Paymentconfig} />
-
           <Route exact path='/all-slider' component={Allslider} />
           <Route exact path='/slider-add' component={Slidernewadd} />
           <Route exact path='/slider-view' component={Sliderview} />
           <Route exact path='/slider-edit' component={Slideredit} />
-
           <Route exact path='/media' component={Media} />
           <Route exact path='/media-new' component={Medianew} />
-
-
           <Route exact path='/payout' component={Payouts} />
           <Route exact path='/payout-add' component={Payoutadd} />
           <Route exact path='/payout-edit' component={Payoutedit} />
-
           <Route exact path='/manage-pages' component={Managepages} />
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
-
           <Route exact path='/global-config' component={Globalconfig} />
           <Route exact path='/currencies' component={Currencies} />
           <Route exact path='/mail-config' component={Mailconfig} />
@@ -147,7 +133,8 @@ const RouterComponent = () => {
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
           <Route exact path='/google-map-api' component={Googlemapapi} />
           <Route exact path='/template' component={Template} />
-
+          <Route exact path='/book-table/:_id' component={Booktable} />
+          <Route exact path='/demouser' component={Demouser} />
 
         </Switch>
       </Router>

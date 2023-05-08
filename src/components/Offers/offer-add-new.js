@@ -68,7 +68,7 @@ function Offeraddnew() {
   }
 useEffect(()=>{
   allStore();
-},[user])
+},[])
 
   let handleSubmit = async (e) => {
     e.preventDefault();

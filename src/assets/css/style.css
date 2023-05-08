@@ -718,3 +718,25 @@ table.table.booking-table td img {
 .template-area h3 {
     margin: 10px 0 25px 0;
 }
+
+
+/* ??????////tarun css//// */
+.icon-area i{
+    font-size: 80px;
+    margin-top: 10px;
+}
+.available-area{
+    margin: 18px;
+}
+#booking-name{
+    font-size: 20px;
+}
+.icon-area i:hover{
+    color:blue;
+}
+.modal .modal-dialog {
+    width: 80%;
+  }
+  label.acces-user {
+    margin-left: 10px;
+}  
