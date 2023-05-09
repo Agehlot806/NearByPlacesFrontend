@@ -110,6 +110,7 @@ function Storeaddnew() {
   
     return (
         <>
+        <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
