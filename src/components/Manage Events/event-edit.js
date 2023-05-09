@@ -25,7 +25,7 @@ function Eventedit() {
     const [imageTrue, setImageTrue] = useState("false");
     const [message, setMessage] = useState("")
 
-
+console.log("edbjkdnjdfktarungurjar",eventname)
     useEffect(() => {
         allStore();
     }, [])
@@ -86,6 +86,8 @@ function Eventedit() {
     const UpdateOfferDetail = (e) => {
         e.preventDefault();
         const data = {
+            method:"PUT",
+      credentials:'include',
             "eventname": eventname,
             "description": description,
             "file": file,
@@ -93,9 +95,13 @@ function Eventedit() {
             "address": address,
         }
         const config = {
-            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+      
+      headers: { 'content-type': 'application/x-www-form-urlencoded'}
         };
-        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, { config }).then(
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, {
+             config,
+
+     }).then(
             response => response.data,
             toast.success(" Events Updated Successfully")
         );

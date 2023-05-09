@@ -11,13 +11,13 @@ function Profile() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [User, setUser] = useState([]);
-    const[Username,setUserName]=useState();
-    const[Useremail,setuserEmail]=useState();
-    const[userPhoto,setUserPhoto]=useState();
+    const [Username, setUserName] = useState();
+    const [Useremail, setuserEmail] = useState();
+    const [userPhoto, setUserPhoto] = useState();
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-      credentials: 'include',
+            credentials: 'include',
 
             headers: { 'Content-Type': 'application/json' },
 
@@ -30,24 +30,25 @@ function Profile() {
             })
     }, []);
 
-    const updateProfilerDetail = (e) => {
+    const UpdateProfilerDetail = (e) => {
         e.preventDefault();
         const data = {
             "name": Username,
             "email": Useremail,
-           
+          
+
         }
         const config = {
-            headers: { 'content-type': 'application/x-www-form-urlencoded' }
+            headers: { 'content-type': 'application/x-www-form-urlencoded',
+            credentials:'include', }
         };
-        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, { 
-            config ,
-      credentials: 'include',
+        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, {
+            config,
 
         })
-        .then(
-            response => response.data,
-        );
+            .then(
+                response => response.data,
+            );
     }
     // useEffect(()=>{
     //     handleProfile()
@@ -70,7 +71,7 @@ function Profile() {
     //             console.log("error", error);
     //         })
     // }
-   
+
     // useEffect(() => {
     //     console.log("user", user);
     //     // allStore();
@@ -81,7 +82,7 @@ function Profile() {
     //     const data = {
     //         "name": Username,
     //         "email": Useremail,
-           
+
     //     }
     //     const config = {
     //         headers: { 'content-type': 'application/x-www-form-urlencoded' }
@@ -121,29 +122,29 @@ function Profile() {
 
                                                 </div>
                                                 <div className="product-card-body">
-                
-                                                    <form onSubmit={updateProfilerDetail}>
+
+                                                    <form onSubmit={UpdateProfilerDetail}>
 
                                                         <div className="form-group image-size">
                                                             <input type="file" className="form-control" placeholder="Enter..." />
-                                                            <img src={userPhoto} alt=''/>
+                                                            <img src={userPhoto} alt='' />
                                                         </div>
                                                         <div className="form-group">
                                                             <label>Username :</label>
-                                                            <input type="text" className="form-control" placeholder="Enter..." name='username' value={Username} onChange={(e)=>setUserName(e.target.value)} />
+                                                            <input type="text" className="form-control" placeholder="Enter..." name='username' value={Username} onChange={(e) => setUserName(e.target.value)} />
                                                         </div>
                                                         <div className="form-group">
                                                             <label>Email :</label>
-                                                            <input type="email" className="form-control" placeholder="Enter..." value={Useremail}  onChange={(e)=>setuserEmail(e.target.value)}/>
+                                                            <input type="email" className="form-control" placeholder="Enter..." value={Useremail} onChange={(e) => setuserEmail(e.target.value)} />
                                                         </div>
-                                                        
-                                                      
+
+
                                                         <div className='user-head'>
-                                                            <a href='#'><i className="mdi mdi-content-save-outline"/> Save</a>
+                                                            <a href='#'><i className="mdi mdi-content-save-outline" /> Save</a>
                                                             <button>click</button>
                                                         </div>
                                                     </form>
-                
+
                                                 </div>
                                             </div>
                                         </div>

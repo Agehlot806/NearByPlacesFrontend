@@ -46,14 +46,13 @@ function Users() {
     const [rolevalue, setRolevalue] = useState("")
     const [updateRole, setupdateRole] = useState(false)
 
-    const handlerrole = (event, _id) => {
-        console.log("idd", _id);
+    const handlerrole = (event) => {
+        // console.log("idd", _id,event);
         setRolevalue(event.target.value)
         // setupdateRole(true)
         // alluserupdate(id);
-        // console.log("valuejdfhgdfhh",rolevalue);
     }
-    // console.log("value----==", rolevalue);
+    console.log("value----==", rolevalue);
     return (
         <>
             <Navbar />
@@ -125,7 +124,6 @@ function Users() {
 
                                                                 </td>
                                                             </tr>
-
                                                         ))}
                                                     </tbody>
                                                 </table>

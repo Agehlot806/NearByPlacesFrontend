@@ -45,7 +45,7 @@ const Navbar = () => {
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <Link to='/profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></Link>
-              <a ><button className="dropdown-item" type="button" onClick={handleLogout}><i class="fa fa-sign-out" /> Logout</button></a>
+              <button className="dropdown-item" type="button" onClick={handleLogout}><i class="fa fa-sign-out" /> Logout</button>
             </div>
           </div>
         </div>
