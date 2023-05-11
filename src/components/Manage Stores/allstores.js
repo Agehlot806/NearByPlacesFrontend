@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import {Link} from "react-router-dom"
 
 function Allstores() {
     return (
@@ -66,21 +67,21 @@ function Allstores() {
                                                                 <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <a href=''><u>Admin</u></a>
-                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                <Link to ="#"><u>Admin</u></Link>
+                                                                <Link to ="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to ="#"><i className='mdi mdi-eye-outline' /></Link>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <a href=''><u>Beauty</u></a>
+                                                                <Link to ="#"><u>Beauty</u></Link>
                                                             </td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td>0</td>
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href='all-store-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href=''><i class="fa fa-list" /> Services</a>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to ="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -91,21 +92,21 @@ function Allstores() {
                                                                 <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <a href=''><u>Admin</u></a>
-                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                <Link to ="#"><u>Admin</u></Link>
+                                                                <Link to ="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to ="#"><i className='mdi mdi-eye-outline' /></Link>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <a href=''><u>Beauty</u></a>
+                                                                <Link to ="#"><u>Beauty</u></Link>
                                                             </td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td>0</td>
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href=''><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href=''><i class="fa fa-list" /> Services</a>
-                                                                <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to ="#"><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to ="#"  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -127,10 +128,10 @@ function Allstores() {
                                                             <td>0</td>
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
-                                                                <a href=''><i className='fa fa-times' /></a>
-                                                                <a href=''><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href=''><i class="fa fa-list" /> Services</a>
-                                                                <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to=""><i className='fa fa-times' /></Link>
+                                                                <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
                                                             </td>
                                                         </tr>
 
@@ -164,7 +165,7 @@ function Allstores() {
                         <div className="modal-footer">
                             <div className='user-head'>
                                 <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
-                                <a href=''><i className="fa fa-plus" /> Apply</a>
+                                <Link to=''><i className="fa fa-plus" /> Apply</Link>
                             </div>
                         </div>
                     </div>

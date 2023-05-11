@@ -1,5 +1,7 @@
 import React from 'react'
 import Particles from './particles'
+import google from "../assets/images/icons/google.png";
+import facebook from "../assets/images/icons/facebook.png";
 
 function Login() {
     return (
@@ -37,10 +39,9 @@ function Login() {
                                         <div className="login-line" />
                                         <div data-bn-type="text" className="login-line-text">or</div>
                                         <div className="login-line" /></div>
-                                    <div>
-                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/google.png' /> Sign in with Google</button>
-
-                                        <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
+                                        <div>
+                                        <button type="submit" className="login-btn Loginicon"><img src={google} alt="google" /> Sign in with Google</button>
+                                        <button type="submit" className="login-btn Loginicon"><img src={facebook} alt='facebook' />Sign in with Facebook</button>
                                     </div>
                                     <div>
                                     <a href="forgot-password">Forgot your password?</a>

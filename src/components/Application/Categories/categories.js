@@ -4,77 +4,86 @@ import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
 
 function Categories() {
-  return (
-    <>
-    <Navbar />
-    <Sidebar />
-    <div className='content-wrapper'>
-        <div className="main-panel-content">
-            <div className='section-panel'>
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-lg-12'>
-                            <div className="product-list-box">
-                                <div className="product-list-box-header">
-                                    <div className="box-title" style={{ width: '100%' }}>
-                                        <div className=" row ">
-                                            <div className="pull-left col-md-6 mt-1">
-                                                <h3><b>Categories</b></h3>
-                                            </div>
-                                            <div className="pull-right col-md-6">
-                                                <form>
-                                                    <div className="input-group input-group-sm">
-                                                        <input className="form-control" size={30} name="search" type="text" placeholder="Search" />
-                                                        <span className="input-group-btn">
-                                                            <a className="btn btn-flat">
-                                                                <i className="mdi mdi-magnify" />
-                                                            </a>
-                                                            <a href='categories-add' className="ml-2 btn btn-flat">
-                                                                <i className="fa fa-plus" aria-hidden="true" />
-                                                            </a>
-                                                        </span>
-                                                    </div>
-                                                </form>
-                                            </div>
+    return (
+        <>
+            <Navbar />
+            <Sidebar />
+            <div className='content-wrapper'>
+                <div className="main-panel-content">
+                    <div className='section-panel'>
+                        <div className='container'>
+                            <div className='row'>
+                                <div className='col-lg-6'>
+                                    <div className="product-list-box">
+                                        <div className="product-list-box-header">
+                                            <h3><b>Add new category</b></h3>
+                                        </div>
+                                        <div className="product-card-body">
+                                            <form>
+
+
+                                                <div className="form-group  image-size">
+                                                    <label htmlFor="inputState">Image</label>
+                                                    <input type="file" className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group  image-size">
+                                                    <label htmlFor="inputState">Icon (PNG with transparent Background, example here)</label>
+                                                    <input type="file" className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Category name</label>
+                                                    <input type="text" className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Color</label>
+                                                    <input type="text" className="form-control" placeholder="Enter..." />
+                                                </div>
+
+
+                                                <br />
+                                                <div className='user-head'>
+                                                    <a href='#'><i className="fa fa-check-square-o" />Add</a>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div className="product-list-box-body main-table">
-                                    <div className="table-responsive">
-                                        <table className="table table-hover table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Images</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Actions</th>
+                                <div className='col-lg-6'>
+                                    <div className="product-list-box">
+                                        <div className="product-list-box-header">
+                                            <h3><b>Currencies</b></h3>
+                                        </div>
+                                        <div className="product-card-body">
+                                            <div className="product-list-box-body main-table">
+                                                <div className="table-responsive">
+                                                    <table className="table table-hover table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Image</th>
+                                                                <th scope="col">icon</th>
+                                                                <th scope="col">category</th>
+                                                                <th scope="col">store</th>
+                                                                <th scope="col">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>image</td>
+                                                                <td>#</td>
+                                                                <td>buety</td>
+                                                                <td>tatastore</td>
+                                                                <td>
+                                                                    <a href=''><i class="fa fa-pencil-square-o" /></a>
+                                                                    <a href=''><i class="fa fa-trash-o" /></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><img src='assets/images/img/img1.jpeg' /></td>
-                                                    <td>dsfsdf</td>
-                                                    <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src='assets/images/img/img1.jpeg' /></td>
-                                                    <td>fgdxfdgdf</td>
-                                                    <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src='assets/images/img/img1.jpeg' /></td>
-                                                    <td>dasdada</td>
-                                                    <td className='action-btn'>
-                                                        <a href=''><i class="fa fa-pencil-square-o" /></a>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,12 +91,10 @@ function Categories() {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <Footer />
-</>
-  )
+            <Footer />
+        </>
+    )
 }
 
 export default Categories

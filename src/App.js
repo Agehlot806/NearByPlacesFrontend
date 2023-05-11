@@ -51,13 +51,26 @@ import Globalconfig from './components/Application/Global Config/global-config';
 import Currencies from './components/Application/Currencies/currencies';
 import Mailconfig from './components/Application/Mail Config/mail-config';
 import Categories from './components/Application/Categories/categories';
-import Categoriesadd from './components/Application/Categories/categories-add';
+import Categoriesadd from './components/Application/Checkout Fields/checkout-add';
 import Language from './components/Application/Language/language';
 import Languageadd from './components/Application/Language/language-add';
 import Languageedit from './components/Application/Language/language-edit';
 import Subscription from './components/Application/Subscription/subscription';
 import Subscriptionadd from './components/Application/Subscription/subscription-add';
 import Subscriptionedit from './components/Application/Subscription/subscription-edit';
+import Services from './components/Manage Stores/AllStrores/services';
+import "./assets/css/style.css";
+import "./assets/css/responsive.css";
+import Configapi from './components/Application/API Config/configapi';
+import Deeplinking from './components/Application/Deeplinking/deeplinking';
+import Cronjob from './components/Application/Cronjob/cronjob';
+import Usersetting from './components/Application/UserSetting/usersetting';
+import Googlemapsapi from './components/Application/Google map api/googlemapsapi';
+import Template from './components/Application/Template/template';
+import Checkoutfields from './components/Application/Checkout Fields/checkoutfields';
+import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
+import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
+import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
 
 const RouterComponent = () => {
   return (
@@ -69,11 +82,13 @@ const RouterComponent = () => {
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/profile' component={Profile} />
+
           <Route exact path='/all-stores' component={Allstores} />
           <Route exact path='/all-store-edit' component={Allstoresedit} />
           <Route exact path='/my-stores' component={Mystores} />
           <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
+          <Route exact path='/all-stores/services' component={Services} />
 
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
@@ -125,18 +140,28 @@ const RouterComponent = () => {
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
-
+          
           <Route exact path='/global-config' component={Globalconfig} />
+          <Route exact path='/apiconfig' component={Configapi} />
+          <Route exact path='/deeplinking' component={Deeplinking} />
+          <Route exact path='/cronjob' component={Cronjob} />
           <Route exact path='/currencies' component={Currencies} />
           <Route exact path='/mail-config' component={Mailconfig} />
           <Route exact path='/categories' component={Categories} />
-          <Route exact path='/categories-add' component={Categoriesadd} />
+          <Route exact path='/checkout-add' component={CheckOutadd} />
+          <Route exact path='/checkout-edit' component={CheckOutedit} />
           <Route exact path='/language' component={Language} />
           <Route exact path='/language-add' component={Languageadd} />
           <Route exact path='/language-edit' component={Languageedit} />
           <Route exact path='/subscription' component={Subscription} />
           <Route exact path='/subscription-add' component={Subscriptionadd} />
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
+          <Route exact path='/usersetting' component={Usersetting} />
+          <Route exact path='/googlemapsapi' component={Googlemapsapi} />
+          <Route exact path='/template' component={Template} />
+          <Route exact path='/checkoutfield' component={Checkoutfields} />
+          <Route exact path='/modulesmanager' component={Modulesmanager} />
+
 
 
         </Switch>

@@ -182,14 +182,19 @@ const Sidebar = () => {
                     <div className="sidebar-dropdown">
                         <ul>
                             <li><Link to='/global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></Link></li>
+                            <li><Link to='/apiconfig' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API config</span></Link></li>
                             <li><Link to='/currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></Link></li>
-                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
+                            <li><Link to='/deeplinking' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deeplinking</span></Link></li>
+                            <li><Link to='/cronjob' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></Link></li>
+                            <li><Link to='/usersetting' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
                             <li><Link to='/subscription' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></Link></li>
-                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
+                            <li><Link to='/googlemapsapi' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
                             <li><Link to='/mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></Link></li>
+                            <li><Link to='/checkoutfield' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>CheckOut Fields</span></Link></li>
                             <li><Link to='/categories' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></Link></li>
                             <li><Link to='/language' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></Link></li>
-                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Template</span></Link></li>
+                            <li><Link to='/modulesmanager' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Modules Manager</span></Link></li>
+                            <li><Link to='/template' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Template</span></Link></li>
 
                         </ul>
                     </div>
