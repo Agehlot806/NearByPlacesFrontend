@@ -3,17 +3,24 @@ import Navbar from '../directives/navbar'
 import Sidebar from '../directives/sidebar'
 import { useEffect } from 'react'
 import { useState } from 'react';
-import { Button, Input } from 'reactstrap';
+import { Button, Input, Form } from 'reactstrap';
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast"
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+// import { Link } from "react-router-dom";
+
 
 function Profile() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [User, setUser] = useState([]);
-    const [Username, setUserName] = useState();
-    const [Useremail, setuserEmail] = useState();
+    const [userName, setUserName] = useState();
+    const [userEmail, setUserEmail] = useState();
     const [userPhoto, setUserPhoto] = useState();
+    const[newPassword,setNewPassword]=useState();
+    const [file,setFile] = useState([]);
+    const [showImage,setShowImage] = useState(false);
+   const [updattePassword,setUpdatePassword] = useState("");
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -26,88 +33,64 @@ function Profile() {
             .then(response => response.json())
             .then(data => {
                 setUserName(data.user.name);
-                setuserEmail(data.user.email)
+                setUserEmail(data.user.email)
             })
     }, []);
 
+
+
+const handleSubmit = (e) => {
+ e.preventDefault();
+      fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminpassword`, {
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            oldpassword: password,
+            newpassword: newPassword,
+        }),
+       
+    })
+        .then((res) => res.json())
+        .then((responsive) => {
+            setUpdatePassword(responsive.message);
+            toast.success("password update Successfully")
+        })
+        .catch((error) => {
+            console.log("error", error);
+        })
+}
     const UpdateProfilerDetail = (e) => {
         e.preventDefault();
-        const data = {
-            "name": Username,
-            "email": Useremail,
-          
-
-        }
-        const config = {
-            headers: { 'content-type': 'application/x-www-form-urlencoded',
-            credentials:'include', }
-        };
-        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, {
-            config,
-
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify({
+                name: userName,
+                email: userEmail,
+            }),
+            headers: { 'content-type': 'application/x-www-form-urlencoded'},
         })
-            .then(
-                response => response.data,
-            );
+            .then((res) => res.json())
+            .then((responsive) => {
+                toast.success("Profile Updated Successfully")
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
     }
-    // useEffect(()=>{
-    //     handleProfile()
-    // })
-    // const handleProfile = () => {
-    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`,{
-    //         method:'GET',
-    //         credentials: 'include',
-
-    //     })
-    //         .then((res) => res.json())
-    //         .then((responsive) => {
-    //             console.log("tsaryhxdashgxfahsxasx", responsive);
-    //             setUser(responsive.user)
-    //             setUserName(responsive.user.name)
-    //             setuserEmail(responsive.user.email)
-    //             setUserPhoto(responsive.user.AdminAvatar.url)
-    //         })
-    //         .catch((error) => {
-    //             console.log("error", error);
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     console.log("user", user);
-    //     // allStore();
-    // })
-
-    // const updateProfilerDetail = (e) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         "name": Username,
-    //         "email": Useremail,
-
-    //     }
-    //     const config = {
-    //         headers: { 'content-type': 'application/x-www-form-urlencoded' }
-    //     };
-    //     return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, data, { config })
-    //     .then((response)=>{
-    //         console.log("response",response);
-    //     })
-    // }
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.put(
-                "https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminpassword",
-                { password }
-            );
-            setMessage("Password changed successfully!");
-        } catch (error) {
-            setMessage(error.response.data.message);
-        }
-    };
+const handleFile =(event)=>{
+    setShowImage(true);
+    setFile(URL.createObjectURL(event.target.files[0]))
+}
+const handleUploadProfile =(e)=>{
+    e.preventDefault();
+}
     return (
         <>
             <Navbar />
             <Sidebar />
+            <Toaster />
             <div className='content-wrapper'>
                 <div className="main-panel-content">
                     <div className='section-panel'>
@@ -122,28 +105,42 @@ function Profile() {
 
                                                 </div>
                                                 <div className="product-card-body">
-
-                                                    <form onSubmit={UpdateProfilerDetail}>
-
-                                                        <div className="form-group image-size">
-                                                            <input type="file" className="form-control" placeholder="Enter..." />
-                                                            <img src={userPhoto} alt='' />
-                                                        </div>
+                                                    <Form onSubmit={handleUploadProfile}>
+                                                    <div className="form-group image-size">
+                                                        <Input type="file" className="form-control" 
+                                                        placeholder="Enter..."
+                                                        onChange={handleFile} />
+                                                        {showImage ? <img src={file} alt='profile' />:"" }
+                                                       
+                                                    </div>
+                                                    <div className='user-head'>
+                                                      <Button type='submit'>Upload</Button>
+                                                    </div>
+                                                    </Form>
+                                                   
+                                                    <Form onSubmit={UpdateProfilerDetail}>
                                                         <div className="form-group">
                                                             <label>Username :</label>
-                                                            <input type="text" className="form-control" placeholder="Enter..." name='username' value={Username} onChange={(e) => setUserName(e.target.value)} />
+                                                            <Input type="text" className="form-control"
+                                                                placeholder="Enter..."
+                                                                value={userName}
+                                                                onChange={(e) => setUserName(e.target.value)}
+                                                            />
                                                         </div>
                                                         <div className="form-group">
                                                             <label>Email :</label>
-                                                            <input type="email" className="form-control" placeholder="Enter..." value={Useremail} onChange={(e) => setuserEmail(e.target.value)} />
+                                                            <Input type="email" className="form-control"
+                                                                placeholder="Enter..."
+                                                                value={userEmail}
+                                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                            />
                                                         </div>
-
-
                                                         <div className='user-head'>
-                                                            <a href='#'><i className="mdi mdi-content-save-outline" /> Save</a>
-                                                            <button>click</button>
+                                                            <Button><i className="mdi mdi-content-save-outline" /> Save</Button>
+
                                                         </div>
-                                                    </form>
+                                                    </Form>
+
 
                                                 </div>
                                             </div>
@@ -154,25 +151,30 @@ function Profile() {
                                                     <h3><b>Change Password</b></h3>
                                                 </div>
                                                 <div className="product-card-body">
-                                                    <form onSubmit={handleSubmit}>
+                                                    <Form onSubmit={handleSubmit}>
                                                         <div className="form-group">
-                                                            <label>Password</label>
+                                                            <label>Old Password</label>
                                                             <Input
                                                                 type="password"
                                                                 value={password}
                                                                 onChange={(e) => setPassword(e.target.value)}
                                                             />
                                                         </div>
-                                                        {/* <div className="form-group">
-                                                            <label>Confirm Password</label>
-                                                            <input type="password" className="form-control" />
-                                                        </div> */}
+                                                        <div className="form-group">
+                                                            <label> New Password</label>
+                                                            <Input
+                                                                type="password"
+                                                                value={newPassword}
+                                                                onChange={(e) => setNewPassword(e.target.value)}
+                                                            />
+                                                        </div>
+                                                      
                                                         <br />
                                                         <div className='user-head'>
                                                             <Button><i className="mdi mdi-content-save-outline" /> Change Password</Button>
                                                         </div>
                                                         <p>{message}</p>
-                                                    </form>
+                                                    </Form>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,9 +237,9 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
 
-export default Profile
+export default Profile;

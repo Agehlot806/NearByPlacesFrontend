@@ -4,17 +4,29 @@ import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
-
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+const options = [
+    { id: 'admin', role: 'Admin' },
+    { id: 'user', role: 'User' },
+    { id: 'staff', role: 'Staff' }
+]
 function Users() {
-    // const {_id}=useParams()
+
+    const [Id, setId] = useState(null);
+    const [model, setModel] = useState(false)
+    const [rolevalue, setRolevalue] = useState("")
+    const [updateRole, setupdateRole] = useState(false)
+    const [role, setRole] = useState("");
+    const [sucMsg, setSucMsg] = useState(false);
+    const [msg, setMsg] = useState("");
+
+    const [UserData, setuserDaTa] = useState([])
+
     useEffect(() => {
         allUser()
 
     }, [])
-    const [updatedata, setUpdatedata] = useState([])
 
-    const [UserData, setuserDaTa] = useState([])
     const allUser = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallusers`)
             .then((res) => res.json())
@@ -26,33 +38,41 @@ function Users() {
                 console.log("error", error);
             })
     }
-    const alluserupdate = (id) => {
-        console.log("event-value and id", id)
+    const handleUpdateRole = (id) => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateuserrole/${id}`, {
             method: 'PUT',
-            body: JSON.stringify()
+            credentials: 'include',
+            body: JSON.stringify({
+                role: role
+            }),
+            headers: headers,
         })
             .then((res) => res.json())
             .then((responsive) => {
-                console.log("tsaryhxdashgxfahsxasx", responsive);
-                // setRolevalue(responsive.role)
-                // setuserDaTa(responsive.users)
+                setSucMsg(responsive.success);
+                setMsg(responsive.message);
+                allUser();
             })
             .catch((error) => {
                 console.log("error", error);
             })
     }
-    // console.log("tarun login", UserData);
-    const [rolevalue, setRolevalue] = useState("")
-    const [updateRole, setupdateRole] = useState(false)
 
-    const handlerrole = (event) => {
-        // console.log("idd", _id,event);
-        setRolevalue(event.target.value)
-        // setupdateRole(true)
-        // alluserupdate(id);
+
+    const handleChange = (event) => {
+        setRolevalue(true);
+        setRole(event.target.value);
+
+    };
+    const openModel = (data) => {
+        setId(data._id);
+        setRole(data.role);
+        setModel(!model);
     }
-    console.log("value----==", rolevalue);
     return (
         <>
             <Navbar />
@@ -110,19 +130,13 @@ function Users() {
                                                                 /></td>
                                                                 <td>{items.name}</td>
                                                                 <td>{items.email}</td>
-                                                                <td>{items.role}</td>
-                                                                <td>
-                                                                    <select onChange={handlerrole}
-                                                                        value={rolevalue}
-                                                                    >
-                                                                        <option>choose...</option>
-                                                                        <option value={items._id}>Admin</option>
-
-                                                                        <option value={items._id}>staff</option>
-                                                                        <option value={items._id}>user</option>
-                                                                    </select>
-
+                                                                <td>{items.role}
+                                                                    <i className="fa fa-pencil-square-o" style={{ margin: "20px" }} onClick={() => openModel(items)} />
+                                                                    <i className="text-green fa fa-check"></i>
                                                                 </td>
+                                                                <td>
+                                                                </td>
+
                                                             </tr>
                                                         ))}
                                                     </tbody>
@@ -130,6 +144,31 @@ function Users() {
                                             </div>
                                         </div>
                                     </div>
+                                    <Modal isOpen={model} toggle={openModel}>
+                                        <ModalHeader toggle={openModel}>User Edit Role</ModalHeader>
+                                        <ModalBody>
+                                            <div><span className='text-danger'>{msg ? msg : ""}</span></div>
+                                            <div className="select-container">
+                                                <select value={role} onChange={handleChange}>
+                                                    {options.map((option) => (
+                                                        <option value={option.id}>{option.role}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <div className='user-head'>
+                                                <Button color="primary" onClick={() => handleUpdateRole(Id)}>
+                                                    Update
+                                                </Button>
+                                                <Button color="secondary" onClick={openModel}>
+                                                    Cancel
+                                                </Button>
+                                            </div>
+
+                                        </ModalFooter>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
@@ -142,4 +181,4 @@ function Users() {
     )
 }
 
-export default Users
+export default Users;
