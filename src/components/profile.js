@@ -17,15 +17,16 @@ function Profile() {
     const [userName, setUserName] = useState();
     const [userEmail, setUserEmail] = useState();
     const [userPhoto, setUserPhoto] = useState();
-    const[newPassword,setNewPassword]=useState();
-    const [file,setFile] = useState([]);
-    const [showImage,setShowImage] = useState(false);
-   const [updattePassword,setUpdatePassword] = useState("");
+    const [newPassword, setNewPassword] = useState();
+    const [file, setFile] = useState([]);
+    const [showImage, setShowImage] = useState(false);
+    const [updattePassword, setUpdatePassword] = useState("");
+    const [userId ,setUserId] = useState("");
+
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
-
             headers: { 'Content-Type': 'application/json' },
 
         };
@@ -34,32 +35,33 @@ function Profile() {
             .then(data => {
                 setUserName(data.user.name);
                 setUserEmail(data.user.email)
+                setUserId(data.user._id)
             })
     }, []);
 
 
 
-const handleSubmit = (e) => {
- e.preventDefault();
-      fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminpassword`, {
-        method: 'PUT',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            oldpassword: password,
-            newpassword: newPassword,
-        }),
-       
-    })
-        .then((res) => res.json())
-        .then((responsive) => {
-            setUpdatePassword(responsive.message);
-            toast.success("password update Successfully")
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminpassword`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                oldpassword: password,
+                newpassword: newPassword,
+            }),
+
         })
-        .catch((error) => {
-            console.log("error", error);
-        })
-}
+            .then((res) => res.json())
+            .then((responsive) => {
+                setUpdatePassword(responsive.message);
+                toast.success("password update Successfully")
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
     const UpdateProfilerDetail = (e) => {
         e.preventDefault();
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, {
@@ -69,7 +71,7 @@ const handleSubmit = (e) => {
                 name: userName,
                 email: userEmail,
             }),
-            headers: { 'content-type': 'application/x-www-form-urlencoded'},
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
         })
             .then((res) => res.json())
             .then((responsive) => {
@@ -79,13 +81,49 @@ const handleSubmit = (e) => {
                 console.log("error", error);
             })
     }
-const handleFile =(event)=>{
-    setShowImage(true);
-    setFile(URL.createObjectURL(event.target.files[0]))
-}
-const handleUploadProfile =(e)=>{
-    e.preventDefault();
-}
+    const handleFile = (event) => {
+        setShowImage(true);
+        setUserPhoto(event.target.files[0])
+        setFile(URL.createObjectURL(event.target.files[0]))
+    }
+
+    // const handleUploadProfile = (e) => {
+    //     e.preventDefault();
+    //     var formData = new FormData();
+    //     formData.append('file', userPhoto);
+    //     axios({
+    //         method: "put",
+    //         credentials: 'include',
+    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,
+    //         data: formData,
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //     })
+    //         .then(response => {
+    //             setMessage(response.data);
+    //             toast.success("admin image Updated Successfully");
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
+
+    const handleUploadProfile = (e) => {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('file', userPhoto);
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,formData, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: { 'content-type': "multipart/form-data" },
+        })
+            .then((res) => res.json())
+            .then((responsive) => {
+                toast.success("Profile Updated Successfully")
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
     return (
         <>
             <Navbar />
@@ -106,18 +144,18 @@ const handleUploadProfile =(e)=>{
                                                 </div>
                                                 <div className="product-card-body">
                                                     <Form onSubmit={handleUploadProfile}>
-                                                    <div className="form-group image-size">
-                                                        <Input type="file" className="form-control" 
-                                                        placeholder="Enter..."
-                                                        onChange={handleFile} />
-                                                        {showImage ? <img src={file} alt='profile' />:"" }
-                                                       
-                                                    </div>
-                                                    <div className='user-head'>
-                                                      <Button type='submit'>Upload</Button>
-                                                    </div>
+                                                        <div className="form-group image-size">
+                                                            <Input type="file" className="form-control"
+                                                                placeholder="Enter..."
+                                                                onChange={handleFile} />
+                                                            {showImage ? <img src={file} alt='profile' /> : ""}
+
+                                                        </div>
+                                                        <div className='user-head'>
+                                                            <Button type='submit'>Upload</Button>
+                                                        </div>
                                                     </Form>
-                                                   
+
                                                     <Form onSubmit={UpdateProfilerDetail}>
                                                         <div className="form-group">
                                                             <label>Username :</label>
@@ -168,7 +206,7 @@ const handleUploadProfile =(e)=>{
                                                                 onChange={(e) => setNewPassword(e.target.value)}
                                                             />
                                                         </div>
-                                                      
+
                                                         <br />
                                                         <div className='user-head'>
                                                             <Button><i className="mdi mdi-content-save-outline" /> Change Password</Button>
