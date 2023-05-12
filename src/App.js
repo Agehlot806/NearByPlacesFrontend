@@ -71,13 +71,15 @@ import Checkoutfields from './components/Application/Checkout Fields/checkoutfie
 import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
 import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
 import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
+import Merchant from "./components/merchant";
 
 const RouterComponent = () => {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={Login} />
+        <Route exact path="/merchant" component={Merchant} />
+          <Route exact path="/admin" component={Login} />
           <Route exact path='/sign-up' component={Signup} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/dashboard' component={Dashboard} />
