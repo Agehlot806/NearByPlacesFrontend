@@ -2,7 +2,9 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-
+import Image1 from "../../assets/images/img/img1.jpeg";
+import Image2 from "../../assets/images/img/img2.jpeg";
+import Image5 from "../../assets/images/img/img5.jpeg";
 function Allslider() {
   return (
     <>
@@ -58,7 +60,7 @@ function Allslider() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img1.jpeg' /></td>
+                                                            <td><img src={Image1} alt='image1' /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
@@ -77,7 +79,7 @@ function Allslider() {
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img2.jpeg' /></td>
+                                                            <td><img src={Image2} alt='img2' /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
@@ -96,7 +98,7 @@ function Allslider() {
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img5.jpeg' /></td>
+                                                            <td><img src={Image5} alt="image5"/></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />

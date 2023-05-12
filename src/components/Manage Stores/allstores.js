@@ -3,7 +3,9 @@ import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 import {Link} from "react-router-dom"
-
+import Image1 from "../../assets/images/img/img1.jpeg";
+import Image2 from "../../assets/images/img/img2.jpeg";
+import Image5 from "../../assets/images/img/img5.jpeg";
 function Allstores() {
     return (
         <>
@@ -60,7 +62,7 @@ function Allstores() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img1.jpeg' /></td>
+                                                            <td><img src={Image1} alt="image" /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
@@ -79,13 +81,14 @@ function Allstores() {
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
                                                                 <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
                                                                 <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
                                                                 <Link to ="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img2.jpeg' /></td>
+                                                            <td><img src={Image2} alt ="imag2" /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
@@ -104,13 +107,15 @@ function Allstores() {
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
                                                                 <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
+
                                                                 <Link to ="#"><i class="fa fa-pencil-square-o" /></Link>
                                                                 <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
                                                                 <Link to ="#"  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img5.jpeg' /></td>
+                                                            <td><img src={Image5} alt="img5" /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
@@ -129,6 +134,8 @@ function Allstores() {
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
                                                                 <Link to=""><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
+
                                                                 <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
                                                                 <Link to="" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>

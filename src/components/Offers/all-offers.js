@@ -1,6 +1,8 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import Image7 from "../../assets/images/img/img7.jpeg";
+
 
 function Alloffers() {
     return (
@@ -57,7 +59,7 @@ function Alloffers() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
+                                                            <td><img src={Image7} alt="img7" /></td>
                                                             <td>
                                                                 <b>NEW YEAR</b><br />
                                                                <i className='mdi mdi-map-marker' /> Daliya<br />
@@ -78,7 +80,7 @@ function Alloffers() {
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
+                                                            <td><img src={Image7} alt="img7" /></td>
                                                             <td>
                                                                 <b>NEW YEAR</b><br />
                                                                <i className='mdi mdi-map-marker' /> Daliya<br />
