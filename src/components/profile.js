@@ -21,7 +21,7 @@ function Profile() {
     const [file, setFile] = useState([]);
     const [showImage, setShowImage] = useState(false);
     const [updattePassword, setUpdatePassword] = useState("");
-    const [userId ,setUserId] = useState("");
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
         const requestOptions = {
@@ -111,7 +111,7 @@ function Profile() {
         e.preventDefault();
         var formData = new FormData();
         formData.append('file', userPhoto);
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,formData, {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`, formData, {
             method: 'PUT',
             credentials: 'include',
             headers: { 'content-type': "multipart/form-data" },
