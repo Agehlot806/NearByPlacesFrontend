@@ -71,15 +71,24 @@ import Checkoutfields from './components/Application/Checkout Fields/checkoutfie
 import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
 import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
 import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
-import Merchant from "./components/merchant";
+import Modulesadd from './components/Application/Modules Manager/modulesadd';
+
+import Storeview from './components/Manage Stores/storeview';
+import Bookinginbox from './components/My bookings/bookinginbox';
+import Merchant from './components/merchant';
+import Manageoffers from './components/Offers/manageoffers';
+import Managecampaigns from './components/Campaigns/managecampaigns';
+import checkoutfieldstore from './components/Manage Stores/checkoutfieldstore';
+import Checkoutedit from './components/Manage Stores/checkoutedit';
 
 const RouterComponent = () => {
+
   return (
     <>
       <Router>
         <Switch>
-        <Route exact path="/merchant" component={Merchant} />
           <Route exact path="/admin" component={Login} />
+          <Route exact path="/merchant" component={Merchant} />
           <Route exact path='/sign-up' component={Signup} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/dashboard' component={Dashboard} />
@@ -91,6 +100,11 @@ const RouterComponent = () => {
           <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
           <Route exact path='/all-stores/services' component={Services} />
+          <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
+          <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
+          
+
+          <Route exact path='/storeview' component={Storeview} />
 
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
@@ -98,6 +112,8 @@ const RouterComponent = () => {
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
           <Route exact path='/offer-edit' component={Offeredit} />
+          <Route exact path='/manage-offers' component={Manageoffers} />
+
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />
@@ -109,9 +125,11 @@ const RouterComponent = () => {
           <Route exact path='/my-reservations' component={Myreservations} />
 
           <Route exact path='/my-bookings' component={Mybookings} />
+          <Route exact path='/bookingsinbox' component={Bookinginbox} />
 
           <Route exact path='/campaigns' component={Campaigns} />
           <Route exact path='/campaigns-new-add' component={Campaignnewadd} />
+          <Route exact path='/manage-campaigns' component={Managecampaigns} />
 
           <Route exact path='/message' component={Messages} />
 
@@ -142,7 +160,7 @@ const RouterComponent = () => {
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
-          
+
           <Route exact path='/global-config' component={Globalconfig} />
           <Route exact path='/apiconfig' component={Configapi} />
           <Route exact path='/deeplinking' component={Deeplinking} />
@@ -163,6 +181,7 @@ const RouterComponent = () => {
           <Route exact path='/template' component={Template} />
           <Route exact path='/checkoutfield' component={Checkoutfields} />
           <Route exact path='/modulesmanager' component={Modulesmanager} />
+          <Route exact path='/modulesadd' component={Modulesadd} />
 
 
 

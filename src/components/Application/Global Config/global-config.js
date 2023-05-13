@@ -23,7 +23,7 @@ function Globalconfig() {
                                         <nav>
                                             <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                                 <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#DASHBOARD" role="tab" aria-controls="nav-home" aria-selected="true">DASHBOARD CONFIG</a>
-                                                <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#LOCATION" role="tab" aria-controls="nav-profile" aria-selected="false">STORE & LOCATION</a>
+                                                <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#LOCATION" role="tab" aria-controls="nav-profile" aria-selected="false">Merchant & LOCATION</a>
                                                 <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#CAMPAIGN" role="tab" aria-controls="nav-contact" aria-selected="false">CAMPAIGN & NOTIFICATION</a>
                                                 <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#MOBILE" role="tab" aria-controls="nav-contact" aria-selected="false">MOBILE & WEBAPP INFORMATION</a>
 

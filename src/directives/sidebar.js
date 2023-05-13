@@ -59,15 +59,16 @@ const Sidebar = () => {
             <div className="sidebar">
                 <Link to="/dashboard"><i class="fa fa-line-chart"></i><span>&nbsp;&nbsp;Dashboard</span></Link>
                 <a onClick={toggleManageStores}><i className="fa fa-archive" aria-hidden="true" />
-                    <span>&nbsp;&nbsp;Manage Stores</span>
+                    <span>&nbsp;&nbsp;Merchant</span>
                     <i className={`arrow-icon fa fa-angle-left ${managestores ? 'rotate' : ''}`} />
                 </a>
                 {managestores && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><Link to='/all-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All stores</span></Link></li>
-                            <li><Link to='/my-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My stores</span></Link></li>
-                            <li><Link to='/store-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></Link></li>
+                            <li><Link to='/all-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Merchant</span></Link></li>
+                            <li><Link to='/my-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Merchant</span></Link></li>
+                            <li><Link to='/store-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new Merchant</span></Link></li>
+                            <li><Link to='/checkoutfieldstore' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Check-Out-Fields</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -81,6 +82,8 @@ const Sidebar = () => {
                             <li><Link to='/all-offers' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Offers</span></Link></li>
                             <li><Link to='/my-offer' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Offers</span></Link></li>
                             <li><Link to='/offer-add-new'><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></Link></li>
+                            <li><Link to='/manage-offers' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Manage Offers</span></Link></li>
+                           
                         </ul>
                     </div>
                 )}
@@ -119,6 +122,7 @@ const Sidebar = () => {
                         <ul>
                             <li><Link to='/campaigns' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Campaigns</span></Link></li>
                             <li><Link to='/campaigns-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Create New</span></Link></li>
+                            <li><Link to='/manage-campaigns' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Manage Campaigns</span></Link></li>
                         </ul>
                     </div>
                 )}

@@ -42,7 +42,7 @@ const Deeplinking = () => {
 
                                             </div>
                                             <div className="form-group">
-                                                <label>Path Prefix for store</label>
+                                                <label>Path Prefix for Merchant</label>
                                                 <input type="text" className="form-control" placeholder="Enter..." />
 
                                             </div>

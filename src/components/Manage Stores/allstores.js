@@ -2,10 +2,8 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from "react-router-dom"
-import Image1 from "../../assets/images/img/img1.jpeg";
-import Image2 from "../../assets/images/img/img2.jpeg";
-import Image5 from "../../assets/images/img/img5.jpeg";
+import { Link } from "react-router-dom"
+
 function Allstores() {
     return (
         <>
@@ -22,7 +20,8 @@ function Allstores() {
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>All Stores</b></h3>
+                                                        <h3><b>All Merchant</b></h3>
+
                                                     </div>
                                                     <div className="pull-right col-md-6">
 
@@ -33,12 +32,31 @@ function Allstores() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+
+                                                                    <Link to='/store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
+
+                                                                    <div className="btn-group">
+                                                                        <button type="button" className="ml-2 btn btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="fa fa-filter" aria-hidden="true"></i>
+
+                                                                        </button>
+                                                                        <div className="dropdown-menu">
+                                                                            <a className="dropdown-item" href="#">Action</a>
+                                                                            <a className="dropdown-item" href="#">Another action</a>
+                                                                            <a className="dropdown-item" href="#">Something </a>
+                                                                            <div className="dropdown-divider" />
+                                                                            <a className="dropdown-item" href="#">Separated link</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Link to='' className='ml-2 btn btn-flat'><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                                 </span>
                                                             </div>
+
                                                         </form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,63 +80,67 @@ function Allstores() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src={Image1} alt="image" /></td>
+                                                            <td><img src='assets/images/img/img1.jpeg' /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
-                                                               <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
                                                                 <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <Link to ="#"><u>Admin</u></Link>
-                                                                <Link to ="#"><i className='mdi mdi-open-in-new' /></Link>
-                                                                <Link to ="#"><i className='mdi mdi-eye-outline' /></Link>
+                                                                <Link to="#"><u>Admin</u></Link>
+                                                                <Link to="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to="#"><i className='mdi mdi-eye-outline' /></Link>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <Link to ="#"><u>Beauty</u></Link>
+                                                                <Link to="#"><u>Beauty</u></Link>
                                                             </td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td>0</td>
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
-                                                                <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to="#"><i className='fa fa-times' /></Link>
                                                                 <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
                                                                 <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
-                                                                <Link to ="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src={Image2} alt ="imag2" /></td>
+                                                            <td><img src='assets/images/img/img2.jpeg' /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
-                                                               <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
                                                                 <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <Link to ="#"><u>Admin</u></Link>
-                                                                <Link to ="#"><i className='mdi mdi-open-in-new' /></Link>
-                                                                <Link to ="#"><i className='mdi mdi-eye-outline' /></Link>
+                                                                <Link to="#"><u>Admin</u></Link>
+                                                                <Link to="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to="#"><i className='mdi mdi-eye-outline' /></Link>
                                                             </td>
                                                             <td className='click-color'>
-                                                                <Link to ="#"><u>Beauty</u></Link>
+                                                                <Link to="#"><u>Beauty</u></Link>
                                                             </td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td>0</td>
                                                             <td className='click-color'><a href="review">Review</a></td>
                                                             <td className='action-btn'>
-                                                                <Link to ="#"><i className='fa fa-times' /></Link>
+                                                                <Link to="#"><i className='fa fa-times' /></Link>
                                                                 <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
 
-                                                                <Link to ="#"><i class="fa fa-pencil-square-o" /></Link>
-                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
-                                                                <Link to ="#"  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to="#"><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src={Image5} alt="img5" /></td>
+                                                            <td><img src='assets/images/img/img5.jpeg' /></td>
                                                             <td>
                                                                 <b>Beuty</b><br />
-                                                               <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
                                                                 <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
                                                             </td>
                                                             <td className='click-color'>
@@ -137,8 +159,10 @@ function Allstores() {
                                                                 <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
 
                                                                 <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <Link to ="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
                                                                 <Link to="" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
 
@@ -167,7 +191,7 @@ function Allstores() {
                             </button>
                         </div>
                         <div className="modal-body">
-                        <h3 className="text-center text-red">Are you sure?</h3>
+                            <h3 className="text-center text-red">Are you sure?</h3>
                         </div>
                         <div className="modal-footer">
                             <div className='user-head'>

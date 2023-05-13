@@ -1,5 +1,6 @@
 import React from 'react'
 import Particles from './particles'
+import { Link } from 'react-router-dom'
 
 function Forgotpassword() {
     return (
@@ -18,7 +19,7 @@ function Forgotpassword() {
                                         <input type="email" className="form-control" placeholder="Enter your email" />
                                     </div>
                                     <button type="submit" className="login-btn">Send Email</button>
-                                    <div className="additional-link"><a href="/">Login Now</a></div>
+                                    <div className="additional-link"><Link to="/admin">Login Now</Link></div>
                                 </form>
                             </div>
                         </div>

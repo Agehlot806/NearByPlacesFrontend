@@ -47,7 +47,7 @@ function Subscription() {
                                                 <tr>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Description</th>
-                                                    <th scope="col">Store</th>
+                                                    <th scope="col">Merchant</th>
                                                     <th scope="col">Offer</th>
                                                     <th scope="col">Campaigns</th>
                                                     <th scope="col">Actions</th>

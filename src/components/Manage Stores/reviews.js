@@ -17,7 +17,7 @@ function Reviews() {
                                 <div className='col-lg-12'>
                                     <div className="product-list-box">
                                         <div className="product-list-box-header">
-                                            <h3><b>Store detail</b></h3>
+                                            <h3><b>Merchant detail</b></h3>
                                         </div>
                                         <div className='p-3'>
                                             <form>

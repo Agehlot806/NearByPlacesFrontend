@@ -2,9 +2,6 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import Image1 from "../../assets/images/img/img1.jpeg";
-import Image2 from "../../assets/images/img/img2.jpeg";
-import Image5 from "../../assets/images/img/img5.jpeg";
 
 function Media() {
     return (
@@ -54,13 +51,13 @@ function Media() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src={Image1} /></td>
+                                                            <td><img src='assets/images/img/img1.jpeg' /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src={Image2} /></td>
+                                                            <td><img src='assets/images/img/img2.jpeg' /></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src={Image5} /></td>
+                                                            <td><img src='assets/images/img/img5.jpeg' /></td>
                                                         </tr>
 
                                                     </tbody>

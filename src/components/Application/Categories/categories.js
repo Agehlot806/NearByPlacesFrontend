@@ -63,7 +63,7 @@ function Categories() {
                                                                 <th scope="col">Image</th>
                                                                 <th scope="col">icon</th>
                                                                 <th scope="col">category</th>
-                                                                <th scope="col">store</th>
+                                                                <th scope="col">Merchant</th>
                                                                 <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
@@ -72,7 +72,7 @@ function Categories() {
                                                                 <td>image</td>
                                                                 <td>#</td>
                                                                 <td>buety</td>
-                                                                <td>tatastore</td>
+                                                                <td>Merchant</td>
                                                                 <td>
                                                                     <a href=''><i class="fa fa-pencil-square-o" /></a>
                                                                     <a href=''><i class="fa fa-trash-o" /></a>

@@ -271,7 +271,7 @@ select.form-control:not([size]):not([multiple]) {
     position: absolute;
     top: 4px;
     right: 36px;
-    z-index: 9999999;
+    /* z-index: 9999999; */
     font-size: 60px;
     opacity: .3;
 }
@@ -577,3 +577,8 @@ table.table.booking-table td img {
 }
 
 
+
+/* tarun */
+.otpbox{
+    margin-top:20px;
+}

@@ -3,8 +3,10 @@ import Particles from './particles'
 import OtpInput from "react-otp-input";
 import google from "../assets/images/icons/google.png";
 import facebook from "../assets/images/icons/facebook.png";
+
 function Merchant() {
     const [code, setCode] = useState("");
+
     const handleChange = (code) => setCode(code);
     return (
         <>
@@ -18,26 +20,27 @@ function Merchant() {
                                     <div className='text-center'>
                                         <h3 className="animate-charcter">Welcome To Book My Place</h3>
                                     </div>
-                                    {/* <div className="form-group">
-                                        <select className="form-control">
-                                            <option>EN - English</option>
-                                            <option>Hindi</option>
-                                            <option>EN - English</option>
-                                            <option>EN - English</option>
-                                            <option>EN - English</option>
-                                        </select>
-                                    </div> */}
+                                   
                                     <div className="form-group">
                                         {/* <label>Email address</label> */}
                                         <input type="number" className="form-control" placeholder="Enter Mobile Number" />
                                     </div>
+
                                     <button type="button" className="login-btn" data-toggle="modal" data-target="#exampleModal">Send the OTP</button>
+
+
                                     <div className="login-line-main">
                                         <div className="login-line" />
                                         <div data-bn-type="text" className="login-line-text">or</div>
                                         <div className="login-line" /></div>
+                                        <div>
+                                        <button type="submit" className="login-btn Loginicon"><img src={google} alt="google" /> Sign in with Google</button>
+                                        <button type="submit" className="login-btn Loginicon"><img src={facebook} alt='facebook' />Sign in with Facebook</button>
+                                    </div>
+
                                     <div>
                                         <div className="additional-link">Don't have an account? <a href="sign-up">Signup</a></div>
+
                                     </div>
                                 </form>
                             </div>
@@ -77,7 +80,7 @@ function Merchant() {
                                             fontSize: "32px",
                                             color: "black",
                                             textAlign:"center",
-                                            borderBlockColor:"#5A189A",
+                                            borderBlockColor:"#5a189a",
                                             fontWeight: "400",
                                             caretColor: "blue"
                                         }}
@@ -86,6 +89,7 @@ function Merchant() {
                                             outline: "none"
                                         }}
                                    /> */}
+
                                     <OtpInput
                                         value={code}
                                         onChange={handleChange}
@@ -101,7 +105,7 @@ function Merchant() {
                                             fontSize: "32px",
                                             color: "black",
                                             textAlign: "center",
-                                            borderBlockColor: "#5A189A",
+                                            borderBlockColor: "#5a189a",
                                             fontWeight: "400",
                                             caretColor: "blue"
                                         }}
@@ -111,6 +115,11 @@ function Merchant() {
                                         }}
                                     />
                                 </div>
+
+
+
+
+
                             </form>
                         </div>
                         <div className="modal-footer">
@@ -120,7 +129,9 @@ function Merchant() {
                     </div>
                 </div>
             </div>
+
         </>
     )
 }
+
 export default Merchant

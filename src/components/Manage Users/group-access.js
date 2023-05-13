@@ -3,7 +3,6 @@ import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap';
 
 function Groupaccess() {
     return (
@@ -58,8 +57,8 @@ function Groupaccess() {
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
-                                                        
-                                                    
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -306,6 +305,7 @@ function Groupaccess() {
                                                 </td>
                                             </tr>
                                         </tbody>
+                                     
                                     </table>
                                 </div>
                                 <div className="tab-pane fade" id="Booking" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -346,11 +346,12 @@ function Groupaccess() {
                             </div>
                         </div>
                         <div className="modal-footer">
-                        <div className='user-head'>
-                        <a href='#'><i className="fa fa-check-square-o" /> Confirm</a>
-                        <a href=''><i className="fa fa-times" /> Cancel</a>
-                          
-                        </div>
+
+                            <div className='user-head'>
+                                <a href='#'><i className="fa fa-check-square-o" /> Create</a>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>

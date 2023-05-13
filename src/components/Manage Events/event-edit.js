@@ -24,7 +24,7 @@ function Eventedit() {
                                                     <input type="file" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>Store</label>
+                                                    <label>Merchant</label>
                                                     <select id="inputState" className="form-control">
                                                         <option selected>Choose...</option>
                                                         <option>...</option>

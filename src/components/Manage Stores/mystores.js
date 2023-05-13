@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import { Link } from 'react-router-dom'
 
 
 function Mystores() {
@@ -20,7 +21,7 @@ function Mystores() {
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>All Stores</b></h3>
+                                                        <h3><b>All Merchant</b></h3>
                                                     </div>
                                                     <div className="pull-right col-md-6">
 
@@ -34,6 +35,8 @@ function Mystores() {
                                                                     <a href='store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
+                                                                <Link to='' className="ml-2 btn btn-flat"><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -82,6 +85,8 @@ function Mystores() {
                                                                 <a href='all-store-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -107,6 +112,8 @@ function Mystores() {
                                                                 <a href=''><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -132,6 +139,8 @@ function Mystores() {
                                                                 <a href=''><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
 

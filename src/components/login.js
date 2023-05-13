@@ -39,10 +39,7 @@ function Login() {
                                         <div className="login-line" />
                                         <div data-bn-type="text" className="login-line-text">or</div>
                                         <div className="login-line" /></div>
-                                        <div>
-                                        <button type="submit" className="login-btn Loginicon"><img src={google} alt="google" /> Sign in with Google</button>
-                                        <button type="submit" className="login-btn Loginicon"><img src={facebook} alt='facebook' />Sign in with Facebook</button>
-                                    </div>
+                        
                                     <div>
                                     <a href="forgot-password">Forgot your password?</a>
                                         <div className="additional-link">Don't have an account? <a href="sign-up">Signup</a></div>

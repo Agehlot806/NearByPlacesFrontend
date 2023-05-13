@@ -1,8 +1,7 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
-import Image7 from "../../assets/images/img/img7.jpeg";
-
+import { Link } from 'react-router-dom'
 
 function Alloffers() {
     return (
@@ -35,6 +34,8 @@ function Alloffers() {
                                                                     <a href='offer-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
+                                                        <Link to='' className="ml-2 btn btn-flat"><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -59,7 +60,7 @@ function Alloffers() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><img src={Image7} alt="img7" /></td>
+                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
                                                             <td>
                                                                 <b>NEW YEAR</b><br />
                                                                <i className='mdi mdi-map-marker' /> Daliya<br />
@@ -77,10 +78,12 @@ function Alloffers() {
                                                                 <a href=''><i className='text-green fa fa-check' /></a>
                                                                 <a href='offer-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                        <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><img src={Image7} alt="img7" /></td>
+                                                            <td><img src='assets/images/img/img7.jpeg' /></td>
                                                             <td>
                                                                 <b>NEW YEAR</b><br />
                                                                <i className='mdi mdi-map-marker' /> Daliya<br />
@@ -98,6 +101,8 @@ function Alloffers() {
                                                                 <a href=''><i className='fa fa-close' /></a>
                                                                 <a href='offer-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
+                                                        <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -136,6 +141,7 @@ function Alloffers() {
                     </div>
                 </div>
             </div>
+            
         </>
     )
 }

@@ -1,5 +1,8 @@
 import React from 'react'
 import Particles from './particles'
+import google from "../assets/images/icons/google.png";
+import facebook from "../assets/images/icons/facebook.png";
+import { Link } from 'react-router-dom';
 
 function Signup() {
   return (
@@ -33,13 +36,12 @@ function Signup() {
                                 <div data-bn-type="text" className="login-line-text">or</div>
                                 <div className="login-line" /></div>
                             <div>
-                                <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/google.png' /> Sign in with Google</button>
-
-                                <button type="submit" className="login-btn Loginicon"><img src='assets/images/icons/facebook.png' />Sign in with Facebook</button>
+                            <button type="submit" className="login-btn Loginicon"><img src={google} alt="google" /> Sign in with Google</button>
+                                        <button type="submit" className="login-btn Loginicon"><img src={facebook} alt='facebook' />Sign in with Facebook</button>
                             </div>
                             <div>
                             <a href="forgot-password">Forgot your password?</a>
-                                <div className="additional-link">Already a member?  <a href="/">login</a></div>
+                                <div className="additional-link">Already a member?  <Link to="/admin">login</Link></div>
 
                             </div>
                         </form>
