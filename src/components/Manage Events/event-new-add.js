@@ -13,6 +13,7 @@ function Eventnewadd() {
     const [getCountryid1, setCountryid1] = useState("");
     const [getrowdata1, setGetrowdata1] = useState([]);
     const [imgdata, setImgdata] = useState([])
+
     useEffect(() => {
         const getcountrydata1 = async () => {
             const reqData = await fetch("https://nearbyplaceadminpanner.onrender.com/api/v1/allstores");
@@ -21,11 +22,12 @@ function Eventnewadd() {
         };
         getcountrydata1();
     }, []);
-    console.log("ahsfsjfhusjdcbsdhgcb", getcountry1);
+
     const handlecountry1 = (event) => {
         const getCountryid1 = event.target.value;
         setCountryid1(getCountryid1);
     };
+    
     useEffect(() => {
         const getCountryrowdata1 = async () => {
             const reqCountryrowdata1 = await fetch(
@@ -38,7 +40,7 @@ function Eventnewadd() {
         };
         getCountryrowdata1();
     }, [getCountryid1]);
-    console.log("NNNNNNNN>>>>>?", imgdata);
+
    
 
 

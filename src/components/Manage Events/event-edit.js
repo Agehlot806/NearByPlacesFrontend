@@ -4,7 +4,7 @@ import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams ,useHistory} from "react-router-dom";
 import axios from 'axios';
 import { Button, Input } from "reactstrap";
 import toast, { Toaster } from 'react-hot-toast'
@@ -24,8 +24,8 @@ function Eventedit() {
     const [fileData, setFileData] = useState();
     const [imageTrue, setImageTrue] = useState("false");
     const [message, setMessage] = useState("")
+   let history = useHistory();
 
-console.log("edbjkdnjdfktarungurjar",eventname)
     useEffect(() => {
         allStore();
     }, [])
@@ -103,7 +103,9 @@ console.log("edbjkdnjdfktarungurjar",eventname)
 
      }).then(
             response => response.data,
-            toast.success(" Events Updated Successfully")
+            // toast.success(" Events Updated Successfully"),
+            history.push ("/all-events")
+
         );
     }
 
@@ -147,7 +149,7 @@ console.log("edbjkdnjdfktarungurjar",eventname)
                                     <div className='col-lg-6'>
                                         <div className="product-list-box">
                                             <div className="product-list-box-header">
-                                                <h3><b>Edit Offer</b></h3>
+                                                <h3><b>Edit Event</b></h3>
                                             </div>
                                             <div className="product-card-body">
                                                 <div className="form-group image-size">

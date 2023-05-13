@@ -14,16 +14,25 @@ function Profile() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [User, setUser] = useState([]);
-    const [userName, setUserName] = useState();
+    const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState();
-    const [userPhoto, setUserPhoto] = useState();
+    const [fileData, setFileData] = useState([]);
     const [newPassword, setNewPassword] = useState();
     const [file, setFile] = useState([]);
     const [showImage, setShowImage] = useState(false);
-    const [updattePassword, setUpdatePassword] = useState("");
+    const [updattePassword, setUpdatePassword] = useState(false);
     const [userId, setUserId] = useState("");
 
+    const [photo, setPhoto] = useState("")
+
     useEffect(() => {
+        if (updattePassword) {
+            getProfileData();
+        }
+        getProfileData();
+    }, [])
+
+    const getProfileData = () => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
@@ -36,9 +45,11 @@ function Profile() {
                 setUserName(data.user.name);
                 setUserEmail(data.user.email)
                 setUserId(data.user._id)
+                setFileData(data.user.AdminAvatar.url)
+                localStorage.setItem('AdminAvatar', data.user.AdminAvatar.url);
+                localStorage.setItem('Name', data.user.name);
             })
-    }, []);
-
+    }
 
 
     const handleSubmit = (e) => {
@@ -55,75 +66,72 @@ function Profile() {
         })
             .then((res) => res.json())
             .then((responsive) => {
-                setUpdatePassword(responsive.message);
-                toast.success("password update Successfully")
+                toast.success("Password update Successfully")
+                setUpdatePassword(true);
             })
             .catch((error) => {
                 console.log("error", error);
+                getProfileData();
             })
     }
+
+
     const UpdateProfilerDetail = (e) => {
         e.preventDefault();
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, {
             method: 'PUT',
+            headers: { "Content-Type": 'application/json' },
             credentials: 'include',
             body: JSON.stringify({
                 name: userName,
                 email: userEmail,
             }),
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+
         })
             .then((res) => res.json())
             .then((responsive) => {
-                toast.success("Profile Updated Successfully")
+                toast.success("Profile Updated Successfully");
+                getProfileData();
             })
             .catch((error) => {
                 console.log("error", error);
             })
     }
+
+
+
     const handleFile = (event) => {
         setShowImage(true);
-        setUserPhoto(event.target.files[0])
-        setFile(URL.createObjectURL(event.target.files[0]))
+        setPhoto(event.target.files[0]);
+        setFile(URL.createObjectURL(event.target.files[0]));
+
     }
 
-    // const handleUploadProfile = (e) => {
-    //     e.preventDefault();
-    //     var formData = new FormData();
-    //     formData.append('file', userPhoto);
-    //     axios({
-    //         method: "put",
-    //         credentials: 'include',
-    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,
-    //         data: formData,
-    //         headers: { "Content-Type": "multipart/form-data" },
-    //     })
-    //         .then(response => {
-    //             setMessage(response.data);
-    //             toast.success("admin image Updated Successfully");
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
 
     const handleUploadProfile = (e) => {
         e.preventDefault();
         var formData = new FormData();
-        formData.append('file', userPhoto);
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`, formData, {
-            method: 'PUT',
-            credentials: 'include',
-            headers: { 'content-type': "multipart/form-data" },
+        formData.append('file', photo);
+        axios({
+            method: "put",
+            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,
+            withCredentials: true,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+            credentials: 'include'
         })
-            .then((res) => res.json())
-            .then((responsive) => {
-                toast.success("Profile Updated Successfully")
+            .then(response => {
+                setMessage(response.data.message);
+                getProfileData();
+                toast.success("Image upload successfully");
             })
-            .catch((error) => {
-                console.log("error", error);
-            })
+            .catch(error => {
+                console.log(error);
+            });
     }
+
+
+
     return (
         <>
             <Navbar />
@@ -148,7 +156,7 @@ function Profile() {
                                                             <Input type="file" className="form-control"
                                                                 placeholder="Enter..."
                                                                 onChange={handleFile} />
-                                                            {showImage ? <img src={file} alt='profile' /> : ""}
+                                                            {showImage ? <img src={file} alt='profile' /> : <img src={fileData} alt='profileimage'></img>}
 
                                                         </div>
                                                         <div className='user-head'>

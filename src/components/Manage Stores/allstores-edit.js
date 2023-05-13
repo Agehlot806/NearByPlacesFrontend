@@ -2,24 +2,22 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import { useParams } from 'react-router'
+import { useParams,useHistory  } from 'react-router'
 import { Button, Input, Form } from "reactstrap";
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function Allstoresedit() {
-
     const { _id } = useParams();
-
     const [file, setFile] = useState([]);
-    
     const [ratings, setRatings] = useState();
     const [reviews, setReviews] = useState([]);
     const [galleryImage, setGalleryImage] = useState([]);
     const [filegallery, setFilegallery] = useState();
     const [storeData, setStores] = useState([]);
     const [name, setName] = useState("");
-    const [categories, setCategories] = useState("");
+    const [categories, setCategories] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [storePhoto, setStorePhoto] = useState([]);
     const [website, setWebsite] = useState("");
@@ -27,7 +25,8 @@ function Allstoresedit() {
     const [latitude, setLatitude] = useState("");
     const [storegallery, setStoregallery] = useState("");
     const [imageTrue, setImageTrue] = useState("false");
-    
+    let history = useHistory ();
+
     useEffect(() => {
         const requestOptions = {
             method: 'PUT',
@@ -94,24 +93,26 @@ function Allstoresedit() {
             "name": name,
             "category": categories,
             "storephoto": storePhoto,
-            "storegallery":"storegallery",
+            "storegallery": "storegallery",
             "website": website,
             "ratings": ratings,
-            "reviews":reviews,
-            "latitude":latitude,
-            "longitude":longitude
-
-           
+            "reviews": reviews,
+            "latitude": latitude,
+            "longitude": longitude
         }
         const config = {
             headers: { 'content-type': 'application/x-www-form-urlencoded' }
         };
         return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, data, { config }).then(
             response => response.data,
-            toast.success(" offer update successfully")
+            toast.success(" offer update successfully"),
+            history.push ("/all-stores")
         );
+       
     }
-   console.log(categories);
+    const handleCategories = (e) => {
+        setCategories(e.target.value);
+    }
     return (
         <>
             <Toaster />
@@ -154,11 +155,10 @@ function Allstoresedit() {
                                                         <div className="form-group col-md-6">
                                                             <label htmlFor="inputState">Category :</label>
                                                             <select id="inputState"
-                                                                select={categories} onChange={(e) => setCategories(e.target.value)} className="form-control">
+                                                                select={categories} onChange={(e) => handleCategories(e)} className="form-control">
+                                                                <option selected>{categories == "Hotel" ? "Hotel" : "Restaurant"}</option>
 
-                                                                <option selected>Choose...</option>
-                                                                <option>Hotel</option>
-                                                                <option>Restaurant</option>
+                                                                <option>{categories === "Hotel" ? "Restaurant" : "Hotel"}</option>
 
                                                             </select>
                                                         </div>

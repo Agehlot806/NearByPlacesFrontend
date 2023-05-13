@@ -5,7 +5,7 @@ import Footer from "../../directives/footer";
 import { Button, Input, Form } from "reactstrap";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
-import { useParams } from "react-router-dom";
+import { useParams ,useHistory} from "react-router-dom";
 
 
 function Offeredit() {
@@ -28,8 +28,7 @@ function Offeredit() {
     const [message, setMessage] = useState("")
     const [file, setFile] = useState();
     const [imageTrue, setImageTrue] = useState("false");
-    const [makeAdeal, setMakeAdeal] = useState([]);
-
+    const history = useHistory();
 
 
     const handleCheckboxChange = (event) => {
@@ -90,7 +89,8 @@ function Offeredit() {
         };
         return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${_id}`, data, { config }).then(
             response => response.data,
-            toast.success(" offer update successfully")
+            toast.success(" offer update successfully"),
+            history.push("/all-offers"),
         );
     }
 
@@ -223,7 +223,7 @@ function Offeredit() {
                                                             <select id="inputState" onChange={onChangeHandle}
                                                                 className="form-control"
                                                                 value={selectValue}>
-                                                                <option selected>-- Select Type</option>
+                                                                <option selected>{selectValue? selectValue:"select"}</option>
                                                                 <option value="100">100</option>
                                                                 <option value="1100">1100</option>
                                                                 <option value="2500">2500</option>

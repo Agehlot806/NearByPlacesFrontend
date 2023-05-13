@@ -33,9 +33,7 @@ function Allstores() {
                 console.log("error", error);
             })
     }
-    // console.log("ajuyhtlgrfl", storeData);
-
-    // Search data in All Store   
+   
     useEffect(() => {
         const searchStoreData = async () => {
             const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`);

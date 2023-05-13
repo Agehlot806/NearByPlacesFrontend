@@ -42,13 +42,12 @@ function Allevents() {
                 console.log("error", error);
             })
     }
-console.log("tarun1818188",eventData);
-  
+
 
     // Search data in All Offers
     useEffect(() => {
         const searchEventData = async () => {
-            const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents`);
+            const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allevents`,{credentials: 'include'});
             const apiData = await response.json();
             seteventData(apiData.events);
             setSearchEventSave(apiData.events);

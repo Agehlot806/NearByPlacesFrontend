@@ -5,7 +5,8 @@ import  logo from "../assets/images/logo.png";
 import userPhoto from "../assets/images/img/user.jpeg";
 
 const Navbar = () => {
-
+  const profileImage = localStorage.getItem("AdminAvatar");
+  const name = localStorage.getItem("Name");
   const history = useHistory();
 
   const handleLogout = async () => {
@@ -41,7 +42,7 @@ const Navbar = () => {
         <div className="nav-right_area">
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <a href="#"><img src={userPhoto} alt="user" />&nbsp;&nbsp;Admin</a>
+              <a href="#"><img src={profileImage ? profileImage:userPhoto} alt="user" />&nbsp;&nbsp; {name ? name:"Admin"}</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <Link to='/profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></Link>
