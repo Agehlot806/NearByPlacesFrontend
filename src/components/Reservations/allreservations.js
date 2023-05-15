@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function Allreservations() {
@@ -27,9 +27,9 @@ function Allreservations() {
 
                                                         <form className='text-right'>
                                                             <span className="input-group-btn ">
-                                                                <Link to='/event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
+                                                                <a href='event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
                                                                     <i class="fa fa-filter" aria-hidden="true"></i>
-                                                                </Link>
+                                                                </a>
                                                             </span>
                                                         </form>
                                                     </div>
@@ -49,11 +49,23 @@ function Allreservations() {
                                                             <th scope="col">Subtotal</th>
                                                             <th scope="col">Date</th>
                                                             <th scope='col' data-toggle="modal" data-target="#ExportModel">Export</th>
+                                                            <th scope='col'>download</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>No Data</tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>techpanda</td>
+                                                            <td>techpanda</td>
+                                                            <td>true</td>
+                                                            <td>$30.00</td>
+                                                            <td>techpanda</td>
+                                                            <td>13-5-23</td>
+                                                            <td>techpanda</td>
+                                                            <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
+                                                        </tr>
 
 
                                                     </tbody>
@@ -152,4 +164,4 @@ function Allreservations() {
     )
 }
 
-export default Allreservations
+export default Allreservations;

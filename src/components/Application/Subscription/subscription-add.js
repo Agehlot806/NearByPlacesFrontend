@@ -29,7 +29,7 @@ function Subscriptionadd() {
                                                     <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>No Store Allow</label>
+                                                    <label>No Merchant Allow</label>
                                                     <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">

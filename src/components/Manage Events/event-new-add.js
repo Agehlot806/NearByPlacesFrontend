@@ -1,94 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import { useState } from 'react'
-import axios from 'axios';
-import {Button} from "reactstrap";
-import toast, { Toaster } from 'react-hot-toast'
+
 function Eventnewadd() {
-    
-    const [response, setResponse] = useState([]);
-    const [getcountry1, setCountry1] = useState([]);
-    const [getCountryid1, setCountryid1] = useState("");
-    const [getrowdata1, setGetrowdata1] = useState([]);
-    const [imgdata, setImgdata] = useState([])
-    useEffect(() => {
-        const getcountrydata1 = async () => {
-            const reqData = await fetch("https://nearbyplaceadminpanner.onrender.com/api/v1/allstores");
-            const resData = await reqData.json();
-            setCountry1(await resData.stores);
-        };
-        getcountrydata1();
-    }, []);
-    console.log("ahsfsjfhusjdcbsdhgcb", getcountry1);
-    const handlecountry1 = (event) => {
-        const getCountryid1 = event.target.value;
-        setCountryid1(getCountryid1);
-    };
-    useEffect(() => {
-        const getCountryrowdata1 = async () => {
-            const reqCountryrowdata1 = await fetch(
-                `https://nearbyplaceadminpanner.onrender.com/api/v1/allstores/${getCountryid1}`
-            );
-            const reqcountryrowdata1 = await reqCountryrowdata1.json();
-            // console.log("hiiii",reqcountryrowdata1.stores)
-            setGetrowdata1(await reqcountryrowdata1.stores);
-            setImgdata(await reqcountryrowdata1.stores[0].storephoto)
-        };
-        getCountryrowdata1();
-    }, [getCountryid1]);
-    console.log("NNNNNNNN>>>>>?", imgdata);
-   
-
-
-
-    const [eventname, setEventname] = useState()
-    const [phonenumber, setPhonenumber] = useState()
-    const [address, setAddress] = useState()
-    const [fileData, setFileData] = useState([]);
-    const [description, setDescription] = useState()
-    const [status, setStatus] = useState()
-    const[storeId,setStoreId] =useState()
-    
-   // state to hold the data to be posted to the API
-
-   let handleSubmit = async (e) => {
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append('eventname', eventname);
-    formData.append('file', fileData);
-    formData.append('address', address);
-    formData.append('description',description);
-    formData.append('status',status);
-    formData.append('phonenumber',phonenumber);
-    formData.append('storeId',storeId);
-   
-    axios({
-      method: "post",
-      url: "https://nearbyplaceadminpanner.onrender.com/api/v1/createevent",
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then(response => {
-        setResponse(response);
-        toast.success("Event created successfully");
-          
-      })
-      .catch(error => {
-     
-        console.log(error);
-      });
-  };
-
-    const handelImgPhoto = (event) => {
-        setFileData(event.target.files[0]);
-      
-    }
-    console.log("ghfhgbirla",fileData);
     return (
         <>
-        <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -105,36 +22,31 @@ function Eventnewadd() {
                                         <div className="product-card-body">
                                             <form>
                                                 <div className="form-group image-size">
-                                                    <input type="file" className="form-control" placeholder="Enter..." onChange={handelImgPhoto}
-                                               />
+                                                    <input type="file" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Store</label>
-                                                    <select
-                                                        name="country"
-                                                        className="form-control p-2"
-                                                        onInput={(e) => handlecountry1(e)}
-                                                    value={storeId}
-                                                    onChange={(e)=>setStoreId(e.target.value)}
-                                                    >
-                                                        <option value="">choose...</option>
-                                                        {getcountry1.map((resCountry, index) => (
-                                                            // console.log("gurjarbawa",resCountry)
-                                                            <option key={index} value={resCountry._id}>
-                                                                {resCountry.name}
-                                                            </option>
-                                                        ))}
+                                                    <select id="inputState" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
+                                                        <option>...</option>
                                                     </select>
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Event name :</label>
-                                                    <input type="text" value={eventname} onChange={(event) => setEventname(event.target.value)} className="form-control" placeholder="Enter..." />
+                                                    <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Description</label>
-                                                    <textarea rows={10} className="form-control" placeholder="Enter..." value={description} onChange={(e) => setDescription(e.target.value)} />
+                                                    <textarea rows={10} className="form-control" placeholder="Enter..." />
                                                 </div>
-                                                {/* <div className='row'>
+                                                <div className='row'>
                                                     <div className='col-sm-6'>
                                                         <div className="form-group">
                                                             <label>Date Begin :</label>
@@ -147,15 +59,14 @@ function Eventnewadd() {
                                                             <input type="number" className="form-control" />
                                                         </div>
                                                     </div>
-                                                </div> */}
-                                                <div className="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="number" className="form-control" value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>Status...</label>
-                                                    <input type="text" className="form-control"
-                                                    value={status} onChange={(e)=>setStatus(e.target.value)} />
+                                                    <label>Phone Number</label>
+                                                    <input type="number" className="form-control" />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>WebSite</label>
+                                                    <input type="text" className="form-control" />
                                                 </div>
                                             </form>
                                         </div>
@@ -178,12 +89,11 @@ function Eventnewadd() {
                                                     </div>
                                                     <div className="form-group">
                                                         <label>Address :</label>
-                                                        <input type="text" className="form-control" placeholder="Enter..." value={address}
-                                                            onChange={(e) => setAddress(e.target.value)} />
+                                                        <input type="text" className="form-control" placeholder="Enter..." />
                                                     </div>
                                                     <br />
                                                     <div className='user-head'>
-                                                        <Button onClick={handleSubmit} ><i className="fa fa-check-square-o" /> Create</Button>
+                                                        <a href='#'><i className="fa fa-check-square-o" /> Create</a>
                                                     </div>
                                                 </div>
                                             </div>

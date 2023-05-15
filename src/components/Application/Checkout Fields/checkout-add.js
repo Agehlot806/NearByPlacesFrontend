@@ -3,7 +3,7 @@ import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
 
-function Categoriesadd() {
+function CheckOutadd() {
     return (
         <>
             <Navbar />
@@ -16,17 +16,17 @@ function Categoriesadd() {
                                 <div className='col-lg-6'>
                                     <div className="product-list-box">
                                         <div className="product-list-box-header">
-                                            <h3><b>Create Categories</b></h3>
+                                            <h3><b>Create CheckOut-Fields</b></h3>
                                         </div>
                                         <div className="product-card-body">
                                             <form>
                                             <div className="form-group">
-                                                    <label>Name</label>
+                                                    <label>labal</label>
                                                     <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div>
-                                                <div className="form-group image-size">
-                                                    <label>Upload File</label>
-                                                    <input type="file" className="form-control" placeholder="Enter..." />
+                                                <div className="form-group ">
+                                                    <label>Fields types</label>
+                                                    <input type="text" className="form-control" placeholder="Enter..." />
                                                 </div><br />
                                                 <div className='user-head'>
                                                     <a href='#'><i className="fa fa-check-square-o" /> Create</a>
@@ -45,4 +45,4 @@ function Categoriesadd() {
     )
 }
 
-export default Categoriesadd
+export default CheckOutadd

@@ -1,108 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import toast, { Toaster } from 'react-hot-toast'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 function Allstores() {
-    const [storeData, setStoreData] = useState([])
-    const [searchstore, setSearchStore] = useState('');
-    const [searchstoresave, setSearchStoreSave] = useState([])
-    const [modalstore, setModalStore] = useState(false);
-    const [Id, setId] = useState("");
-
-
-    // useEffect(() => {
-    //     allStore()
-    // })
-
-    // const allStore = () => {
-    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
-    //         .then((res) => res.json())
-    //         .then((responsive) => {
-    //             console.log("tsaryhxdashgxfahsxasx", responsive.stores);
-    //             setStoreData(responsive.stores)
-    //         })
-    //         .catch((error) => {
-    //             console.log("error", error);
-    //         })
-    // }
-    // console.log("ajuyhtlgrfl", storeData);
-
-    // Search data in All Store   
-    useEffect(() => {
-        const searchStoreData = async () => {
-            const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`);
-            const apiData = await response.json();
-            setStoreData(apiData.stores);
-            setSearchStoreSave(apiData.stores);
-            // console.log("tarun birla",apiData.stores);
-        };
-        searchStoreData();
-    }, []);
-    
-    const inputSearchStore = (e) => {
-        if (e.target.value == '') {
-            setStoreData(searchstoresave)
-        }
-        else {
-            const filterres = searchstoresave.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase()))
-            setStoreData(filterres)
-        }
-        setSearchStore(e.target.value)
-    }
-
-    // Function to delete data from API
-    const deleteStore = (id) => {
-        var headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // 'authorization': `Bearer ${access_token}`,
-        };
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${id}`, {
-            method: "DELETE",
-            headers: headers,
-        })
-            .then((resp) => {
-                console.log("4444444444444", resp.message)
-                // toast(resp.message);
-                // if (resp.message == 'Please enter all field') {
-                //     toast.error("Please enter all field")
-                // // }
-
-                // alert("hhhhh")
-                toast.success("Store Deleted Successfully")
-
-            })
-
-    }
-
-    // delete model 
-    const toggleStoreModel = (id) => {
-        setId(id)
-        setModalStore(!modalstore);
-    }
-
-
-    // pagination area 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5; // for example
-    const totalPages = Math.ceil(storeData.length / itemsPerPage);
-    const currentItems = storeData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-
-
-
     return (
         <>
-            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -116,24 +20,43 @@ function Allstores() {
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>All Stores</b></h3>
+                                                        <h3><b>All Merchant</b></h3>
+
                                                     </div>
                                                     <div className="pull-right col-md-6">
+
                                                         <form>
                                                             <div className="input-group input-group-sm">
-                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search"
-                                                                    value={searchstore}
-                                                                    onChange={(e) => inputSearchStore(e)} />
+                                                                <input className="form-control" size={30} name="search" type="text" placeholder="Search" />
                                                                 <span className="input-group-btn">
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+
+                                                                    <Link to='/store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
+
+                                                                    <div className="btn-group">
+                                                                        <button type="button" className="ml-2 btn btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="fa fa-filter" aria-hidden="true"></i>
+
+                                                                        </button>
+                                                                        <div className="dropdown-menu">
+                                                                            <a className="dropdown-item" href="#">Action</a>
+                                                                            <a className="dropdown-item" href="#">Another action</a>
+                                                                            <a className="dropdown-item" href="#">Something </a>
+                                                                            <div className="dropdown-divider" />
+                                                                            <a className="dropdown-item" href="#">Separated link</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <Link to='' className='ml-2 btn btn-flat'><i className="fa fa-download" aria-hidden="true" /></Link>
+
                                                                 </span>
                                                             </div>
+
                                                         </form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,59 +66,108 @@ function Allstores() {
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Store Photos</th>
-                                                            <th scope="col">Store Gallery</th>
+                                                            <th scope="col">Image</th>
                                                             <th scope="col">Name</th>
                                                             <th scope="col">Owner</th>
                                                             <th scope="col">Category</th>
                                                             <th scope="col">Status</th>
                                                             <th scope="col">Rating</th>
-                                                            <th scope="col">Reviews</th>
+                                                            <th scope="colreview">Reviews</th>
                                                             <th scope="col">Actions</th>
+
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {storeData.map((items, index) => (
-                                                            <tr>
-                                                                <td className='text-center'> <img src={items.storephoto.url} /></td>
-                                                                <td className='text-center'>
-                                                                    <img src={items.storegallery.url} />
-                                                                </td>
-                                                                <td>
-                                                                    <b>{items.name}</b><br />
-                                                                    <i className='mdi mdi-map-marker' /> {items.latitude}<br />
-                                                                    {/* <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span> */}
-                                                                </td>
-                                                                <td className='click-color'>
-                                                                    <a href=''><u>Admin</u></a>
-                                                                    <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                    <a href=''><i className='mdi mdi-eye-outline' /></a>
-                                                                </td>
-                                                                <td className='click-color'>
-                                                                    <a href=''><u>{items.category}</u></a>
-                                                                </td>
-                                                                <td><span className='Disabled-btn'>Disabled</span></td>
-                                                                <td>{items.ratings}</td>
-                                                                <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
-                                                                <td className='action-btn'>
-                                                                    <a href=''><i className='fa fa-times' /></a>
-                                                                    <Link href='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                    <a href=''><i class="fa fa-list" /> Services</a>
-                                                                    <a><Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
+                                                        <tr>
+                                                            <td><img src='assets/images/img/img1.jpeg' /></td>
+                                                            <td>
+                                                                <b>Beuty</b><br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <Link to="#"><u>Admin</u></Link>
+                                                                <Link to="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to="#"><i className='mdi mdi-eye-outline' /></Link>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <Link to="#"><u>Beauty</u></Link>
+                                                            </td>
+                                                            <td><span className='Disabled-btn'>Disabled</span></td>
+                                                            <td>0</td>
+                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='action-btn'>
+                                                                <Link to="#"><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
+                                                                <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><img src='assets/images/img/img2.jpeg' /></td>
+                                                            <td>
+                                                                <b>Beuty</b><br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <Link to="#"><u>Admin</u></Link>
+                                                                <Link to="#"><i className='mdi mdi-open-in-new' /></Link>
+                                                                <Link to="#"><i className='mdi mdi-eye-outline' /></Link>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <Link to="#"><u>Beauty</u></Link>
+                                                            </td>
+                                                            <td><span className='Enabled-btn'>Enabled</span></td>
+                                                            <td>0</td>
+                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='action-btn'>
+                                                                <Link to="#"><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
+
+                                                                <Link to="#"><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="#" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><img src='assets/images/img/img5.jpeg' /></td>
+                                                            <td>
+                                                                <b>Beuty</b><br />
+                                                                <i className='mdi mdi-map-marker' /> london peris<br />
+                                                                <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <a href=''><u>Admin</u></a>
+                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
+                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                            </td>
+                                                            <td className='click-color'>
+                                                                <a href=''><u>Beauty</u></a>
+                                                            </td>
+                                                            <td><span className='Disabled-btn'>Disabled</span></td>
+                                                            <td>0</td>
+                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='action-btn'>
+                                                                <Link to=""><i className='fa fa-times' /></Link>
+                                                                <Link to='storeview'><i class="fa fa-eye" aria-hidden="true"></i></Link>
+
+                                                                <Link to='all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <Link to="/all-stores/services"><i class="fa fa-list" /> Services</Link>
+                                                                <Link to="" data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></Link>
+                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
+
+                                                            </td>
+                                                        </tr>
+
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                            <div className='pagination-section'>
-                                                <i className="fa fa-angle-double-left" />
-                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
-                                                    <button className='pagination-area' key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
-                                                        {pageNumber}
-                                                    </button>
-                                                ))}
-                                                <i className="fa fa-angle-double-right" />
                                             </div>
                                         </div>
                                     </div>
@@ -207,20 +179,31 @@ function Allstores() {
             </div>
             <Footer />
 
+
             {/* Modal */}
-            <Modal isOpen={modalstore}>
-                <ModalHeader toggle={toggleStoreModel}>Confirmation!</ModalHeader>
-                <ModalBody>
-                    <h3 className="text-center text-red">Are you sure? { }</h3>
-                </ModalBody>
-                <ModalFooter>
-                    <Button onClick={toggleStoreModel}><i className="fa fa-times" /> No</Button>
-                    <Button onClick={(e) => deleteStore(Id, e)}>
-                        <i className="fa fa-check" /> Yes
-                    </Button>
-                </ModalFooter>
-            </Modal>
+            <div className="modal fade" id="DeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Confirmation!</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <h3 className="text-center text-red">Are you sure?</h3>
+                        </div>
+                        <div className="modal-footer">
+                            <div className='user-head'>
+                                <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
+                                <Link to=''><i className="fa fa-plus" /> Apply</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
+
 export default Allstores

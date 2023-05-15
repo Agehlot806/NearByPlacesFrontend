@@ -2,8 +2,6 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from 'react-router-dom'
-
 
 function Users() {
     return (
@@ -31,9 +29,9 @@ function Users() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <Link to='/User-add' className="ml-2 btn btn-flat">
+                                                                    <a href='User-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </Link>
+                                                                    </a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -56,7 +54,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/user-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -64,7 +62,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/user-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -72,7 +70,7 @@ function Users() {
                                                             <td>Beuty</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/user-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>

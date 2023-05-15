@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
-import {Link} from 'react-router-dom'
 
 function Offerunpublished() {
   return (
@@ -31,9 +30,9 @@ function Offerunpublished() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <Link to='/add-new' className="ml-2 btn btn-flat">
+                                                                    <a href='add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </Link>
+                                                                    </a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -68,13 +67,13 @@ function Offerunpublished() {
                                                                 <a href=''><i className='mdi mdi-open-in-new' /></a>
                                                                 <a href=''><i className='mdi mdi-eye-outline' /></a>
                                                             </td>
-                                                            <td><Link to='/offer-unpublished' className='Unpublished-btn'><i className="mdi mdi-history"/> Unpublished</Link></td>
+                                                            <td><a href='offer-unpublished' className='Unpublished-btn'><i className="mdi mdi-history"/> Unpublished</a></td>
                                                             <td><span className='Disabled-btn'>$20.00</span></td>
                                                             <td>Disabled</td>
                                                             <td>----</td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='fa fa-close' /></a>
-                                                                <Link to='/offer-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='offer-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>

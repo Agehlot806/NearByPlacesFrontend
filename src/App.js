@@ -1,14 +1,14 @@
 import React, { Component, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from './components/login';
+import Signup from './components/sign-up';
 import Dashboard from './components/dashboard';
 import Allstores from './components/Manage Stores/allstores';
 import Mystores from './components/Manage Stores/mystores';
 import Storeaddnew from './components/Manage Stores/store-add-new';
 import Reviews from './components/Manage Stores/reviews';
 import Allstoresedit from './components/Manage Stores/allstores-edit';
-import Alloffers from './components/Offers/alloffers';
+import Alloffers from './components/Offers/all-offers';
 import Offeraddnew from './components/Offers/offer-add-new';
 import Offerpublished from './components/Offers/offer-published';
 import Offeredit from './components/Offers/offer-edit';
@@ -32,7 +32,7 @@ import Usersnewadd from './components/Manage Users/users-new-add';
 import Invoice from './components/Payment/invoice';
 import Paymentconfig from './components/Payment/payment-config';
 import Allslider from './components/Mobile Slider/all-slider';
-import Profile from './components/Profile';
+import Profile from './components/profile';
 import Forgotpassword from './components/forgot-password';
 import Slidernewadd from './components/Mobile Slider/slider-new-add';
 import Media from './components/media/media'
@@ -51,57 +51,85 @@ import Globalconfig from './components/Application/Global Config/global-config';
 import Currencies from './components/Application/Currencies/currencies';
 import Mailconfig from './components/Application/Mail Config/mail-config';
 import Categories from './components/Application/Categories/categories';
-import Categoriesadd from './components/Application/Categories/categories-add';
+import Categoriesadd from './components/Application/Checkout Fields/checkout-add';
 import Language from './components/Application/Language/language';
 import Languageadd from './components/Application/Language/language-add';
 import Languageedit from './components/Application/Language/language-edit';
 import Subscription from './components/Application/Subscription/subscription';
 import Subscriptionadd from './components/Application/Subscription/subscription-add';
 import Subscriptionedit from './components/Application/Subscription/subscription-edit';
-import Googlemapapi from './components/Application/Google Maps Api/google-map-api';
-import Template from './components/Application/Template/template';
-import Resetpassword from './components/reset-password';
-
+import Services from './components/Manage Stores/AllStrores/services';
+import "./assets/css/style.css";
 import "./assets/css/responsive.css";
-import "./assets/css/style.css"
+import Configapi from './components/Application/API Config/configapi';
+import Deeplinking from './components/Application/Deeplinking/deeplinking';
+import Cronjob from './components/Application/Cronjob/cronjob';
+import Usersetting from './components/Application/UserSetting/usersetting';
+import Googlemapsapi from './components/Application/Google map api/googlemapsapi';
+import Template from './components/Application/Template/template';
+import Checkoutfields from './components/Application/Checkout Fields/checkoutfields';
+import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
+import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
+import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
+import Modulesadd from './components/Application/Modules Manager/modulesadd';
+
+import Storeview from './components/Manage Stores/storeview';
+import Bookinginbox from './components/My bookings/bookinginbox';
+import Merchant from './components/merchant';
+import Manageoffers from './components/Offers/manageoffers';
+import Managecampaigns from './components/Campaigns/managecampaigns';
+import checkoutfieldstore from './components/Manage Stores/checkoutfieldstore';
+import Checkoutedit from './components/Manage Stores/checkoutedit';
 
 const RouterComponent = () => {
+
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/admin" component={Login} />
+          <Route exact path="/merchant" component={Merchant} />
+          <Route exact path='/sign-up' component={Signup} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
-          <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
+          <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/profile' component={Profile} />
 
-          <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/all-stores' component={Allstores} />
           <Route exact path='/all-store-edit' component={Allstoresedit} />
           <Route exact path='/my-stores' component={Mystores} />
           <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
+          <Route exact path='/all-stores/services' component={Services} />
+          <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
+          <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
+          
+
+          <Route exact path='/storeview' component={Storeview} />
 
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
           <Route exact path='/offer-add-new' component={Offeraddnew} />
           <Route exact path='/offer-published' component={Offerpublished} />
           <Route exact path='/offer-unpublished' component={Offerunpublished} />
-          <Route exact path='/offer-edit/:_id' component={Offeredit} />
+          <Route exact path='/offer-edit' component={Offeredit} />
+          <Route exact path='/manage-offers' component={Manageoffers} />
+
 
           <Route exact path='/all-events' component={Allevents} />
           <Route exact path='/my-events' component={Myevents} />
           <Route exact path='/event-participants' component={Eventparticipants} />
           <Route exact path='/event-new-add' component={Eventnewadd} />
-          <Route exact path='/event-edit/:_id' component={Eventedit} />
+          <Route exact path='/event-edit' component={Eventedit} />
 
           <Route exact path='/all-reservations' component={Allreservations} />
           <Route exact path='/my-reservations' component={Myreservations} />
 
           <Route exact path='/my-bookings' component={Mybookings} />
+          <Route exact path='/bookingsinbox' component={Bookinginbox} />
 
           <Route exact path='/campaigns' component={Campaigns} />
           <Route exact path='/campaigns-new-add' component={Campaignnewadd} />
+          <Route exact path='/manage-campaigns' component={Managecampaigns} />
 
           <Route exact path='/message' component={Messages} />
 
@@ -134,18 +162,27 @@ const RouterComponent = () => {
           <Route exact path='/manage-menu' component={Managemenu} />
 
           <Route exact path='/global-config' component={Globalconfig} />
+          <Route exact path='/apiconfig' component={Configapi} />
+          <Route exact path='/deeplinking' component={Deeplinking} />
+          <Route exact path='/cronjob' component={Cronjob} />
           <Route exact path='/currencies' component={Currencies} />
           <Route exact path='/mail-config' component={Mailconfig} />
           <Route exact path='/categories' component={Categories} />
-          <Route exact path='/categories-add' component={Categoriesadd} />
+          <Route exact path='/checkout-add' component={CheckOutadd} />
+          <Route exact path='/checkout-edit' component={CheckOutedit} />
           <Route exact path='/language' component={Language} />
           <Route exact path='/language-add' component={Languageadd} />
           <Route exact path='/language-edit' component={Languageedit} />
           <Route exact path='/subscription' component={Subscription} />
           <Route exact path='/subscription-add' component={Subscriptionadd} />
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
-          <Route exact path='/google-map-api' component={Googlemapapi} />
+          <Route exact path='/usersetting' component={Usersetting} />
+          <Route exact path='/googlemapsapi' component={Googlemapsapi} />
           <Route exact path='/template' component={Template} />
+          <Route exact path='/checkoutfield' component={Checkoutfields} />
+          <Route exact path='/modulesmanager' component={Modulesmanager} />
+          <Route exact path='/modulesadd' component={Modulesadd} />
+
 
 
         </Switch>

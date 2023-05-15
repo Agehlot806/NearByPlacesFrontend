@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from 'react-router-dom'
+
 function Allslider() {
   return (
     <>
@@ -31,9 +31,9 @@ function Allslider() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <Link to='/slider-add' className="ml-2 btn btn-flat">
+                                                                    <a href='slider-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </Link>
+                                                                    </a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -64,15 +64,15 @@ function Allslider() {
                                                                <i className='mdi mdi-map-marker' /> london peris<br />
                                                             </td>
                                                             <td className='click-color'>
-                                                                <a href=''><u>Owner</u></a>
-                                                                <a href=''><i className='mdi mdi-open-in-new' /></a>
-                                                                <a href=''><i className='mdi mdi-eye-outline' /></a>
+                                                                <a href='all-stores'><u>Owner</u></a>
+                                                                <a href='all-stores'><i className='mdi mdi-open-in-new' /></a>
+                                                                <a href='all-stores'><i className='mdi mdi-eye-outline' /></a>
                                                             </td>
                                                             <td className='click-color'>18-03-2023 - 18-03-2023</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/slider-view'><i className='fa fa-eye' /></Link>
-                                                                <Link to='/slider-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href='' data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -90,8 +90,8 @@ function Allslider() {
                                                             <td>07-06-2022 - 07-06-2028</td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/slider-view'><i className='fa fa-eye' /></Link>
-                                                                <Link to='/slider-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''  data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>
@@ -109,8 +109,8 @@ function Allslider() {
                                                             <td>07-06-2022 - 07-06-2028</td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td className='action-btn'>
-                                                                <Link to='/slider-view'><i className='fa fa-eye' /></Link>
-                                                                <Link to='/slider-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                <a href='slider-view'><i className='fa fa-eye' /></a>
+                                                                <a href='slider-edit'><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''  data-toggle="modal" data-target="#sliderDeleteModel"><i class="fa fa-trash-o" /></a>
                                                             </td>
                                                         </tr>

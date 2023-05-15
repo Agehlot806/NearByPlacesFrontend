@@ -78,11 +78,11 @@ function Allstoresedit() {
                                                 <form>
                                                     <div className="form-row image-size">
                                                         <div className="form-group col-md-6">
-                                                            <label>Store photos</label>
+                                                            <label>Merchant photos</label>
                                                             <input type="file" className="form-control" placeholder="Enter..." />
                                                         </div>
                                                         <div className="form-group col-md-6">
-                                                            <label><i class="mdi mdi-image-album" /> Store gallery</label>
+                                                            <label><i class="mdi mdi-image-album" /> Merchant gallery</label>
                                                             <input type="file" className="form-control" placeholder="Enter..." />
                                                         </div>
                                                     </div>
