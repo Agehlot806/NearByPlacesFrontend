@@ -159,7 +159,7 @@ function Allevents() {
                                                                     <Link to='/event-new-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
-                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AlleventDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e)=>AlleventDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
 
                                                                 </span>
                                                             </div>

@@ -67,9 +67,9 @@ const Sidebar = () => {
                 {manageMerchant && (
                     <div className="sidebar-dropdown">
                         <ul>
-                            <li><Link to='/all-Merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Merchant</span></Link></li>
-                            <li><Link to='/my-Merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Merchant</span></Link></li>
-                            <li><Link to='/Merchant-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new Merchant</span></Link></li>
+                            <li><Link to='/all-merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Merchant</span></Link></li>
+                            <li><Link to='/my-merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Merchant</span></Link></li>
+                            <li><Link to='/merchant-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new Merchant</span></Link></li>
                             <li><Link to='/checkoutfieldstore' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Check-Out-Fields</span></Link></li>
                         </ul>
                     </div>

@@ -160,7 +160,7 @@ function Alloffers() {
                                                                     <Link to='/offer-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
-                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AllOfferDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e)=>AllOfferDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -203,7 +203,7 @@ function Alloffers() {
                                                                     <Link to=''><i className='text-green fa fa-check' /></Link>
                                                                     <Link to={"/offer-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
-                                                                    <Link to='' ><i onClick={(e)=>offerDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></Link>
+                                                                    <span ><i onClick={(e)=>offerDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></span>
                                                                 </td>
                                                             </tr>
                                                         ))}

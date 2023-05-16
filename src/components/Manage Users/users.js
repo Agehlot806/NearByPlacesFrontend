@@ -86,6 +86,20 @@ function Users() {
         fileDownload(res.data,"usersData.csv")
        })
     }
+
+const userDownload =(id, e)=>{
+    console.log(id);
+    e.preventDefault()
+    axios({
+        url:`https://nearbyplaceadminpanner.onrender.com/api/v1/getusercsvdata/${id}`,
+        method:"GET",
+        responseType:"blob"
+    }).then((res)=>{
+        fileDownload(res.data,"usersData.csv")
+    })
+
+}
+
     return (
         <>
             <Navbar />
@@ -116,7 +130,7 @@ function Users() {
                                                                     <Link to='/User-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
-                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AlluserDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e)=>AlluserDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
 
                                                                 </span>
                                                             </div>
@@ -130,10 +144,11 @@ function Users() {
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope='col'>image</th>
-                                                            <th scope="col">user</th>
+                                                            <th scope='col'>Image</th>
+                                                            <th scope="col">User Name</th>
                                                             <th scope="col">User email</th>
                                                             <th scope="col">User role</th>
+                                                            <th scope="col">Dowanload</th>
 
                                                         </tr>
                                                     </thead>
@@ -148,7 +163,12 @@ function Users() {
                                                                 <td>{items.role}
                                                                     <i className="fa fa-pencil-square-o" style={{ margin: "20px" }} onClick={() => openModel(items)} />
                                                                     <i className="text-green fa fa-check"></i>
+                                                                  
                                                                 </td>
+                                                                <td>
+                                                                <span><i onClick={(e)=>userDownload(items._id,e)} className="fa fa-download" aria-hidden="true" /></span>
+                                                                </td>
+
                                                                 <td>
                                                                 </td>
 

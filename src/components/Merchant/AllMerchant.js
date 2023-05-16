@@ -151,7 +151,7 @@ const stroeDowanload =(id, e)=>{
                                                                     <a href='store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
-                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e)=>AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
                                                                 </span>
                                                             </div>
                                                         </form>
