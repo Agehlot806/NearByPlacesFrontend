@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
-import Allstores from './components/Manage Stores/allstores';
-import Mystores from './components/Manage Stores/mystores';
-import Storeaddnew from './components/Manage Stores/store-add-new';
-import Reviews from './components/Manage Stores/reviews';
-import Allstoresedit from './components/Manage Stores/allstores-edit';
+// import Allstores from './components/Manage Stores/allstores';
+// import Mystores from './components/Manage Stores/mystores';
+// import Storeaddnew from './components/Manage Stores/store-add-new';
+// import Reviews from './components/Manage Stores/reviews';
+// import Allstoresedit from './components/Manage Stores/allstores-edit';
+
+
 import Alloffers from './components/Offers/alloffers';
 import Offeraddnew from './components/Offers/offer-add-new';
 import Offerpublished from './components/Offers/offer-published';
@@ -64,20 +66,20 @@ import Resetpassword from './components/reset-password';
 import Map from "./components/Map/Index"
 import "./assets/css/responsive.css";
 import "./assets/css/style.css"
-import Booktable from './components/Manage Stores/book-table';
-import Demouser from './components/Manage Stores/Demouser';
+// import Booktable from './components/Manage Stores/book-table';
+// import Demouser from './components/Manage Stores/Demouser';
 
 // Merchant
 
-import checkoutfieldstore from './components/Manage Stores/checkoutfieldstore';
-import Merchant from './components/merchant'
-import AllMerchant from "./components/Merchant/AllMerchant";
-import Mymerchant from "./components/Merchant/Mymerchant";
-import NewMerchant from "./components/Merchant/NewMechant";
-import AllMerchantedit from './components/Merchant/MerchantEdit';
+import checkoutfieldstore from './components/Merchant/checkoutfieldstore';
+import Merchant from './components/merchant';
 import Checkoutedit from './components/Merchant/checkoutedit';
-
-
+import AllMerchant from "./components/Merchant/AllMerchant";
+import NewMerchant from "./components/Merchant/NewMerchant";
+import EditMerchant from "./components/Merchant/EditMerchant";
+import MyMerchant from "./components/Merchant/MyMerchant";
+import Reviews from "./components/Merchant/reviews";
+import services from "./components/Merchant/AllStrores/services";
 // Appliaction 
 
 import Configapi from './components/Application/API Config/configapi';
@@ -101,7 +103,7 @@ const RouterComponent = () => {
           <Route exact path="/admin" component={Login} />
           <Route exact path="/merchant" component={Merchant} />
           <Route exact path="/map" component={Map} />
-          {/* <Route exact path="/" component={Login} /> */}
+          <Route exact path="/services" component={services} />
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
           <Route exact path='/profile' component={Profile} />
@@ -111,16 +113,19 @@ const RouterComponent = () => {
 
           <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
           <Route exact path='/all-Merchant' component={AllMerchant} />
-          <Route exact path='/my-Merchant' component={Mymerchant} />
+          <Route exact path='/my-Merchant' component={MyMerchant} />
           <Route exact path='/Merchant-add-new' component={NewMerchant} />
-          <Route exact path='/all-store-edit' component={AllMerchantedit} />
+          <Route exact path='/all-store-edit/:_id' component={EditMerchant} />
           <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
-
-          <Route exact path='/all-stores' component={Allstores} />
-          <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
-          <Route exact path='/my-stores' component={Mystores} />
-          <Route exact path='/store-add-new' component={Storeaddnew} />
           <Route exact path='/review' component={Reviews} />
+          <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
+          <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
+          {/* <Route exact path='/all-Merchant' component={Allstores} />
+          <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
+          <Route exact path='/my-Merchant' component={Mystores} />
+          <Route exact path='/Merchant-add-new' component={Storeaddnew} /> */}
+
+        
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
           <Route exact path='/offer-add-new' component={Offeraddnew} />
@@ -158,7 +163,7 @@ const RouterComponent = () => {
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
-{/* 
+          {/* 
 
           <Route exact path='/global-config' component={Globalconfig} />
           <Route exact path='/currencies' component={Currencies} />

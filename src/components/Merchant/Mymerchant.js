@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
-function Mystores() {
+function MyMerchant() {
   return (
     <>
             <Navbar />
@@ -21,7 +21,7 @@ function Mystores() {
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>All Merchant</b></h3>
+                                                        <h3><b>All Stores</b></h3>
                                                     </div>
                                                     <div className="pull-right col-md-6">
 
@@ -32,11 +32,9 @@ function Mystores() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
-                                                                <Link to='' className="ml-2 btn btn-flat"><i className="fa fa-download" aria-hidden="true" /></Link>
-
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -79,14 +77,12 @@ function Mystores() {
                                                             </td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td>0</td>
-                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='click-color'><Link to="/review">Review</Link></td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='fa fa-times' /></a>
-                                                                <a href='all-store-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                                <Link to='/all-store-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
-
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -106,14 +102,12 @@ function Mystores() {
                                                             </td>
                                                             <td><span className='Enabled-btn'>Enabled</span></td>
                                                             <td>0</td>
-                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='click-color'><Link to="/review">Review</Link></td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='fa fa-times' /></a>
                                                                 <a href=''><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
-
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -133,14 +127,12 @@ function Mystores() {
                                                             </td>
                                                             <td><span className='Disabled-btn'>Disabled</span></td>
                                                             <td>0</td>
-                                                            <td className='click-color'><a href="review">Review</a></td>
+                                                            <td className='click-color'><Link to="/review">Review</Link></td>
                                                             <td className='action-btn'>
                                                                 <a href=''><i className='fa fa-times' /></a>
                                                                 <a href=''><i class="fa fa-pencil-square-o" /></a>
                                                                 <a href=''><i class="fa fa-list" /> Services</a>
                                                                 <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                                <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
-
                                                             </td>
                                                         </tr>
 
@@ -184,4 +176,4 @@ function Mystores() {
   )
 }
 
-export default Mystores
+export default MyMerchant;

@@ -116,6 +116,17 @@ function Allevents() {
        })
     }
 
+    const eventDowanload =(id, e)=>{
+        e.preventDefault()
+      axios({
+        url:`https://nearbyplaceadminpanner.onrender.com/api/v1/geteventscsvdata/${id}`,
+        method:"GET",
+        responsetype:"blob"
+       }).then((res)=>{
+        console.log(res);
+        fileDownload(res.data,"usersData.csv")
+       })
+    }
     return (
         <>
             <Toaster />
@@ -196,6 +207,7 @@ function Allevents() {
                                                                     <Link to=''><i className='fa fa-times' /></Link>
                                                               <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
+                                                                    <Link to='' ><i onClick={(e)=>eventDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></Link>
                                                                 </td>
                                                              </tr>
                                                         )):""} 

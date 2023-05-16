@@ -6,6 +6,9 @@ import { Link, useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import toast, { Toaster } from "react-hot-toast"
+import axios from 'axios';
+import fileDownload from 'js-file-download';
+
 
 function Alloffers() {
     const { _id } = useParams()
@@ -103,8 +106,29 @@ function Alloffers() {
     };
 
 
-
-
+    const offerDowanload =(id, e)=>{
+        e.preventDefault()
+      axios({
+        url:`https://nearbyplaceadminpanner.onrender.com/api/v1/getoffercsvdata/${id}`,
+        method:"GET",
+        responsetype:"blob"
+       }).then((res)=>{
+        console.log(res);
+        fileDownload(res.data,"usersData.csv")
+       })
+    }
+    
+    const AllOfferDownload=(e)=>{
+        e.preventDefault()
+      axios({
+        url:"https://nearbyplaceadminpanner.onrender.com/api/v1/getoffercsvdata",
+        method:"GET",
+        responsetype:"blob"
+       }).then((res)=>{
+        console.log(res);
+        fileDownload(res.data,"usersData.csv")
+       })
+    }
     return (
         <>
             <Toaster />
@@ -136,6 +160,7 @@ function Alloffers() {
                                                                     <Link to='/offer-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
+                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AllOfferDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -178,6 +203,7 @@ function Alloffers() {
                                                                     <Link to=''><i className='text-green fa fa-check' /></Link>
                                                                     <Link to={"/offer-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
+                                                                    <Link to='' ><i onClick={(e)=>offerDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></Link>
                                                                 </td>
                                                             </tr>
                                                         ))}

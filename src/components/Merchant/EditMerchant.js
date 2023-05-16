@@ -106,7 +106,7 @@ function Allstoresedit() {
         return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, data, { config }).then(
             response => response.data,
             toast.success(" offer update successfully"),
-            history.push ("/all-stores")
+            history.push ("/all-Merchant")
         );
        
     }

@@ -74,19 +74,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-                <a onClick={toggleManageStores}><i className="fa fa-archive" aria-hidden="true" />
-                    <span>&nbsp;&nbsp;Manage Stores</span>
-                    <i className={`arrow-icon fa fa-angle-left ${managestores ? 'rotate' : ''}`} />
-                </a>
-                {managestores && (
-                    <div className="sidebar-dropdown">
-                        <ul>
-                            <li><Link to='/all-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All stores</span></Link></li>
-                            <li><Link to='/my-stores' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My stores</span></Link></li>
-                            <li><Link to='/store-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new</span></Link></li>
-                        </ul>
-                    </div>
-                )}
+              
                 <a onClick={toggleOffers}><i className="mdi mdi-sale " />
                     <span>&nbsp;&nbsp;Offers</span>
                     <i className={`arrow-icon fa fa-angle-left ${offers ? 'rotate' : ''}`} />
