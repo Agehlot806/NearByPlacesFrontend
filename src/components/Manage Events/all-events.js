@@ -15,7 +15,7 @@ import fileDownload from 'js-file-download'
 function Allevents() {
     const [activePage, setActivePage] = useState(1);
     const [eventcount, setEventcount] = useState(1);
-
+    const [status, setStatus] = useState(true);
     const [eventData, seteventData] = useState([])
     const [searchevent, setSearchEvent] = useState('');
     const [searcheventsave, setSearchEventSave] = useState([])
@@ -127,6 +127,30 @@ function Allevents() {
         fileDownload(res.data,"usersData.csv")
        })
     }
+
+
+    const updateStatusDetail = async (id, status) => {
+        setStatus(status)
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${id}`, {
+            method: 'PUT',
+            credentials:'include',
+            body: JSON.stringify({
+                status: status,
+            }),
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((Response) => {
+                allEvent();
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
     return (
         <>
             <Toaster />
@@ -201,10 +225,13 @@ function Allevents() {
                                                                  {dateFormat(items.datebegin, "dd-mm-yyyy")} To {dateFormat(items.dateend, "dd-mm-yyyy")}
                                                                   
                                                                  </td>
-                                                                 <td><span className='Disabled-btn'>Disabled</span></td>
+                                                                 <td>{items.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
+                                                                 {/* <td><span className='Disabled-btn'>Disabled</span></td> */}
                                                                  <td className='click-color'><Link to={"/event-participants/" + items._id}><i className="mdi mdi-account-multiple-outline" /> 0</Link></td>
                                                              <td className='action-btn'>
-                                                                    <Link to=''><i className='fa fa-times' /></Link>
+                                                             <span>{items.status === true ? <i className='text-green fa fa-check' onClick={(e) => updateStatusDetail(items._id, "false")} /> : <i className='fa fa-times' onClick={(e) => updateStatusDetail(items._id, "true")} />}
+                                                             </span>
+                                                                    {/* <Link to=''><i className='fa fa-times' /></Link> */}
                                                               <Link to={"/event-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleEventModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                     <Link to='' ><i onClick={(e)=>eventDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></Link>

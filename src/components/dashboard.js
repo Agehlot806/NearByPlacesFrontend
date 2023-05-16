@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../directives/sidebar'
 import Navbar from '../directives/navbar'
 import { CanvasJSChart } from 'canvasjs-react-charts'
@@ -6,6 +6,11 @@ import Footer from '../directives/footer'
 
 
 function Dashboard() {
+
+    const[storecont,setStorecont]=useState("")
+    const[offercont,setOffercont]=useState("")
+    const[eventcont,setEventcont]=useState("")
+    const[usercont,setUsercont]=useState("")
     const optionOne = {
         animationEnabled: true,
         exportEnabled: true,
@@ -76,6 +81,24 @@ function Dashboard() {
         }]
     }
 
+
+    useEffect(() => {
+        allcounts()
+    }, [])
+    const allcounts = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getdashboarddata`, {
+            method: 'GET'
+        }).then((res) => res.json())
+            .then((response) => {
+                console.log("tarunall", response);
+                setStorecont(response.store)
+                setOffercont(response.offer)
+                setEventcont(response.event)
+                setUsercont(response.user)
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
     return (
         <>
             <Navbar />
@@ -85,32 +108,22 @@ function Dashboard() {
                     <div className='section-panel'>
                         <div className='container'>
                             <div className='row'>
+                              
                                 <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#dd4b39' }}>
                                         <div className='inner'>
-                                            <h3>362</h3>
-                                            <p>Stores</p>
-                                        </div>
-                                        <div className='icon'>
-                                        <i className="mdi mdi-storefront-outline" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='col-lg-4 col-sm-6'>
-                                    <div className='dash-box' style={{ color: '#dd4b39' }}>
-                                        <div className='inner'>
-                                            <h3>362</h3>
+                                            <h3>{storecont}</h3>
                                             <p>Merchant</p>
                                         </div>
                                         <div className='icon'>
-                                        <i className="mdi mdi-storefront-outline" />
+                                            <i className="mdi mdi-storefront-outline" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#009dff' }}>
                                         <div className='inner'>
-                                            <h3>19</h3>
+                                            <h3>{offercont}</h3>
                                             <p>Offers</p>
                                         </div>
                                         <div className='icon'>
@@ -121,7 +134,7 @@ function Dashboard() {
                                 <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#00a65a' }}>
                                         <div className='inner'>
-                                            <h3>7</h3>
+                                            <h3>{eventcont}</h3>
                                             <p>Events</p>
                                         </div>
                                         <div className='icon'>
@@ -132,7 +145,7 @@ function Dashboard() {
                                 <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#f39c12' }}>
                                         <div className='inner'>
-                                            <h3>3536</h3>
+                                            <h3>{usercont}</h3>
                                             <p>Users</p>
                                         </div>
                                         <div className='icon'>
@@ -181,21 +194,21 @@ function Dashboard() {
                                 <div className='col-lg-4 col-sm-12'>
                                     <div className='row'>
                                         <div className='col-sm-12'>
-                                            <div className='chart-card' style={{color:'#ff851b'}}>
-                                            <h3><b>0</b></h3>
-                                            <p>Pending reservation(s)</p>
+                                            <div className='chart-card' style={{ color: '#ff851b' }}>
+                                                <h3><b>0</b></h3>
+                                                <p>Pending reservation(s)</p>
                                             </div>
                                         </div>
                                         <div className='col-sm-12'>
-                                            <div className='chart-card' style={{color:'#00a65a'}}>
-                                            <h3><b>0</b></h3>
-                                            <p>Pending reservation(s)</p>
+                                            <div className='chart-card' style={{ color: '#00a65a' }}>
+                                                <h3><b>0</b></h3>
+                                                <p>Pending reservation(s)</p>
                                             </div>
                                         </div>
                                         <div className='col-sm-12'>
-                                            <div className='chart-card' style={{color:'#dd4b39'}}>
-                                            <h3><b>0</b></h3>
-                                            <p>Pending reservation(s)</p>
+                                            <div className='chart-card' style={{ color: '#dd4b39' }}>
+                                                <h3><b>0</b></h3>
+                                                <p>Pending reservation(s)</p>
                                             </div>
                                         </div>
                                     </div>

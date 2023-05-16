@@ -20,13 +20,13 @@ function Alloffers() {
     const [searchoffer, setSearchOffer] = useState('');
     const [searchoffersave, setSearchOfferSave] = useState([])
     const [modaloffer, setModalOffer] = useState(false);
-
+    const [status, setStatus] = useState(true);
 
     const [response, setResponse] = useState([])
 
     useEffect(() => {
         allOffer()
-    }, [setOfferData])
+    }, [])
 
     const allOffer = (page) => {
         // console.log(activePage);
@@ -129,6 +129,29 @@ function Alloffers() {
         fileDownload(res.data,"usersData.csv")
        })
     }
+
+
+    const updateStatusDetail = async (id, status) => {
+        setStatus(status)
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/offer/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                status: status,
+            }),
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((Response) => {
+                allOffer();
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
     return (
         <>
             <Toaster />
@@ -194,13 +217,19 @@ function Alloffers() {
                                                                     <Link to=''><i className='mdi mdi-open-in-new' /></Link>
                                                                     <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
-                                                                <td><Link to='/offer-published' className='Enabled-btn'><i className="mdi mdi-history" /> Published</Link></td>
+                                                                <td>
+                                                                {items.status === true ?  <Link to='/offer-published' className='Enabled-btn'>
+                                                                    <i className="mdi mdi-history" />Published</Link>:  <Link to='/offer-published' className='Disabled-btn'>
+                                                                    <i className="mdi mdi-history" />UnPublished</Link>}
+                                                                  </td>
                                                                 <td><span className='Disabled-btn'>{items.PricingOfferValue}</span></td>
                                                                 <td>-----</td>
                                                                 <td >{items.coupon_code}</td>
                                                                 <td>{items.description}</td>
                                                                 <td className='action-btn'>
-                                                                    <Link to=''><i className='text-green fa fa-check' /></Link>
+                                                                <span>{items.status === true ? <i className='text-green fa fa-check' onClick={(e) => updateStatusDetail(items._id, "false")} /> : <i className='fa fa-times' onClick={(e) => updateStatusDetail(items._id, "true")} />}
+                                                                </span>
+                                                                    {/* <Link to=''><i className='text-green fa fa-check' /></Link> */}
                                                                     <Link to={"/offer-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <a><Button onClick={(e) => toggleOfferModel(items._id, e)}><i class="fa fa-trash-o" /></Button></a>
                                                                     <span ><i onClick={(e)=>offerDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></span>

@@ -12,30 +12,30 @@ import fileDownload from 'js-file-download';
 function AllMerchant() {
     const [activePage, setActivePage] = useState(1);
     const [storecount, setStorecount] = useState(1);
-
     const [storeData, setStoreData] = useState([])
     const [searchstore, setSearchStore] = useState('');
     const [searchstoresave, setSearchStoreSave] = useState([])
     const [modalstore, setModalStore] = useState(false);
     const [Id, setId] = useState("");
+    const [status, setStatus] = useState(true);
 
     useEffect(() => {
         allStore()
-    }, [setStoreData])
+  }, [])
 
     const allStore = (page) => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores?page=${page}`)
             .then((res) => res.json())
             .then((responsive) => {
-                console.log("tsaryhxdashgxfahsxasx", responsive.stores);
                 setStoreData(responsive.stores)
+                // setStatus(responsive.stores[0].status);
                 setStorecount(responsive.storeCount)
             })
             .catch((error) => {
                 console.log("error", error);
             })
     }
-   
+
     useEffect(() => {
         const searchStoreData = async () => {
             const response = await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`);
@@ -97,29 +97,52 @@ function AllMerchant() {
         setActivePage(pageNumber);
 
     };
-// console.log("tarun",storecount);
-const AllstoresDownload=(e)=>{
-    e.preventDefault()
-  axios({
-    url:"https://nearbyplaceadminpanner.onrender.com/api/v1/getstorecsvdata",
-    method:"GET",
-    responsetype:"blob"
-   }).then((res)=>{
-    console.log(res);
-    fileDownload(res.data,"usersData.csv")
-   })
-}
-const stroeDowanload =(id, e)=>{
-    e.preventDefault()
-  axios({
-    url:`https://nearbyplaceadminpanner.onrender.com/api/v1/getstorecsvdata/${id}`,
-    method:"GET",
-    responsetype:"blob"
-   }).then((res)=>{
-    console.log(res);
-    fileDownload(res.data,"usersData.csv")
-   })
-}
+    // console.log("tarun",storecount);
+    const AllstoresDownload = (e) => {
+        e.preventDefault()
+        axios({
+            url: "https://nearbyplaceadminpanner.onrender.com/api/v1/getstorecsvdata",
+            method: "GET",
+            responsetype: "blob"
+        }).then((res) => {
+            console.log(res);
+            fileDownload(res.data, "usersData.csv")
+        })
+    }
+    const stroeDowanload = (id, e) => {
+        e.preventDefault()
+        axios({
+            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/getstorecsvdata/${id}`,
+            method: "GET",
+            responsetype: "blob"
+        }).then((res) => {
+            console.log(res);
+            fileDownload(res.data, "usersData.csv")
+        })
+    }
+    const updateStatusDetail = async (id, status) => {
+        setStatus(status)
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                status: status,
+            }),
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((Response) => {
+                allStore();
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
+
+
     return (
         <>
             <Toaster />
@@ -151,7 +174,10 @@ const stroeDowanload =(id, e)=>{
                                                                     <a href='store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
-                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e)=>AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
+                                                                    <span className="ml-2 btn btn-flat"><i onClick={(e) => AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
+                                                                    <a className="ml-2 btn btn-flat">
+                                                                        <i data-toggle="modal" data-target="#exampleModal" class="fa fa-filter" aria-hidden="true"></i>
+                                                                    </a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -199,11 +225,13 @@ const stroeDowanload =(id, e)=>{
                                                                 <td>{items.ratings}</td>
                                                                 <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
                                                                 <td className='action-btn'>
-                                                                    <Link to=''><i className='fa fa-times' /></Link>
-                                                                    <Link to={"/all-store-edit/"+ items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <span>{items.status === true ? <i className='text-green fa fa-check' onClick={(e) => updateStatusDetail(items._id, "false")} /> : <i className='fa fa-times' onClick={(e) => updateStatusDetail(items._id, "true")} />}
+                                                                    </span>
+                                                                    {/* <Link><i className='fa fa-times' onClick={(e)=>updateStatusDetail(items._id, e)}/></Link> */}
+                                                                    <Link to={"/all-store-edit/" + items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <Link to='/services'><i class="fa fa-list" /> Services</Link>
                                                                     <Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button>
-                                                                    <Link to='' ><i onClick={(e)=>stroeDowanload(items._id,e) } className="fa fa-download" aria-hidden="true"  /></Link>
+                                                                    <Link ><i onClick={(e) => stroeDowanload(items._id, e)} className="fa fa-download" aria-hidden="true" /></Link>
                                                                 </td>
                                                             </tr>
                                                         ))}
@@ -219,7 +247,7 @@ const stroeDowanload =(id, e)=>{
                                                                 itemsCountPerPage={5}
                                                                 totalItemsCount={storecount}
                                                                 pageRangeDisplayed={5}
-                                                            
+
                                                                 onChange={handlePageChange}
                                                             />
                                                         </div>
@@ -249,6 +277,67 @@ const stroeDowanload =(id, e)=>{
                     </Button>
                 </ModalFooter>
             </Modal>
+
+            <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="form-group row">
+                                    <label for="formGroupExampleInput" className="col-sm-2 col-form-label">Search :</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="choose..." />
+                                    </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>chai sutta bar </label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Tealogy</label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Bapu ki kutiya</label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>GK</label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Pisori </label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Veg </label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Non-Veg </label>
+                                    </div>
+                                    <div className='col-sm-4'>
+                                        <input type='checkbox' />
+                                        <label>Foods </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-danger">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
