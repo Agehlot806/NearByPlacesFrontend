@@ -136,7 +136,7 @@ const stroeDowanload =(id, e)=>{
                                             <div className="box-title" style={{ width: '100%' }}>
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
-                                                        <h3><b>All Stores</b></h3>
+                                                        <h3><b>All Merchant</b></h3>
                                                     </div>
                                                     <div className="pull-right col-md-6">
                                                         <form>
