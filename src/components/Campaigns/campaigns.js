@@ -59,8 +59,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -68,8 +68,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -77,8 +77,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -86,8 +86,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -95,8 +95,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -104,8 +104,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -113,8 +113,8 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -122,16 +122,16 @@ function Campaigns() {
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr><tr>
                                                             <td>10% Off all orders</td>
                                                             <td><span className='Disabled-btn'>Offer</span></td>
                                                             <td><span className='Unpublished-btn'><i className="mdi mdi-history" />  Pending</span></td>
                                                             <td className='action-btn'>
-                                                                <a href=''>  <i className="mdi mdi-chart-line" /> Report</a>
-                                                                <a href=''><i className="fa fa-download" aria-hidden="true" /></a>
+                                                                <a href='#'>  <i className="mdi mdi-chart-line" /> Report</a>
+                                                                <a href='#'><i className="fa fa-download" aria-hidden="true" /></a>
                                                             </td>
                                                         </tr>
 

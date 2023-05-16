@@ -89,7 +89,7 @@ function Dashboard() {
                                     <div className='dash-box' style={{ color: '#dd4b39' }}>
                                         <div className='inner'>
                                             <h3>362</h3>
-                                            <p>Merchant</p>
+                                            <p>Stores</p>
                                         </div>
                                         <div className='icon'>
                                         <i className="mdi mdi-storefront-outline" />
@@ -206,7 +206,7 @@ function Dashboard() {
                                                         <img src="assets/images/img/img1.jpeg" />
                                                     </div>
                                                     <div className="product-info">
-                                                        <a href="all-store-edit" className="product-title">Beuty
+                                                        <a href="" className="product-title">Beuty
                                                             <span className="badge bg-green pull-right" style={{ color: '#dd15b9' }}>Beauty</span></a>
                                                         <span className="product-description">
                                                             london peris                                                  </span>
@@ -217,7 +217,7 @@ function Dashboard() {
                                                         <img src="https://demo.webox360.win/nearby-stores/uploads/images/168068927490561/200_200.jpeg" />
                                                     </div>
                                                     <div className="product-info">
-                                                        <a href="all-store-edit" className="product-title">Daliya
+                                                        <a href="" className="product-title">Daliya
                                                             <span className="badge bg-green pull-right" style={{ color: '#1a85ed' }}>Clothes</span></a>
                                                         <span className="product-description">
                                                             DEIRA DUBAI                                                  </span>
@@ -228,7 +228,7 @@ function Dashboard() {
                                                         <img src="https://demo.webox360.win/nearby-stores/uploads/images/168019326058125/200_200.png" />
                                                     </div>
                                                     <div className="product-info">
-                                                        <a href="all-store-edit" className="product-title">DMA IMÓVEIS
+                                                        <a href="" className="product-title">DMA IMÓVEIS
                                                             <span className="badge bg-green pull-right" style={{ color: '#000000' }}>Gym</span></a>
                                                         <span className="product-description">
                                                             Avenida nossa senhora do Amparo
@@ -240,7 +240,7 @@ function Dashboard() {
                                                         <img src="https://demo.webox360.win/nearby-stores/uploads/images/168011414943365/200_200.jpeg" />
                                                     </div>
                                                     <div className="product-info">
-                                                        <a href="all-store-edit" className="product-title">EZichoice
+                                                        <a href="" className="product-title">EZichoice
                                                             <span className="badge bg-green pull-right" style={{ color: '#1a85ed' }}>Clothes</span></a>
                                                         <span className="product-description">
                                                             maha manaweriya,rajakadhaluwa,puttalam road,chilaw                                                  </span>
@@ -251,7 +251,7 @@ function Dashboard() {
                                                         <img src="https://demo.webox360.win/nearby-stores/uploads/images/167927113151032/200_200.jpeg" />
                                                     </div>
                                                     <div className="product-info">
-                                                        <a href="all-store-edit" className="product-title">Selim
+                                                        <a href="" className="product-title">Selim
                                                             <span className="badge bg-green pull-right" style={{ color: '#e2800d' }}>Restaurant</span></a>
                                                         <span className="product-description">
                                                             BERGSLAGSVAGEN 42
@@ -281,8 +281,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Nihat</b></a><br />
-                                                                <a href='review'>Simple to Food</a><br />
+                                                                <a href='#'><b>Nihat</b></a><br />
+                                                                <a href='#'>Simple to Food</a><br />
                                                                 Super guzel
                                                             </td>
                                                             <td>
@@ -298,8 +298,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Sabri22</b></a><br />
-                                                                <a href='review'>Radisson Blu Hotel</a><br />
+                                                                <a href='#'><b>Sabri22</b></a><br />
+                                                                <a href='#'>Radisson Blu Hotel</a><br />
                                                                 test
                                                             </td>
                                                             <td>
@@ -315,8 +315,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Hind</b></a><br />
-                                                                <a href='review'>KFC Aîn Diab</a><br />
+                                                                <a href='#'><b>Hind</b></a><br />
+                                                                <a href='#'>KFC Aîn Diab</a><br />
                                                                 Bad service
                                                             </td>
                                                             <td>
@@ -332,8 +332,8 @@ function Dashboard() {
                                                         <tr>
                                                             <td><img src='assets/images/img/img6.png' /></td>
                                                             <td>
-                                                                <a href=''><b>Necati</b></a><br />
-                                                                <a href='review'>Yemen kahvesi antalya</a><br />
+                                                                <a href='#'><b>Necati</b></a><br />
+                                                                <a href='#'>Yemen kahvesi antalya</a><br />
                                                                 vay amk
                                                             </td>
                                                             <td>

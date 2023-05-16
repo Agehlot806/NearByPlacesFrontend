@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 
 function Myevents() {
   return (
@@ -31,11 +32,9 @@ function Myevents() {
                                                             <a className="btn btn-flat">
                                                                 <i className="mdi mdi-magnify" />
                                                             </a>
-                                                            <a href='event-new-add' className="ml-2 btn btn-flat">
+                                                            <Link to='/event-new-add' className="ml-2 btn btn-flat">
                                                                 <i className="fa fa-plus" aria-hidden="true" />
-                                                            </a>
-                                                            <Link to=''  className="ml-2 btn btn-flat"><i className="fa fa-download" aria-hidden="true" /></Link>
-
+                                                            </Link>
                                                         </span>
                                                     </div>
                                                 </form>
@@ -73,13 +72,11 @@ function Myevents() {
                                                     </td>
                                                     <td>07-06-2022 - 07-06-2028</td>
                                                     <td><span className='Disabled-btn'>Disabled</span></td>
-                                                    <td className='click-color'><a href="event-participants"><i className="mdi mdi-account-multiple-outline" /> 5</a></td>
+                                                    <td className='click-color'><Link to="/event-participants"><i className="mdi mdi-account-multiple-outline" /> 5</Link></td>
                                                     <td className='action-btn'>
                                                         <a href=''><i className='fa fa-times' /></a>
-                                                        <a href='event-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                        <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
                                                         <a href=''  data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                        <Link to=''><i className="fa fa-download" aria-hidden="true" /></Link>
-
                                                     </td>
                                                 </tr>
 

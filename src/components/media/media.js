@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import {Link} from 'react-router-dom'
 
 function Media() {
     return (
@@ -31,9 +32,9 @@ function Media() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='media-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/media-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>

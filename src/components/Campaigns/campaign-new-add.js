@@ -22,7 +22,7 @@ function Campaignnewadd() {
                                         <div className="product-card-body">
                                             <form>
                                                 <div className='callout-info mb-3'>
-                                                    <p> Push events , offers or new Merchant to your close users .</p>
+                                                    <p> Push events , offers or new stores to your close users .</p>
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Campaign's type *</label>

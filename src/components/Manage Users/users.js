@@ -1,9 +1,78 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-
+import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+const options = [
+    { id: 'admin', role: 'Admin' },
+    { id: 'user', role: 'User' },
+    { id: 'staff', role: 'Staff' }
+]
 function Users() {
+
+    const [Id, setId] = useState(null);
+    const [model, setModel] = useState(false)
+    const [rolevalue, setRolevalue] = useState("")
+    const [updateRole, setupdateRole] = useState(false)
+    const [role, setRole] = useState("");
+    const [sucMsg, setSucMsg] = useState(false);
+    const [msg, setMsg] = useState("");
+
+    const [UserData, setuserDaTa] = useState([])
+
+    useEffect(() => {
+        allUser()
+
+    }, [])
+
+    const allUser = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallusers`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                // console.log("tsaryhxdashgxfahsxasx", responsive);
+                setuserDaTa(responsive.users)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    const handleUpdateRole = (id) => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateuserrole/${id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify({
+                role: role
+            }),
+            headers: headers,
+        })
+            .then((res) => res.json())
+            .then((responsive) => {
+                setSucMsg(responsive.success);
+                setMsg(responsive.message);
+                allUser();
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
+
+    const handleChange = (event) => {
+        setRolevalue(true);
+        setRole(event.target.value);
+
+    };
+    const openModel = (data) => {
+        setId(data._id);
+        setRole(data.role);
+        setModel(!model);
+    }
     return (
         <>
             <Navbar />
@@ -20,6 +89,8 @@ function Users() {
                                                 <div className=" row ">
                                                     <div className="pull-left col-md-6 mt-1">
                                                         <h3><b>Users</b></h3>
+                                                        {/* <button onClick={allUser}>click</button> */}
+
                                                     </div>
                                                     <div className="pull-right col-md-6">
                                                         <form>
@@ -29,9 +100,9 @@ function Users() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='User-add' className="ml-2 btn btn-flat">
+                                                                    <Link to='/User-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -44,42 +115,60 @@ function Users() {
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Inbox List</th>
-                                                            <th scope="col">Status</th>
-                                                            <th scope="col">Actions</th>
+                                                            <th scope='col'>image</th>
+                                                            <th scope="col">user</th>
+                                                            <th scope="col">User email</th>
+                                                            <th scope="col">User role</th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>Beuty</td>
-                                                            <td><span className='Disabled-btn'>Disabled</span></td>
-                                                            <td className='action-btn'>
-                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Beuty</td>
-                                                            <td><span className='Enabled-btn'>Enabled</span></td>
-                                                            <td className='action-btn'>
-                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Beuty</td>
-                                                            <td><span className='Disabled-btn'>Disabled</span></td>
-                                                            <td className='action-btn'>
-                                                                <a href='user-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
+                                                        {UserData.map((items, index) => (
+                                                            // console.log("tarunbirlasd", items)
+                                                            <tr key={index}>
+                                                                <td><img src={items.AdminAvatar.url} alt=''
+                                                                /></td>
+                                                                <td>{items.name}</td>
+                                                                <td>{items.email}</td>
+                                                                <td>{items.role}
+                                                                    <i className="fa fa-pencil-square-o" style={{ margin: "20px" }} onClick={() => openModel(items)} />
+                                                                    <i className="text-green fa fa-check"></i>
+                                                                </td>
+                                                                <td>
+                                                                </td>
 
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
+                                    <Modal isOpen={model} toggle={openModel}>
+                                        <ModalHeader toggle={openModel}>User Edit Role</ModalHeader>
+                                        <ModalBody>
+                                            <div><span className='text-danger'>{msg ? msg : ""}</span></div>
+                                            <div className="select-container">
+                                                <select value={role} onChange={handleChange}>
+                                                    {options.map((option) => (
+                                                        <option value={option.id}>{option.role}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <div className='user-head'>
+                                                <Button color="primary" onClick={() => handleUpdateRole(Id)}>
+                                                    Update
+                                                </Button>
+                                                <Button color="secondary" onClick={openModel}>
+                                                    Cancel
+                                                </Button>
+                                            </div>
+
+                                        </ModalFooter>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
@@ -92,4 +181,4 @@ function Users() {
     )
 }
 
-export default Users
+export default Users;

@@ -8,7 +8,7 @@ function Resetpassword() {
     const [password, setPassword] = useState('');
     const ResetPassword = async () => {
         setPassword("")
-          //API to render signup
+        //API to render signup
         var headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ function Resetpassword() {
             .then((Response) => Response.json())
             .then((Response) => {
                 // console.log("response", Response);
-                if(Response.message ='Password Changed Successfully'){
+                if (Response.message = 'Password Changed Successfully') {
                     toast.success("Password Changed Successfully")
                 }
             })
@@ -34,23 +34,23 @@ function Resetpassword() {
     }
     return (
         <>
-         <Toaster />
+            <Toaster />
             <Particles />
             <div className='login-area section-padding'>
                 <div className='container'>
                     <div className='row justify-content-center'>
                         <div className='col-lg-6'>
                             <div className='login-box mt-5 mb-5'>
-                                    <div className='text-center'>
-                                        <h3 className="animate-charcter">Reset Password</h3>
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="password" value={password} onChange={(event) => setPassword(event.target.value)}
-                                         className="form-control" placeholder="Enter New Password"
-                                         />
-                                    </div>
-                                    <button type="submit" className="login-btn" onClick={ResetPassword}>Submit</button>
-                                    <div className="additional-link"><Link to="/"><i className="fa fa-angle-double-right" /> Login Now</Link></div>
+                                <div className='text-center'>
+                                    <h3 className="animate-charcter">Reset Password</h3>
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" value={password} onChange={(event) => setPassword(event.target.value)}
+                                        className="form-control" placeholder="Enter New Password"
+                                    />
+                                </div>
+                                <button type="submit" className="login-btn" onClick={ResetPassword}>Submit</button>
+                                <div className="additional-link"><Link to="/"><i className="fa fa-angle-double-right" /> Login Now</Link></div>
                             </div>
                         </div>
                     </div>

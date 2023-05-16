@@ -51,7 +51,7 @@ function Mybookings() {
                                                                 <div className='user-head'>
                                                                     <a href="tel:+49 30 75443877"><i className="fa fa-fw fa-phone" /> Call
                                                                     </a>
-                                                                    <a href="bookingsinbox" data-id={1267}><i className="fa fa-fw fa-envelope" /> Send Message
+                                                                    <a href="#" data-id={1267}><i className="fa fa-fw fa-envelope" /> Send Message
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -84,7 +84,7 @@ function Mybookings() {
                                                                 <div className='user-head'>
                                                                     <a href="tel:+49 30 75443877"><i className="fa fa-fw fa-phone" /> Call
                                                                     </a>
-                                                                    <a href="bookingsinbox" data-id={1267}><i className="fa fa-fw fa-envelope" /> Send Message
+                                                                    <a href="#" data-id={1267}><i className="fa fa-fw fa-envelope" /> Send Message
                                                                     </a>
                                                                 </div>
                                                             </td>

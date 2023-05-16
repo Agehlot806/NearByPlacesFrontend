@@ -94,6 +94,16 @@ label {
     border-color: #ddd;
 }   
 
+.pagination-rounded a{
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+.pagination-rounded a:hover{
+    color:#f4f4f4;
+    background-color:#5a189a;
+}
 .action-btn a {
     background: #f0f0f0;
     padding: 6px;
@@ -101,11 +111,71 @@ label {
     margin-right: 5px;
     color: #dd4b39;
 }
+.action-btn button {
+    background: none;
+    color: #dd4b39;
+    border: none;
+    padding: 0px 0 6px;
+}
+.action-btn button:hover {
+    background: none;
+    border: none;
+    color: #dd4b39 !important;
+}
+
+.action-btn button:focus{
+    box-shadow: none !important;
+    background: none !important;
+    color: #dd4b39 !important;
+}
+.action-btn button:active {
+    background: none !important;
+    color: #dd4b39;
+}
+
+.pagination-area {
+    display: inline-block;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 15px 10px;
+    position: relative;
+    z-index: 2;
+    background: none;
+}
+.pagination-area:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: #5a189a;
+    z-index: -1;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
 
 
+.pagination-section {
+    float: right;
+    margin: 10px 16px;
+}
+.pagination-section i {
+    color: #5a189a;
+    font-weight: 600;
+    font-size: 22px;
+    padding: 12px;
+}
 .section-padding {
-    padding-top: 57px;
-    padding-bottom: 56px;
+    padding-top: 117px;
+    padding-bottom: 117px;
 }
 
 .all-create-checkbox {
@@ -132,7 +202,7 @@ label {
 
 .login-btn {
     background: #f39c12;
-    border: none;
+    border: none !important;
     color: #fff;
     width: 100%;
     line-height: 40px;
@@ -428,11 +498,19 @@ select.form-control:not([size]):not([multiple]) {
     height: 30px;
     width: 30px;
     padding: 3px;
+    z-index: inherit;
 }
 
 /* ========================================== Table area css ======================================= */
 .main-table {
     white-space: nowrap;
+}
+
+.main-table table {
+    margin: 0;
+}
+.main-table tbody tr td {
+    vertical-align: middle;
 }
 
 .main-table tr td img {
@@ -490,13 +568,25 @@ select.form-control:not([size]):not([multiple]) {
     padding: 10px 35px;
     border-radius: 50px;
 }
+.user-head Button {
+    background: #5a189a;
+    color: #fff;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 35px;
+    border-radius: 50px;
+}
+
 
 .image-size input {
     border-radius: 5px !important;
     border: 3px dashed #eaedef;
-    padding: 20px 20px 55px !important;
+    /* padding: 20px 20px 55px !important; */
 }
-
+.image-size img {
+    width: 100px;
+    margin: 12px 0;
+}
 
 
 
@@ -578,7 +668,75 @@ table.table.booking-table td img {
 
 
 
-/* tarun */
-.otpbox{
-    margin-top:20px;
+/* ========================== Template area css ========================================== */
+.dropify-wrapper {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    padding: 5px 10px;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial";
+    font-size: 14px;
+    line-height: 22px;
+    color: #777;
+    background-color: #FFF;
+    background-image: none;
+    text-align: center;
+    border: 2px solid #E5E5E5;
+    -webkit-transition: border-color 0.15s linear;
+    transition: border-color 0.15s linear;
 }
+.dropify-wrapper .dropify-message {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.dropify-wrapper .dropify-message span.file-icon {
+    font-size: 50px;
+    color: #CCC;
+}
+.dropify-wrapper .dropify-message p {
+    margin: 5px 0 0 0;
+}
+.dropify-wrapper .dropify-loader {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: none;
+    z-index: 9;
+}
+.dropify-wrapper.has-preview .dropify-clear {
+    display: block;
+}
+.template-area {
+    margin: 35px 0 0 0;
+}
+.template-area h3 {
+    margin: 10px 0 25px 0;
+}
+
+
+/* ??????////tarun css//// */
+.icon-area i{
+    font-size: 80px;
+    margin-top: 10px;
+}
+.available-area{
+    margin: 18px;
+}
+#booking-name{
+    font-size: 20px;
+}
+.icon-area i:hover{
+    color:blue;
+}
+.modal .modal-dialog {
+    width: 80%;
+  }
+  label.acces-user {
+    margin-left: 10px;
+}  

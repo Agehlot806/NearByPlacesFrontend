@@ -1,10 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
+import { Link } from 'react-router-dom'
+import { useParams } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast'
+import { Button } from 'reactstrap';
+import dateFormat from 'dateformat';;
+
 
 function Eventparticipants() {
+    const { _id } = useParams();
+    const [Id, setId] = useState("");
+    const [participant, setParticipant] = useState([]);
+    const [response, setResponse] = useState([]);
+    
+
+
+    const handleDeleteParticipant = (id) => {
+        console.log(id);
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'authorization': `Bearer ${access_token}`,
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allparticipant?eventId=${_id}&id=${id}`, {
+            method: "DELETE",
+            headers: headers,
+        })
+            .then((resp) => {
+                setResponse(resp);
+                // toast.success("Event Deleted Successfully");
+                getparticipant();
+
+            })
+
+    }
+    const toggleEventModel = (id, e) => {
+        handleDeleteParticipant(id)
+    }
+    const getparticipant =()=>{
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+
+        };
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allparticipant?id=${_id}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setParticipant(data.usersparticipated);
+
+            })
+    }
+    useEffect(() => {
+       
+     getparticipant();
+    }, []);
+
+    // console.log(participant[1].map(item=>(
+    //     item.name
+    // )));
     return (
         <>
+            <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -29,9 +86,9 @@ function Eventparticipants() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -50,6 +107,7 @@ function Eventparticipants() {
                                                             <th scope="col">Event</th>
                                                             <th scope="col">Date</th>
                                                             <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">
                                                                 <select className="form-control">
                                                                     <option selected>Choose...</option>
@@ -60,7 +118,27 @@ function Eventparticipants() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>No user participated</tr>
+
+                                                        {participant.length > 0 && participant.map((item, index) =>
+                                                            <tr key={index}>
+                                                                <td></td>
+                                                                <td>{index + 1}</td>
+                                                                {/* <td>{item.user}</td> */}
+                                                                <td>{item.name}</td>
+                                                                <td>{item.eventname?item.eventname:""}</td>
+                                                                <td>{dateFormat(item.datebegin, "dS mmmm , yyyy")} To {dateFormat(item.dateend, "dS mmmm , yyyy")}</td>
+
+                                                                <td>{item.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
+                                                                <td><Button onClick={(e) => toggleEventModel(item._id, e)}><i class="fa fa-trash-o" /></Button></td>
+                                                            </tr>
+                                                        )}
+                                                        {
+                                                             participant.length === 0 && 
+                                                            <tr className="text-center">
+                                                                <td colSpan={7}>No Data Available</td>
+                                                            </tr>
+                                                        }
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -76,4 +154,4 @@ function Eventparticipants() {
     )
 }
 
-export default Eventparticipants
+export default Eventparticipants;

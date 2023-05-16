@@ -24,28 +24,24 @@ function Mailconfig() {
                                             <form>
                                                 <div className="form-group">
                                                     <label>Service Mailer :</label>
-                                                    <select id="inputState" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-
-
-                                                    </select>
+                                                    <input type="email" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Send Grid API Key :</label>
                                                     <input type="email" className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
-                                                    <p>Note: Make sure that you created Sender identity in your SendGrid account <br />
-                                                        https://docs.sendgrid.com/ui/sending-email/sender-verification </p>
+                                                    <label>Default Mail</label>
+                                                    <input type="email" className="form-control" placeholder="Enter..." />
                                                 </div>
-                                                <br />
-                                                <div className='user-head'>
-                                                    <a href='#'> Text API</a>
+                                                <div className="form-group">
+                                                    <label>Report Email</label>
+                                                    <input type="email" className="form-control" placeholder="Enter..." />
                                                 </div>
-
+                                                <div className="form-group">
+                                                    <label>No Reply Email</label>
+                                                    <input type="email" className="form-control" placeholder="Enter..." />
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -55,26 +51,65 @@ function Mailconfig() {
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
                                                 <div className="product-list-box-header">
+                                                    <h3><b>Type & Subscription</b></h3>
+                                                </div>
+                                                <div className="product-card-body">
+                                                    <form>
+                                                        <div className="form-group">
+                                                            <label>User Type :</label>
+                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>No Store Allow :</label>
+                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Offers Allowed Monthly</label>
+                                                            <input type="date" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Event Allowed Monthly</label>
+                                                            <input type="date" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Push Auto Campaigns</label>
+                                                            <input type="text" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label>Compaigns Allowed Monthly</label>
+                                                            <input type="date" className="form-control" placeholder="Enter..." />
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='col-sm-12'>
+                                            <div className="product-list-box">
+                                                <div className="product-list-box-header">
                                                     <h3><b>Mail & Registation</b></h3>
                                                 </div>
                                                 <div className="product-card-body">
                                                     <form>
                                                         <div className="form-group">
-                                                            <label>Default email</label>
+                                                            <label>Verification Email :</label>
                                                             <input type="email" className="form-control" placeholder="Enter..." />
                                                         </div>
                                                         <div className="form-group">
-                                                            <label>Report email</label>
-                                                            <input rows={5} className="form-control" placeholder="Enter..." />
+                                                            <label>Welcome Message :</label>
+                                                            <textarea rows={5} className="form-control" placeholder="Enter..." />
                                                         </div>
                                                         <div className="form-group">
-                                                            <label>No-reply email</label>
+                                                            <label>Enable user (Owner) Registation</label>
                                                             <input type="text" className="form-control" placeholder="Enter..." />
                                                         </div>
-
+                                                        <div className="form-group">
+                                                            <label>Phone Verification (MobileUser)</label>
+                                                            <input type="number" className="form-control" placeholder="Enter..." />
+                                                        </div>
                                                         <br />
                                                         <div className='user-head'>
-                                                            <a href='#'><i className="fa fa-check-square-o" /> save</a>
+                                                            <a href='#'><i className="fa fa-check-square-o" /> Create</a>
                                                         </div>
                                                     </form>
                                                 </div>
