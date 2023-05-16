@@ -67,17 +67,55 @@ import "./assets/css/style.css"
 import Booktable from './components/Manage Stores/book-table';
 import Demouser from './components/Manage Stores/Demouser';
 
+// Merchant
+
+import checkoutfieldstore from './components/Manage Stores/checkoutfieldstore';
+import Merchant from './components/merchant'
+import AllMerchant from "./components/Merchant/AllMerchant";
+import Mymerchant from "./components/Merchant/Mymerchant";
+import NewMerchant from "./components/Merchant/NewMechant";
+import AllMerchantedit from './components/Merchant/MerchantEdit';
+import Checkoutedit from './components/Merchant/checkoutedit';
+
+
+// Appliaction 
+
+import Configapi from './components/Application/API Config/configapi';
+import Deeplinking from './components/Application/Deeplinking/deeplinking';
+import Cronjob from './components/Application/Cronjob/cronjob';
+import Usersetting from './components/Application/UserSetting/usersetting';
+import Googlemapsapi from './components/Application/Google map api/googlemapsapi';
+// import Template from './components/Application/Template/template';
+import Checkoutfields from './components/Application/Checkout Fields/checkoutfields';
+import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
+import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
+import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
+import Modulesadd from './components/Application/Modules Manager/modulesadd';
+
+
 const RouterComponent = () => {
   return (
     <>
       <Router>
         <Switch>
-        <Route exact path="/map" component={Map} />
-          <Route exact path="/" component={Login} />
+          <Route exact path="/admin" component={Login} />
+          <Route exact path="/merchant" component={Merchant} />
+          <Route exact path="/map" component={Map} />
+          {/* <Route exact path="/" component={Login} /> */}
           <Route exact path='/forgot-password' component={Forgotpassword} />
           <Route exact path='/api/v1/resetpassword/:token' component={Resetpassword} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/dashboard' component={Dashboard} />
+
+          {/* merchant */}
+
+          <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
+          <Route exact path='/all-Merchant' component={AllMerchant} />
+          <Route exact path='/my-Merchant' component={Mymerchant} />
+          <Route exact path='/Merchant-add-new' component={NewMerchant} />
+          <Route exact path='/all-store-edit' component={AllMerchantedit} />
+          <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
+
           <Route exact path='/all-stores' component={Allstores} />
           <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
           <Route exact path='/my-stores' component={Mystores} />
@@ -120,6 +158,8 @@ const RouterComponent = () => {
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
+{/* 
+
           <Route exact path='/global-config' component={Globalconfig} />
           <Route exact path='/currencies' component={Currencies} />
           <Route exact path='/mail-config' component={Mailconfig} />
@@ -134,7 +174,29 @@ const RouterComponent = () => {
           <Route exact path='/google-map-api' component={Googlemapapi} />
           <Route exact path='/template' component={Template} />
           <Route exact path='/book-table/:_id' component={Booktable} />
-          <Route exact path='/demouser' component={Demouser} />
+          <Route exact path='/demouser' component={Demouser} /> */}
+
+          <Route exact path='/global-config' component={Globalconfig} />
+          <Route exact path='/apiconfig' component={Configapi} />
+          <Route exact path='/deeplinking' component={Deeplinking} />
+          <Route exact path='/cronjob' component={Cronjob} />
+          <Route exact path='/currencies' component={Currencies} />
+          <Route exact path='/mail-config' component={Mailconfig} />
+          <Route exact path='/categories' component={Categories} />
+          <Route exact path='/checkout-add' component={CheckOutadd} />
+          <Route exact path='/checkout-edit' component={CheckOutedit} />
+          <Route exact path='/language' component={Language} />
+          <Route exact path='/language-add' component={Languageadd} />
+          <Route exact path='/language-edit' component={Languageedit} />
+          <Route exact path='/subscription' component={Subscription} />
+          <Route exact path='/subscription-add' component={Subscriptionadd} />
+          <Route exact path='/subscription-edit' component={Subscriptionedit} />
+          <Route exact path='/usersetting' component={Usersetting} />
+          <Route exact path='/googlemapsapi' component={Googlemapsapi} />
+          <Route exact path='/template' component={Template} />
+          <Route exact path='/checkoutfield' component={Checkoutfields} />
+          <Route exact path='/modulesmanager' component={Modulesmanager} />
+          <Route exact path='/modulesadd' component={Modulesadd} />
 
         </Switch>
       </Router>

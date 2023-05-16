@@ -5,6 +5,8 @@ import Footer from '../../directives/footer'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import axios from 'axios'
+import fileDownload from 'js-file-download'
 const options = [
     { id: 'admin', role: 'Admin' },
     { id: 'user', role: 'User' },
@@ -73,6 +75,17 @@ function Users() {
         setRole(data.role);
         setModel(!model);
     }
+    const AlluserDownload=(e)=>{
+        e.preventDefault()
+      axios({
+        url:"https://nearbyplaceadminpanner.onrender.com/api/v1/getusercsvdata",
+        method:"GET",
+        responsetype:"blob"
+       }).then((res)=>{
+        console.log(res);
+        fileDownload(res.data,"usersData.csv")
+       })
+    }
     return (
         <>
             <Navbar />
@@ -103,6 +116,8 @@ function Users() {
                                                                     <Link to='/User-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
+                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AlluserDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+
                                                                 </span>
                                                             </div>
                                                         </form>

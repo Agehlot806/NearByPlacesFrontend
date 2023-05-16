@@ -6,6 +6,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 import { Link, useParams } from 'react-router-dom'
 import Pagination from 'react-js-pagination';
+import axios from 'axios';
+import fileDownload from 'js-file-download';
 
 function Allstores() {
     const [activePage, setActivePage] = useState(1);
@@ -96,6 +98,17 @@ function Allstores() {
 
     };
 // console.log("tarun",storecount);
+const AllstoresDownload=(e)=>{
+    e.preventDefault()
+  axios({
+    url:"https://nearbyplaceadminpanner.onrender.com/api/v1/getstorecsvdata",
+    method:"GET",
+    responsetype:"blob"
+   }).then((res)=>{
+    console.log(res);
+    fileDownload(res.data,"usersData.csv")
+   })
+}
 
     return (
         <>
@@ -128,6 +141,7 @@ function Allstores() {
                                                                     <a href='store-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </a>
+                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -179,6 +193,7 @@ function Allstores() {
                                                                     <Link to={"/all-store-edit/"+ items._id}><i class="fa fa-pencil-square-o" /></Link>
                                                                     <Link to=''><i class="fa fa-list" /> Services</Link>
                                                                     <Button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></Button>
+                                                                    <Link to='' ><i className="fa fa-download" aria-hidden="true"  /></Link>
                                                                 </td>
                                                             </tr>
                                                         ))}

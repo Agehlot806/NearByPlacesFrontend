@@ -7,6 +7,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 import Pagination from 'react-js-pagination'
 import dateFormat from 'dateformat';
+import axios from 'axios'
+import fileDownload from 'js-file-download'
 
 
 
@@ -102,6 +104,17 @@ function Allevents() {
 
     };
     // console.log(format(new Date(), 'yyyy/MM/dd'))
+    const AlleventDownload=(e)=>{
+        e.preventDefault()
+      axios({
+        url:"https://nearbyplaceadminpanner.onrender.com/api/v1/geteventscsvdata",
+        method:"GET",
+        responsetype:"blob"
+       }).then((res)=>{
+        console.log(res);
+        fileDownload(res.data,"usersData.csv")
+       })
+    }
 
     return (
         <>
@@ -135,6 +148,8 @@ function Allevents() {
                                                                     <Link to='/event-new-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
+                                                                    <a href='' className="ml-2 btn btn-flat"><i onClick={(e)=>AlleventDownload(e)} className="fa fa-download" aria-hidden="true" /></a>
+
                                                                 </span>
                                                             </div>
                                                         </form>

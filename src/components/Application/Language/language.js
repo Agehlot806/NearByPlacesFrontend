@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
-import {Link} from 'react-router-dom'
 
 
 function Language() {
@@ -32,9 +31,9 @@ function Language() {
                                                                   <a className="btn btn-flat">
                                                                       <i className="mdi mdi-magnify" />
                                                                   </a>
-                                                                  <Link to='/language-add' className="ml-2 btn btn-flat">
+                                                                  <a href='language-add' className="ml-2 btn btn-flat">
                                                                       <i className="fa fa-plus" aria-hidden="true" />
-                                                                  </Link>
+                                                                  </a>
                                                               </span>
                                                           </div>
                                                       </form>
@@ -61,8 +60,8 @@ function Language() {
                                                           <td>abcd</td>
                                                           <td>ddEqwewe</td>
                                                           <td className='action-btn'>
-                                                              <Link to='language-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                              <a href='#' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                              <a href='language-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                              <a href='' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
                                                           </td>
                                                       </tr>
                                                       <tr>
@@ -70,8 +69,8 @@ function Language() {
                                                           <td>abcd</td>
                                                           <td>ddEqwewe</td>
                                                           <td className='action-btn'>
-                                                              <Link to='/language-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                              <a href='#' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                              <a href='language-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                              <a href='' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
                                                           </td>
                                                       </tr>
                                                       <tr>
@@ -79,8 +78,8 @@ function Language() {
                                                           <td>abcd</td>
                                                           <td>ddEqwewe</td>
                                                           <td className='action-btn'>
-                                                              <Link to='/language-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                              <a href='#' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                              <a href='language-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                              <a href='' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
                                                           </td>
                                                       </tr>
                                                       <tr>
@@ -88,8 +87,8 @@ function Language() {
                                                           <td>abcd</td>
                                                           <td>ddEqwewe</td>
                                                           <td className='action-btn'>
-                                                              <Link to='/language-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                              <a href='#' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                              <a href='language-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                              <a href='' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
                                                           </td>
                                                       </tr>
                                                       <tr>
@@ -97,8 +96,8 @@ function Language() {
                                                           <td>abcd</td>
                                                           <td>ddEqwewe</td>
                                                           <td className='action-btn'>
-                                                              <Link to='/language-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                              <a href='#' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                              <a href='language-edit'><i class="fa fa-pencil-square-o" /></a>
+                                                              <a href='' data-toggle="modal" data-target="#languageDeleteModel"><i class="fa fa-trash-o" /></a>
                                                           </td>
                                                       </tr>
 
@@ -132,7 +131,7 @@ function Language() {
                       <div className="modal-footer">
                           <div className='user-head'>
                               <a href='#' data-dismiss="modal"><i className="fa fa-times" /> Cancel</a>
-                              <a href='#'><i className="fa fa-plus" /> Apply</a>
+                              <a href=''><i className="fa fa-plus" /> Apply</a>
                           </div>
                       </div>
                   </div>

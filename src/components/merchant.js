@@ -89,8 +89,8 @@ function Merchant() {
                                             outline: "none"
                                         }}
                                    /> */}
-
-                                    {/* <OtpInput
+{/* 
+                                    <OtpInput
                                         value={code}
                                         onChange={handleChange}
                                         numInputs={4}

@@ -12,8 +12,8 @@ const Sidebar = () => {
     const [mobileSlider, setMobileSlider] = useState(false);
     const [cms, setCMS] = useState(false);
     const [application, setApplication] = useState(false);
-
     const [showMenu, setShowMenu] = useState(false);
+    const [manageMerchant, setManageMerchant] =useState(false)
 
     function toggleMenu() {
         setShowMenu(!showMenu);
@@ -21,7 +21,9 @@ const Sidebar = () => {
     function toggleManageStores() {
         setManageStores(!managestores);
     }
-
+    function toggleManageMerchant() {
+        setManageMerchant(!manageMerchant);
+    }
     function toggleOffers() {
         setOffers(!offers);
     }
@@ -58,6 +60,20 @@ const Sidebar = () => {
             {/*sidebar start*/}
             <div className="sidebar">
                 <Link to="/dashboard"><i class="fa fa-line-chart"></i><span>&nbsp;&nbsp;Dashboard</span></Link>
+                <a onClick={toggleManageMerchant}><i className="fa fa-archive" aria-hidden="true" />
+                    <span>&nbsp;&nbsp;Merchant</span>
+                    <i className={`arrow-icon fa fa-angle-left ${manageMerchant ? 'rotate' : ''}`} />
+                </a>
+                {manageMerchant && (
+                    <div className="sidebar-dropdown">
+                        <ul>
+                            <li><Link to='/all-Merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Merchant</span></Link></li>
+                            <li><Link to='/my-Merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Merchant</span></Link></li>
+                            <li><Link to='/Merchant-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new Merchant</span></Link></li>
+                            <li><Link to='/checkoutfieldstore' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Check-Out-Fields</span></Link></li>
+                        </ul>
+                    </div>
+                )}
                 <a onClick={toggleManageStores}><i className="fa fa-archive" aria-hidden="true" />
                     <span>&nbsp;&nbsp;Manage Stores</span>
                     <i className={`arrow-icon fa fa-angle-left ${managestores ? 'rotate' : ''}`} />
@@ -174,7 +190,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-                <a onClick={toggleApplication}><i className="fa fa-cog" aria-hidden="true" />
+                  <a onClick={toggleApplication}><i className="fa fa-cog" aria-hidden="true" />
                     <span>&nbsp;&nbsp;Application</span>
                     <i className={`arrow-icon fa fa-angle-left ${application ? 'rotate' : ''}`} />
                 </a>
@@ -182,13 +198,18 @@ const Sidebar = () => {
                     <div className="sidebar-dropdown">
                         <ul>
                             <li><Link to='/global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></Link></li>
+                            <li><Link to='/apiconfig' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API config</span></Link></li>
                             <li><Link to='/currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></Link></li>
-                            <li><Link to='/' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
+                            <li><Link to='/deeplinking' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deeplinking</span></Link></li>
+                            <li><Link to='/cronjob' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></Link></li>
+                            <li><Link to='/usersetting' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
                             <li><Link to='/subscription' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></Link></li>
-                            <li><Link to='/google-map-api' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
+                            <li><Link to='/googlemapsapi' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
                             <li><Link to='/mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></Link></li>
+                            <li><Link to='/checkoutfield' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>CheckOut Fields</span></Link></li>
                             <li><Link to='/categories' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></Link></li>
                             <li><Link to='/language' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></Link></li>
+                            <li><Link to='/modulesmanager' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Modules Manager</span></Link></li>
                             <li><Link to='/template' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Template</span></Link></li>
 
                         </ul>

@@ -97,6 +97,17 @@ function Dashboard() {
                                     </div>
                                 </div>
                                 <div className='col-lg-4 col-sm-6'>
+                                    <div className='dash-box' style={{ color: '#dd4b39' }}>
+                                        <div className='inner'>
+                                            <h3>362</h3>
+                                            <p>Merchant</p>
+                                        </div>
+                                        <div className='icon'>
+                                        <i className="mdi mdi-storefront-outline" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#009dff' }}>
                                         <div className='inner'>
                                             <h3>19</h3>
