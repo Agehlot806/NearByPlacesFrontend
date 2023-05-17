@@ -8,7 +8,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import toast, { Toaster } from "react-hot-toast"
 import axios from 'axios';
 import fileDownload from 'js-file-download';
-
+import dateFormat from 'dateformat';
 
 function Alloffers() {
     const { _id } = useParams()
@@ -223,7 +223,10 @@ function Alloffers() {
                                                                     <i className="mdi mdi-history" />UnPublished</Link>}
                                                                   </td>
                                                                 <td><span className='Disabled-btn'>{items.PricingOfferValue}</span></td>
-                                                                <td>-----</td>
+                                                                <td>
+
+                                                                {dateFormat(items.datebegin, "dd-mm-yyyy")} To {dateFormat(items.dateend, "dd-mm-yyyy")}
+                                                                </td>
                                                                 <td >{items.coupon_code}</td>
                                                                 <td>{items.description}</td>
                                                                 <td className='action-btn'>

@@ -66,8 +66,8 @@ import Resetpassword from './components/reset-password';
 import Map from "./components/Map/Index"
 import "./assets/css/responsive.css";
 import "./assets/css/style.css"
-// import Booktable from './components/Manage Stores/book-table';
-// import Demouser from './components/Manage Stores/Demouser';
+import Booktable from './components/Merchant/book-table';
+import Demouser from './components/Merchant/Demouser';
 
 // Merchant
 
@@ -163,6 +163,9 @@ const RouterComponent = () => {
           <Route exact path='/manage-pages-add' component={Managepageadd} />
           <Route exact path='/manage-pages-edit' component={Managepageedit} />
           <Route exact path='/manage-menu' component={Managemenu} />
+          <Route exact path='/demouser' component={Demouser} />
+
+          <Route exact path='/book-table/:_id' component={Booktable} />
           {/* 
 
           <Route exact path='/global-config' component={Globalconfig} />
@@ -178,8 +181,8 @@ const RouterComponent = () => {
           <Route exact path='/subscription-edit' component={Subscriptionedit} />
           <Route exact path='/google-map-api' component={Googlemapapi} />
           <Route exact path='/template' component={Template} />
-          <Route exact path='/book-table/:_id' component={Booktable} />
-          <Route exact path='/demouser' component={Demouser} /> */}
+          
+           */}
 
           <Route exact path='/global-config' component={Globalconfig} />
           <Route exact path='/apiconfig' component={Configapi} />

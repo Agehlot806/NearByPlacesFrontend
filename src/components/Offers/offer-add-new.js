@@ -5,7 +5,7 @@ import Footer from "../../directives/footer";
 import { Button, Input } from "reactstrap";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
-
+import dateFormat from 'dateformat';
 
 
 function Offeraddnew() {
@@ -169,6 +169,7 @@ const handleMeaage = ()=>{
                           <label>Images</label>
                           <Input type="file" onChange={onFileChange}
                             className="form-control" placeholder="Enter..." />
+                            
                         </div>
 
                       </div>
@@ -271,16 +272,16 @@ const handleMeaage = ()=>{
                                       </div>
                                     </div>
                                   </div>
-                                  <div className='user-head'>
-                                    <Button type="submit"><i className="fa fa-check-square-o" /> Create</Button>
-                                  </div>
+                                  
                                 </div>
                               </div >
                             }
                           </div>
                         </div>
                       </div>
-
+                      <div className='user-head'>
+                      <Button type="submit"><i className="fa fa-check-square-o" /> Create</Button>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -171,9 +171,9 @@ function AllMerchant() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a href='store-add-new' className="ml-2 btn btn-flat">
+                                                                    <Link to='/merchant-add-new' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
-                                                                    </a>
+                                                                    </Link>
                                                                     <span className="ml-2 btn btn-flat"><i onClick={(e) => AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
                                                                     <a className="ml-2 btn btn-flat">
                                                                         <i data-toggle="modal" data-target="#exampleModal" class="fa fa-filter" aria-hidden="true"></i>
