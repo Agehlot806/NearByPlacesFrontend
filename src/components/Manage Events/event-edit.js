@@ -40,32 +40,76 @@ function Eventedit() {
             })
     }
 
+    //         method: 'PUT',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         // withCredentials :true
 
-    const UpdateOfferDetail = (e) => {
+
+    //     };
+    //     fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, requestOptions,{
+    //         credentials: 'include',
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log(data);
+    //             // setEventName(data.events.eventname);
+    //             // setDescription(data.events.description)
+    //             // setFile(data.events.EventPhoto.url)
+    //             // setPhonenumber(data.events.phonenumber)
+    //             // setAddress(data.events.address)
+    //             // setId(data.events._id);
+    //             // console.log(data.events._id);
+    //         })
+    // }, []);
+
+    const UpdateEventDetail = (e) => {
         e.preventDefault();
-        const data = {
-            method: "PUT",
-            credentials: 'include',
-            "eventname": eventname,
-            "description": description,
-            "file": file,
-            "phonenumber": phonenumber,
-            "address": address,
-        }
-        const config = {
+        const formData = new FormData();
+        formData.append('eventname', eventname);
+        formData.append('description', description);
+        formData.append('file', file);
+        formData.append('datebegin', datebegin);
+        formData.append('dateend', dateend);
+        axios
+            .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+                withCredentials: true,
+            })
+            .then((response) => {
+                console.log(response);
+                toast.success(" Events Updated Successfully")
+                // history.push("/all-events");
+            })
+            .catch((error) => {
+                console.log(error.response.data);
 
-            headers: { 'content-type': 'application/x-www-form-urlencoded' }
-        };
-        return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, {
-            config,
+            });
+    };
+    // const UpdateOfferDetail = (e) => {
+    //     e.preventDefault();
+    //     const data = {
+    //         method: "PUT",
+    //         credentials: 'include',
+    //         "eventname": eventname,
+    //         "description": description,
+    //         "file": file,
+    //         "phonenumber": phonenumber,
+    //         "address": address,
+    //     }
+    //     const config = {
 
-        }).then(
-            response => response.data,
-            // toast.success(" Events Updated Successfully"),
-            history.push("/all-events")
+    //         headers: { 'content-type': 'application/x-www-form-urlencoded' }
+    //     };
+    //     return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, {
+    //         config,
 
-        );
-    }
+    //     }).then(
+    //         response => response.data,
+    //         // toast.success(" Events Updated Successfully"),
+    //         history.push("/all-events")
+
+    //     );
+    // }
 
 
     const ImageUpload = (e) => {
@@ -232,7 +276,7 @@ function Eventedit() {
                                                 </div>
                                             </div>
                                             <div className='user-head'>
-                                                <Button type="submit" onClick={UpdateOfferDetail}><i className="fa fa-check-square-o" /> Save Changes</Button>
+                                                <Button type="submit" onClick={UpdateEventDetail}><i className="fa fa-check-square-o" /> Save Changes</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -247,4 +291,4 @@ function Eventedit() {
     )
 }
 
-export default Eventedit;
+export default Eventedit
