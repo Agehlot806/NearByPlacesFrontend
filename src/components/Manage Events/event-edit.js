@@ -4,7 +4,7 @@ import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams ,useHistory} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from 'axios';
 import { Button, Input } from "reactstrap";
 import toast, { Toaster } from 'react-hot-toast'
@@ -24,7 +24,7 @@ function Eventedit() {
     const [fileData, setFileData] = useState();
     const [imageTrue, setImageTrue] = useState("false");
     const [message, setMessage] = useState("")
-   let history = useHistory();
+    let history = useHistory();
 
     useEffect(() => {
         allStore();
@@ -40,54 +40,12 @@ function Eventedit() {
             })
     }
 
-    useEffect(() => {
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
 
-        };
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                setEventName(data.events.eventname);
-                setDescription(data.events.description)
-                setFile(data.events.EventPhoto.url)
-                setPhonenumber(data.events.phonenumber)
-                setAddress(data.events.address)
-                setId(data.events._id);
-                // console.log(data.events._id);
-            })
-    }, []);
-
-    // const UpdateOfferDetailss = (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('eventname', eventname);
-    //     formData.append('description', description);
-    //     formData.append('file', file);
-    //     // formData.append('PricingOfferValue', selectValue);
-    //     // formData.append('coupon_type', coupon_type);
-    //     // formData.append('value', coupon_value);
-    //     // formData.append('coupon_code', coupon_code);
-    //     formData.append('datebegin', datebegin);
-    //     formData.append('dateend', dateend);
-    //     axios
-    //         .put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, formData, {
-    //             headers: { "Content-Type": "multipart/form-data" },
-    //         })
-    //         .then((response) => {
-    //             console.log(response);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.response.data);
-
-    //         });
-    // };
     const UpdateOfferDetail = (e) => {
         e.preventDefault();
         const data = {
-            method:"PUT",
-      credentials:'include',
+            method: "PUT",
+            credentials: 'include',
             "eventname": eventname,
             "description": description,
             "file": file,
@@ -95,16 +53,16 @@ function Eventedit() {
             "address": address,
         }
         const config = {
-      
-      headers: { 'content-type': 'application/x-www-form-urlencoded'}
+
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }
         };
         return axios.put(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, data, {
-             config,
+            config,
 
-     }).then(
+        }).then(
             response => response.data,
             // toast.success(" Events Updated Successfully"),
-            history.push ("/all-events")
+            history.push("/all-events")
 
         );
     }
@@ -135,6 +93,40 @@ function Eventedit() {
         setFileData(URL.createObjectURL(event.target.files[0]));
 
     }
+
+
+    const EditEvent = async () => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/',
+        };
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/events/${_id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((data) => {
+                console.log("ResponseResponseResponseResponse", data.events.EventPhoto.url)
+                setEventName(data.events.eventname);
+                setDescription(data.events.description)
+                setFile(data.events.EventPhoto.url)
+                setPhonenumber(data.events.phonenumber)
+                setAddress(data.events.address)
+                setId(data.events._id);
+                console.log(data.events._id);
+
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
+
+    useEffect(() => {
+        EditEvent();
+    }, [])
+
     return (
         <>
             <Toaster />
@@ -153,7 +145,7 @@ function Eventedit() {
                                             </div>
                                             <div className="product-card-body">
                                                 <div className="form-group image-size">
-                                                    <input type="file" className="form-control" placeholder="Enter..." onChange={onFileChange}/>
+                                                    <input type="file" className="form-control" placeholder="Enter..." onChange={onFileChange} />
                                                     {/* <img src={file} alt="file"></img> */}
                                                     {imageTrue ?
                                                         <img src={file} alt="file"></img> : <img src={fileData} alt="file"></img>}
@@ -173,7 +165,7 @@ function Eventedit() {
                                                 <div className="form-group">
                                                     <label>Event name :</label>
                                                     <Input type="text" className="form-control"
-                                                        value={eventname} onChange={(e) => setEventName(e.target.value)}
+                                                        // value={eventname} onChange={(e) => setEventName(e.target.value)}
                                                         placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
@@ -255,4 +247,4 @@ function Eventedit() {
     )
 }
 
-export default Eventedit
+export default Eventedit;

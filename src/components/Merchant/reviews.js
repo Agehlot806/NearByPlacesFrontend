@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../../directives/navbar'
-import Sidebar from '../../directives/sidebar'
-import Footer from '../../directives/footer'
+import React, { useEffect, useState } from "react";
+import Navbar from "../../directives/navbar";
+import Sidebar from "../../directives/sidebar";
+import Footer from "../../directives/footer";
+import { useParams } from "react-router";
+
+
 function Reviews() {
-    const [getcountry1, setCountry1] = useState([]);
-    const [getCountryid1, setCountryid1] = useState("");
-    const [getrowdata1, setGetrowdata1] = useState([]);
-    const [imgdata, setImgdata] = useState([])
+    const { _id } = useParams();
+    const [store, setStore] = useState([]);
+    const [storePhoto, setStorePhoto] = useState([]);
+    const [ratings, setRatings] = useState("");
+    const [category, setCategories] = useState("")
+
     useEffect(() => {
-        const getcountrydata1 = async () => {
-            const reqData = await fetch("https://nearbyplaceadminpanner.onrender.com/api/v1/allstores");
-            const resData = await reqData.json();
-            setCountry1(await resData.stores);
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+
         };
-        getcountrydata1();
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setStore(data.store.name);
+                setCategories(data.store.category)
+                setStorePhoto(data.store.storephoto.url);
+                setRatings(data.store.ratings);
+
+            })
     }, []);
-    console.log("ahsfsjfhusjdcbsdhgcb", getcountry1);
-    const handlecountry1 = (event) => {
-        const getCountryid1 = event.target.value;
-        setCountryid1(getCountryid1);
-    };
-    useEffect(() => {
-        const getCountryrowdata1 = async () => {
-            const reqCountryrowdata1 = await fetch(
-                `https://nearbyplaceadminpanner.onrender.com/api/v1/allstores/${getCountryid1}`
-            );
-            const reqcountryrowdata1 = await reqCountryrowdata1.json();
-            // console.log("hiiii",reqcountryrowdata1.stores)
-            setGetrowdata1(await reqcountryrowdata1.stores);
-            setImgdata(await reqcountryrowdata1.stores[0].storephoto)
-        };
-        getCountryrowdata1();
-    }, [getCountryid1]);
-    console.log("NNNNNNNN>>>>>?", imgdata);
 
-
-return (
+    console.log(store);
+    return (
         <>
             <Navbar />
             <Sidebar />
@@ -53,32 +48,32 @@ return (
                                             <form>
                                                 <div className="form-row">
                                                     <div className="form-group col-md-5">
-                                                        <label>Checkout Fields</label>
+                                                        <label>Select Store</label>
                                                         <select
                                                             name="country"
                                                             className="form-control p-2"
-                                                            onInput={(e) => handlecountry1(e)}
-                                                        // value={task}
+                                                            // onInput={(e) => handlecountry1(e)}
+                                                            value={store}
                                                         >
-                                                            <option value="">choose...</option>
-                                                            {getcountry1.map((resCountry, index) => (
+                                                            <option value="">{store}</option>
+                                                            {/* {getcountry1.map((resCountry, index) => (
                                                                 // console.log("gurjarbawa",resCountry)
                                                                 <option key={index} value={resCountry._id}>
                                                                     {resCountry.name}
                                                                 </option>
-                                                            ))}
+                                                            ))} */}
                                                         </select>
                                                         <br />
                                                         <table cellPadding={10}>
                                                             <tbody>
                                                                 <tr>
                                                                     <td style={{ paddingRight: '10px' }}>
-                                                                        <img src='' width={80} height={80} />
+                                                                        <img src={storePhoto} width={80} height={80} />
                                                                     </td>
                                                                     <td>
-                                                                        <strong className="font-size18px">{getrowdata1.name}</strong><br />
-                                                                        <span>{getrowdata1.category} </span><br />
-                                                                        <span style={{ fontSize: '12px' }}><i className="fa fa-star text-yellow" />&nbsp;&nbsp;{getrowdata1.ratings}</span>
+                                                                        <strong className="font-size18px">{store}</strong><br />
+                                                                        <span>{category} </span><br />
+                                                                        <span style={{ fontSize: '12px' }}><i className="fa fa-star text-yellow" />&nbsp;&nbsp;{ratings}</span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

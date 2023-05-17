@@ -117,7 +117,7 @@ const RouterComponent = () => {
           <Route exact path='/merchant-add-new' component={NewMerchant} />
           <Route exact path='/all-store-edit/:_id' component={EditMerchant} />
           <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
-          <Route exact path='/review' component={Reviews} />
+          <Route exact path='/review/:_id' component={Reviews} />
           <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
           <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
           {/* <Route exact path='/all-Merchant' component={Allstores} />

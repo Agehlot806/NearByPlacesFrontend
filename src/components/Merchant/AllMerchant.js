@@ -223,7 +223,8 @@ function AllMerchant() {
                                                                 </td>
                                                                 <td>{items.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
                                                                 <td>{items.ratings}</td>
-                                                                <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
+                                                                {/* <td className='click-color'><a href="review">{items.numOfReviews}</a></td> */}
+                                                                <td className='click-color'><Link to={"/review/" + items._id}>Reviews</Link></td>
                                                                 <td className='action-btn'>
                                                                     <span>{items.status === true ? <i className='text-green fa fa-check' onClick={(e) => updateStatusDetail(items._id, "false")} /> : <i className='fa fa-times' onClick={(e) => updateStatusDetail(items._id, "true")} />}
                                                                     </span>
