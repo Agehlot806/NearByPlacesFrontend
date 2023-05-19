@@ -13,7 +13,7 @@ const Sidebar = () => {
     const [cms, setCMS] = useState(false);
     const [application, setApplication] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-    const [manageMerchant, setManageMerchant] =useState(false)
+    const [manageMerchant, setManageMerchant] = useState(false)
 
     function toggleMenu() {
         setShowMenu(!showMenu);
@@ -74,7 +74,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-              
+
                 <a onClick={toggleOffers}><i className="mdi mdi-sale " />
                     <span>&nbsp;&nbsp;Offers</span>
                     <i className={`arrow-icon fa fa-angle-left ${offers ? 'rotate' : ''}`} />
@@ -178,7 +178,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-                  <a onClick={toggleApplication}><i className="fa fa-cog" aria-hidden="true" />
+                <a onClick={toggleApplication}><i className="fa fa-cog" aria-hidden="true" />
                     <span>&nbsp;&nbsp;Application</span>
                     <i className={`arrow-icon fa fa-angle-left ${application ? 'rotate' : ''}`} />
                 </a>
@@ -332,8 +332,8 @@ const Sidebar = () => {
                                     </ul>
                                 </div>
                             )}
-                           <li><Link to="/media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></Link></li> 
-                           <li><Link to="/payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></Link></li>
+                            <li><Link to="/media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></Link></li>
+                            <li><Link to="/payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></Link></li>
                             <li><a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                                 <span>&nbsp; CMS & Pages</span>
                                 <i className={`arrow-icon fa fa-angle-left ${cms ? 'rotate' : ''}`} />

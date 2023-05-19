@@ -14,17 +14,17 @@ function Offeraddnew() {
   const [description, setDescription] = useState('');
   const [fileData, setFileData] = useState([]);
   const [selectValue, setSelectValue] = useState([]);
-  const [coupon_value, SetCoupon_value] = useState("");
+  const [coupon_value, SetCoupon_value] = useState(0);
   const [coupon_code, SetCoupon_code] = useState("");
-  const [coupon_type, setCoupon_type] = useState("")
+  const [coupon_type, setCoupon_type] = useState("disabled")
   const [isChecked, setIsChecked] = useState(false);
   const [datebegin, setDatebegin] = useState("")
   const [dateend, setDateEnd] = useState("")
   // const [couponConfig, setCouponCode] = useState([{coupon_type:""},{value:""},{coupon_code:""}])
   const [message, setMessage] = useState("")
   const [user, setUser] = useState([]);
-
-
+  const [price ,setPrice] = useState();
+ const [percent,setpercent] =useState();
 
 
   const onFileChange = (event) => {
@@ -34,9 +34,11 @@ function Offeraddnew() {
   const onChangeHandle = (event) => {
     setSelectValue(event.target.value);
   }
+
   const onChangeHandleCoupon = (e) => {
     setCoupon_type(e.target.value);
   };
+  console.log(coupon_type);
 
   const onChangeHandleCouponCode = (event) => {
     SetCoupon_code(event.target.value);
@@ -188,18 +190,31 @@ const handleMeaage = ()=>{
                                 className="form-control"
                                 value={selectValue}>
                                 <option selected>-- Select Type</option>
-                                <option value="100">100</option>
-                                <option value="1100">1100</option>
-                                <option value="2500">2500</option>
-                                <option value="3000">3000</option>
-                                <option value="5000">5000</option>
-                                <option value="12000">12000</option>
-                                <option value="5000">50000</option>
-                                <option value="100000">1,00000</option>
+                                <option value="price">Price</option>
+                                <option value="percent">Percent</option>
                               </select>
-                            </div>
+                             </div>
+                            {selectValue ==="price" ?
+                             <div className="form-group">
+                             <label>Offer price USD, $</label>
+                             <Input type="number"
+                             value={price} onChange={(e)=>setPrice(e.target
+                             .value)} placeholder="Enter price of your offer"
+                             />
+                             </div>:""
+                            }
+                             {selectValue ==="percent" ?
+                             <div className="form-group">
+                             <label>Offer percent</label>
+                             <Input type="number"
+                             value={percent} onChange={(e)=>setpercent(e.target
+                             .value)} placeholder="Example 30%"
+                             />
+                             </div>:""
+                            }
+                           
                           </div>
-                        </div>
+                         </div>
                       </div>
 
                       <div className='col-sm-12'>
@@ -211,28 +226,25 @@ const handleMeaage = ()=>{
                             <div className="form-row">
                               <div className="form-group col-md-6">
                                 <label>Coupon type</label>
-                                <Input type="text" className="form-control" placeholder='Enter...'
-                                  value={coupon_type}
-                                  onChange={(e) => onChangeHandleCoupon(e)} />
-                                {/* <select id="inputState"
-                                  onChange={(e) => onChangeHandleCoupon(e)}
-                                  className="form-control"
-                                  value={coupon_type}>
-                                  <option value="enabled">enabled</option>
-                                  <option value="disabled">disabled</option>
-                                </select> */}
-                              </div>
+                                <select id="inputState" onChange={onChangeHandleCoupon}
+                                className="form-control"
+                                value={coupon_type}>
+                                <option value="disabled" selected>disabled</option>
+                                <option value="limited">limited</option>
+                                <option value="unlimited">Unlimited</option>
+                              </select>
+                               </div>
                               <div className="form-group col-md-6">
                                 <label>Value</label>
                                 <Input type="number" className="form-control" placeholder='Enter...'
-                                  value={coupon_value}
-                                  onChange={(e) => onChangeHandleCouponValue(e)} />
+                                  value={ coupon_type==="unlimited" ? -1: coupon_value}
+                                  onChange={(e) => onChangeHandleCouponValue(e)}  disabled={coupon_type==="limited" ? false:true}/>
                               </div>
                               <div className="form-group col-md-12">
                                 <label>Coupon code</label>
                                 <Input type="text" className="form-control" placeholder='Enter...'
                                   value={coupon_code}
-                                  onChange={(e) => onChangeHandleCouponCode(e)}
+                                  onChange={(e) => onChangeHandleCouponCode(e)} disabled={coupon_type==="disabled"?true:false}
                                 />
                               </div>
                             </div>

@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import React, { useState, useEffect } from 'react';
+import Map from "./Map";
 
-const containerStyle = {
-  width: '400px',
-  height: '400px'
+const App = () => {
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    // Use a method to retrieve the user's location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ lat: latitude, lng: longitude });
+      },
+      (error) => {
+        console.error('Error getting user location:', error);
+      }
+    );
+  }, []);
+
+  return (
+    <div>
+      {location ? <Map location={location} /> : 'Loading map...'}
+    </div>
+  );
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
-
-export default class Index extends Component {
-  render() {
-    return (
-      <LoadScript
-        googleMapsApiKey="AIzaSyDThU_M4s9Ft2bVG-Jl8XWS-wRFOkOEJ-U"
-      >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
-        >
-          { /* Child components, such as markers, info windows, etc. */ }
-          <></>
-        </GoogleMap>
-      </LoadScript>
-    )
-  }
-}
+export default App;
