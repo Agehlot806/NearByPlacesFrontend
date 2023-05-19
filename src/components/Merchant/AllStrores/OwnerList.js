@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../directives/navbar'
-import Sidebar from '../../directives/sidebar'
-import Footer from '../../directives/footer'
+import Navbar from '../../../directives/navbar'
+import Sidebar from '../../../directives/sidebar'
+import Footer from '../../../directives/footer'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
 import { Link, useParams } from 'react-router-dom'
 import Pagination from 'react-js-pagination';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
-import { Input } from "reactstrap";
 
 function AllMerchant() {
     const [activePage, setActivePage] = useState(1);
@@ -19,17 +18,10 @@ function AllMerchant() {
     const [modalstore, setModalStore] = useState(false);
     const [Id, setId] = useState("");
     const [status, setStatus] = useState(true);
-    const [filterData, setFilterData] = useState(false);
-    const [query, setQuery] = useState("");
-    const [ratingSearch, setRatingSearch] = useState("");
-    const [ownerSerach, setOwnerSerach] = useState("");
-
-
-
-
+ const {_id} = useParams();
     useEffect(() => {
         allStore()
-    }, [])
+  }, [])
 
     const allStore = (page) => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores?page=${page}`)
@@ -79,6 +71,12 @@ function AllMerchant() {
         })
             .then((resp) => {
                 console.log("4444444444444", resp.message)
+                // toast(resp.message);
+                // if (resp.message == 'Please enter all field') {
+                //     toast.error("Please enter all field")
+                // // }
+
+                // alert("hhhhh")
                 toast.success("Store Deleted Successfully")
                 setModalStore(false)
                 allStore()
@@ -143,43 +141,8 @@ function AllMerchant() {
                 console.error("ERROR FOUND---->>>>" + error);
             })
     }
-    const filterDataList = () => {
-        setFilterData(true);
-    }
 
 
-
-    const handleChange = (e) => {
-        if (e.target.value == '') {
-            setStoreData(searchstoresave)
-        }
-        else {
-            const filterres = searchstoresave.filter(item => item.category.toLowerCase().includes(e.target.value.toLowerCase()))
-            setStoreData(filterres)
-        }
-        setQuery(e.target.value)
-    }
-
-    const handleChangeRating = (e) => {
-        if (e.target.value == '') {
-            setStoreData(searchstoresave)
-        }
-        else {
-            const filterres = searchstoresave.filter(item => item.ratings.toLowerCase().includes(e.target.value.toLowerCase()))
-            setStoreData(filterres)
-        }
-        setRatingSearch(e.target.value)
-    }
-    const handleChangeOwner = (e) => {
-        if (e.target.value == '') {
-            setStoreData(searchstoresave)
-        }
-        else {
-            const filterres = searchstoresave.filter(item => item.storeownername.toLowerCase().includes(e.target.value.toLowerCase()))
-            setStoreData(filterres)
-        }
-        setOwnerSerach(e.target.value)
-    }
     return (
         <>
             <Toaster />
@@ -205,7 +168,7 @@ function AllMerchant() {
                                                                     value={searchstore}
                                                                     onChange={(e) => inputSearchStore(e)} />
                                                                 <span className="input-group-btn">
-                                                                    <a className="btn btn-flat filterbysearch" >
+                                                                    <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
                                                                     <Link to='/merchant-add-new' className="ml-2 btn btn-flat">
@@ -213,39 +176,15 @@ function AllMerchant() {
                                                                     </Link>
                                                                     <span className="ml-2 btn btn-flat"><i onClick={(e) => AllstoresDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
                                                                     <a className="ml-2 btn btn-flat">
-                                                                        <i class="fa fa-filter" aria-hidden="true" onClick={filterDataList}></i>
+                                                                        <i data-toggle="modal" data-target="#exampleModal" class="fa fa-filter" aria-hidden="true"></i>
                                                                     </a>
                                                                 </span>
                                                             </div>
                                                         </form>
                                                     </div>
-                                                    {filterData ?
-                                                        <div className="form-row">
-                                                            <div className="form-group col-md-3">
-                                                                <label>Category </label>
-                                                                <Input onChange={(e) => handleChange(e)} value={query} type="search"
-                                                                    placeholder="Category"
-                                                                />
-                                                               
-                                                            </div>
-
-                                                            <div className="form-group col-md-3">
-                                                                <label> Rating</label>
-                                                                <Input onChange={(e) => handleChangeRating(e)} value={ratingSearch} type="search"
-                                                                    placeholder="Rating"
-                                                                />
-                                                            </div>
-                                                            <div className="form-group col-md-3">
-                                                                <label>Owner</label>
-                                                                <Input onChange={(e) => handleChangeOwner(e)} value={ownerSerach} type="search"
-                                                                    placeholder="Owner"
-                                                                />
-                                                            </div>
-                                                        </div> : ""}
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className="product-list-box-body main-table">
                                             <div className="table-responsive">
                                                 <table className="table table-hover table-bordered">
@@ -275,7 +214,7 @@ function AllMerchant() {
                                                                     {/* <span className="text-green"><i className='mdi mdi-attachment' /> Linked checkout (Spa_fields)</span> */}
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <Link to={"/ownernamelist/" + items._id}><u>{items.storeownername}</u></Link>
+                                                                    <Link to='/ownerNamelist'><u>{items.storeownername}</u></Link>
                                                                     {/* <Link to=''><i className='mdi mdi-open-in-new' /></Link> */}
                                                                     <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
@@ -320,7 +259,6 @@ function AllMerchant() {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

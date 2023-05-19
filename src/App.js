@@ -63,7 +63,7 @@ import Subscriptionedit from './components/Application/Subscription/subscription
 import Googlemapapi from './components/Application/Google Maps Api/google-map-api';
 import Template from './components/Application/Template/template';
 import Resetpassword from './components/reset-password';
-import Map from "./components/Map/Index"
+
 import "./assets/css/responsive.css";
 import "./assets/css/style.css"
 import Booktable from './components/Merchant/book-table';
@@ -93,8 +93,8 @@ import CheckOutadd from './components/Application/Checkout Fields/checkout-add';
 import CheckOutedit from './components/Application/Checkout Fields/checkout-edit';
 import Modulesmanager from './components/Application/Modules Manager/modulesmanager';
 import Modulesadd from './components/Application/Modules Manager/modulesadd';
-
-
+import Map from './components/Map';
+import OwnerList from "./components/Merchant/AllStrores/OwnerList";
 const RouterComponent = () => {
   return (
     <>
@@ -110,7 +110,7 @@ const RouterComponent = () => {
           <Route exact path='/dashboard' component={Dashboard} />
 
           {/* merchant */}
-
+          
           <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
           <Route exact path='/all-merchant' component={AllMerchant} />
           <Route exact path='/my-merchant' component={MyMerchant} />
@@ -120,12 +120,13 @@ const RouterComponent = () => {
           <Route exact path='/review/:_id' component={Reviews} />
           <Route exact path='/checkoutfieldstore' component={checkoutfieldstore} />
           <Route exact path='/checkoutstoreedit' component={Checkoutedit} />
+          <Route exact path='/ownernamelist/:_id' component={OwnerList} />
           {/* <Route exact path='/all-Merchant' component={Allstores} />
           <Route exact path='/all-store-edit/:_id' component={Allstoresedit} />
           <Route exact path='/my-Merchant' component={Mystores} />
-          <Route exact path='/Merchant-add-new' component={Storeaddnew} /> */}
+          // <Route exact path='/Merchant-add-new' component={Storeaddnew} /> */}
 
-        
+      
           <Route exact path='/all-offers' component={Alloffers} />
           <Route exact path='/my-offer' component={Myoffers} />
           <Route exact path='/offer-add-new' component={Offeraddnew} />

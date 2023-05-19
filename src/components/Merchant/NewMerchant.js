@@ -5,6 +5,7 @@ import Footer from '../../directives/footer'
 import axios from 'axios';
 import { Button, Input } from 'reactstrap';
 import toast, { Toaster } from 'react-hot-toast'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const countries = {
     France: ["Paris", "Marseille", "Lille", "Lyon"],
@@ -14,7 +15,7 @@ function Storeaddnew() {
     const [isChecked, setIsChecked] = useState(false);
     const [countryData, setCountryData] = useState(["Usa"]);
     const [selectedCountry, setSelectedCountry] = useState("");
-   
+   const  [ownerName, setOwnerName] = useState("");
     const [name, setName] = useState("");
     const [website, setSebsite] = useState("");
     const [latitude, setLatitude] = useState("");
@@ -29,6 +30,7 @@ function Storeaddnew() {
     const [fileData, setFileData] = useState([]);
     const [storephotofiles, setStorephotofiles] = useState([]);
     // const [storegalleryfiles, setStoregalleryfiles] = useState([]);
+    const [storeData, setStoreData] = useState([])
 
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked);
@@ -52,6 +54,7 @@ function Storeaddnew() {
         e.preventDefault();
         var formData = new FormData();
         formData.append('name', name);
+        formData.append('storeownername', ownerName);
         formData.append('category', selectedCountry);
         formData.append('address', address);
         formData.append('website', website);
@@ -80,6 +83,7 @@ function Storeaddnew() {
 
 
     useEffect(() => {
+        allStore();
         Object.keys(countries).forEach(country => {
             checkInsertInArray(country);
         });
@@ -95,6 +99,21 @@ function Storeaddnew() {
         setImageTrue(true);
         setFileData(event.target.files[0]);
         setFile(URL.createObjectURL(event.target.files[0]));
+    }
+
+
+    //////tarun table///
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                console.log("tsaryhxdashgxfahsxasx", responsive.stores);
+                setStoreData(responsive.stores)
+                // setStorecount(responsive.storeCount)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
     }
     return (
         <>
@@ -128,11 +147,21 @@ function Storeaddnew() {
                                                                 value={name} onChange={(e) => setName(e.target.value)}
                                                             />
                                                         </div>
+                                                        
                                                         <div className="form-group col-md-6">
                                                             <label>Phone Number :</label>
                                                             <Input type="number" className="form-control"
                                                                 placeholder="Enter..."
                                                                 value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} />
+                                                        </div>
+                                                    </div>
+                                                    <div className="form-row">
+                                                        <div className="form-group col-md-6">
+                                                            <label>Owner Name :</label>
+                                                            <Input type="text" className="form-control"
+                                                                placeholder="Enter..."
+                                                                value={ownerName} onChange={(e) => setOwnerName(e.target.value)}
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div className="form-row">
@@ -227,551 +256,39 @@ function Storeaddnew() {
                                                 </form>
                                             </div>
                                             <div className="tab-pane fade" id="More" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                                <div className="form-group">
-                                                    <h1>  Opening time</h1>
-                                                    <input type="checkbox" checked={isChecked}
-                                                        onChange={handleCheckboxChange} className='all-create-checkbox' />
-                                                    <label> <h4>Enable </h4> </label>
-                                                </div>
-                                                {isChecked &&
-                                                    <div className='responsive-data'>
-
-
-                                                        <div className='row'>
-                                                            <h4>Monday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Tuesday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Wednesday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Thursday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Friday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Saturday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='row'>
-                                                            <h4>Sunday</h4>
-                                                            <div className='col-lg-6'>
-                                                                <div className="product-list-box-body main-table">
-                                                                    <div className="table-responsive">
-                                                                        <table className="table table-hover table-bordered">
-
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td><input type='checkbox' /></td>
-                                                                                    <td>    <select id="inputState" className="form-control">
-                                                                                        <option selected>Opening time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                    <td> <select id="inputState" className="form-control">
-                                                                                        <option selected>closing time</option>
-                                                                                        <option>00:00</option>
-                                                                                        <option>00:30</option>
-                                                                                        <option>1:00</option>
-                                                                                        <option>1:30</option>
-                                                                                        <option>2:00</option>
-                                                                                        <option>2:30</option>
-                                                                                        <option>3:00</option>
-                                                                                        <option>3:30</option>
-                                                                                        <option>4:00</option>
-                                                                                        <option>4:30</option>
-                                                                                        <option>5:00</option>
-                                                                                        <option>5:30</option>
-                                                                                        <option>6:00</option>
-                                                                                        <option>6:30</option>
-                                                                                        <option>7:00</option>
-                                                                                        <option>7:30</option>
-                                                                                        <option>8:00</option>
-                                                                                        <option>8:30</option>
-                                                                                        <option>9:00</option>
-                                                                                        <option>9:30</option>
-                                                                                        <option>10:00</option>
-                                                                                        <option>10:30</option>
-                                                                                        <option>11:00</option>
-                                                                                        <option>11:30</option>
-                                                                                        <option>12:00</option>
-                                                                                    </select> </td>
-                                                                                </tr>
-
-
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                }
+                                            <div className="table-responsive">
+                                                <table className="table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Name</th>
+                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Rating</th>
+                                                            <th scope="col">Reviews</th>
+                                                            <th scope="col">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {storeData.map((items, index) => (
+                                                            <tr key={index}>
+                                                                <td>
+                                                                    <b>{items.name}</b><br />
+                                                                    <i className='mdi mdi-map-marker' /> {items.latitude}<br />
+                                                                </td>
+                                                                <td className='click-color'>
+                                                                    <Link to=''><u>{items.category}</u></Link>
+                                                                </td>
+                                                                <td>{items.ratings}</td>
+                                                                <td className='click-color'><a href="review">{items.numOfReviews}</a></td>
+                                                                <td>
+                                                                <Link to={`/book-table/${items._id}`}><button className='btn btn-danger'>view-table</button> </Link>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                             
+                                               
                                             </div>
                                         </div>
                                     </div>

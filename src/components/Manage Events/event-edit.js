@@ -78,7 +78,7 @@ function Eventedit() {
             .then((response) => {
                 console.log(response);
                 toast.success(" Events Updated Successfully")
-                // history.push("/all-events");
+                // history.push("/all-events");mmit 
             })
             .catch((error) => {
                 console.log(error.response.data);

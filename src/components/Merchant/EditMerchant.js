@@ -25,6 +25,7 @@ function Allstoresedit() {
     const [latitude, setLatitude] = useState("");
     const [storegallery, setStoregallery] = useState("");
     const [imageTrue, setImageTrue] = useState("false");
+    const  [ownerName, setOwnerName] = useState("");
     let history = useHistory ();
 
     useEffect(() => {
@@ -47,6 +48,7 @@ function Allstoresedit() {
                 setReviews(data.store.reviews)
                 setLatitude(data.store.latitude);
                 setLongitude(data.store.longitude);
+                setOwnerName(data.store.storeownername);
                 // setId(data.events._id);
                 // console.log(data.events._id);
                 setImageTrue(true);
@@ -149,6 +151,15 @@ function Allstoresedit() {
                                                             <label>Phone Number :</label>
                                                             <input type="number" className="form-control"
                                                                 value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Enter..." />
+                                                        </div>
+                                                    </div>
+                                                     <div className="form-row">
+                                                        <div className="form-group col-md-6">
+                                                            <label>Owner Name :</label>
+                                                            <Input type="text" className="form-control"
+                                                                placeholder="Enter..."
+                                                                value={ownerName} onChange={(e) => setOwnerName(e.target.value)}
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div className="form-row">
