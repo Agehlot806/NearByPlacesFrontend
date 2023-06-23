@@ -77,7 +77,7 @@ import Checkoutedit from './components/Merchant/checkoutedit';
 import AllMerchant from "./components/Merchant/AllMerchant";
 import NewMerchant from "./components/Merchant/NewMerchant";
 import EditMerchant from "./components/Merchant/EditMerchant";
-import MyMerchant from "./components/Merchant/MyMerchant";
+import MyMerchant from "./components/Merchant/Mymerchant";
 import Reviews from "./components/Merchant/reviews";
 import services from "./components/Merchant/AllStrores/services";
 // Appliaction 
