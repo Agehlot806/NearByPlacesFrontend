@@ -14,6 +14,7 @@ const Sidebar = () => {
     const [application, setApplication] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [manageMerchant, setManageMerchant] = useState(false)
+    const [coustomer, setCoustomer] = useState(false)
 
     function toggleMenu() {
         setShowMenu(!showMenu);
@@ -55,6 +56,9 @@ const Sidebar = () => {
     function toggleApplication() {
         setApplication(!application);
     }
+    function togglecoustomeruser() {
+        setCoustomer(!coustomer);
+    }
     return (
         <>
             {/*sidebar start*/}
@@ -70,7 +74,6 @@ const Sidebar = () => {
                             <li><Link to='/all-merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;All Merchant</span></Link></li>
                             <li><Link to='/my-merchant' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;My Merchant</span></Link></li>
                             <li><Link to='/merchant-add-new' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Add new Merchant</span></Link></li>
-                            <li><Link to='/checkoutfieldstore' ><i className="fa fa-circle" aria-hidden="true" /><span>&nbsp;&nbsp;Check-Out-Fields</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -98,6 +101,20 @@ const Sidebar = () => {
                             <li><Link to='/all-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All events</span></Link></li>
                             <li><Link to='/my-events' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My events</span></Link></li>
                             <li><Link to='/event-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add New</span></Link></li>
+                        </ul>
+                    </div>
+                )}
+
+                <a onClick={togglecoustomeruser}><i className="fa fa-user" aria-hidden="true" />
+                    <span>&nbsp;&nbsp;Customer</span>
+                    <i className={`arrow-icon fa fa-angle-left ${coustomer ? 'rotate' : ''}`} />
+                </a>
+                {coustomer && (
+                    <div className="sidebar-dropdown">
+                        <ul>
+                            <li><Link to='/all-user' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All User</span></Link></li>
+                            <li><Link to='/my-user' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My User</span></Link></li>
+                            <li><Link to='/user-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add User</span></Link></li>
                         </ul>
                     </div>
                 )}
@@ -164,7 +181,6 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 )}
-                <Link to="/media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></Link>
                 <Link to="/payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></Link>
                 <a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                     <span>&nbsp; CMS & Pages</span>
@@ -188,13 +204,11 @@ const Sidebar = () => {
                             <li><Link to='/global-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Global config</span></Link></li>
                             <li><Link to='/apiconfig' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>API config</span></Link></li>
                             <li><Link to='/currencies' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Currencies</span></Link></li>
-                            <li><Link to='/deeplinking' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Deeplinking</span></Link></li>
                             <li><Link to='/cronjob' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Cronjob</span></Link></li>
                             <li><Link to='/usersetting' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>User Settings</span></Link></li>
                             <li><Link to='/subscription' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Subscription</span></Link></li>
                             <li><Link to='/googlemapsapi' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Google Maps Api</span></Link></li>
                             <li><Link to='/mail-config' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Mail config</span></Link></li>
-                            <li><Link to='/checkoutfield' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>CheckOut Fields</span></Link></li>
                             <li><Link to='/categories' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Categories</span></Link></li>
                             <li><Link to='/language' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Languages</span></Link></li>
                             <li><Link to='/modulesmanager' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Modules Manager</span></Link></li>
@@ -265,6 +279,22 @@ const Sidebar = () => {
                                     </ul>
                                 </div>
                             )}
+
+
+                            <li><a onClick={togglecoustomeruser}><i className="fa fa-calendar" aria-hidden="true" />
+                                <span>&nbsp;&nbsp;	CUSTOMER </span>
+                                <i className={`arrow-icon fa fa-angle-left ${coustomer ? 'rotate' : ''}`} />
+                            </a>
+                            </li>
+                            {coustomer && (
+                                <div className="sidebar-dropdown">
+                                    <ul>
+                                        <li><Link to='/all-user' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>All User</span></Link></li>
+                                        <li><Link to='/my-user' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>My User</span></Link></li>
+                                        <li><Link to='/user-new-add' ><i className="fa fa-circle" aria-hidden="true" />&nbsp;&nbsp;<span>Add User</span></Link></li>
+                                    </ul>
+                                </div>
+                            )}
                             <li><a onClick={toggleReservations}><i className="fa fa-calendar-o" aria-hidden="true" />
                                 &nbsp;&nbsp;<span>Reservations</span>
                                 <i className={`arrow-icon fa fa-angle-left ${reservations ? 'rotate' : ''}`} />
@@ -332,7 +362,6 @@ const Sidebar = () => {
                                     </ul>
                                 </div>
                             )}
-                            <li><Link to="/media"><i className="fa fa-folder-open-o" aria-hidden="true" />&nbsp;&nbsp;<span>Media</span></Link></li>
                             <li><Link to="/payout"><i className="fa fa-money" aria-hidden="true" />&nbsp;&nbsp;<span>Payouts</span></Link></li>
                             <li><a onClick={toggleCMS}><i className="fa fa-clone" aria-hidden="true" />
                                 <span>&nbsp; CMS & Pages</span>

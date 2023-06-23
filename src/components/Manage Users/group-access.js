@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
@@ -6,6 +6,26 @@ import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 function Groupaccess() {
+
+    const [UserData, setuserDaTa] = useState([])
+
+    useEffect(() => {
+        allUser()
+
+    }, [])
+
+    const allUser = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallusers`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                // console.log("tsaryhxdashgxfahsxasx", responsive);
+                setuserDaTa(responsive.users)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    
     return (
         <>
             <Navbar />
@@ -32,9 +52,9 @@ function Groupaccess() {
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <a className="ml-2 btn btn-flat" >
+                                                                    {/* <a className="ml-2 btn btn-flat" >
                                                                         <i className="fa fa-plus" aria-hidden="true" data-toggle="modal" data-target="#exampleModal" />
-                                                                    </a>
+                                                                    </a> */}
                                                                 </span>
                                                             </div>
                                                         </form>
@@ -43,68 +63,32 @@ function Groupaccess() {
                                             </div>
                                         </div>
 
+                                       
                                         <div className="product-list-box-body main-table">
                                             <div className="table-responsive">
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">name</th>
-                                                            <th scope="col">Actions</th>
+                                                            <th scope='col'>Image</th>
+                                                            <th scope="col">User Name</th>
+                                                            <th scope="col">User email</th>
+                                                            <th scope="col">User Access</th>
+
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>Manage stores</td>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Manage Events</td>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr><tr>
-                                                            <td className='action-btn'>
-                                                                <Link to='/event-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#DeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
-
-
+                                                        {UserData.map((items, index) => (
+                                                            // console.log("tarunbirlasd", items)
+                                                            <tr key={index}>
+                                                                <td><img src={items.adminavatar} alt=''
+                                                                /></td>
+                                                                <td>{items.name}</td>
+                                                                <td>{items.email}</td>
+                                                                <td> <Link to ={'/useraccess/'+items._id}>Access</Link></td>
+                                                            
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -143,8 +127,8 @@ function Groupaccess() {
                                     </div>
                                 </nav>
                                 <div className="tab-content" id="nav-tabContent">
-                                <div className="tab-pane fade show active" id="Dashbord" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                    <table class="table table-hover">
+                                    <div className="tab-pane fade show active" id="Dashbord" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th> <input type='checkbox' /></th>
@@ -153,10 +137,10 @@ function Groupaccess() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                                <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>Offers</label>
+                                                        <label className='acces-user'>Offers</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -189,9 +173,9 @@ function Groupaccess() {
 
                                                     </td>
                                                 </tr>
-                                               
-                                                
-                                                
+
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -208,7 +192,7 @@ function Groupaccess() {
                                                 <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>All-Stores</label>
+                                                        <label className='acces-user'>All-Stores</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -235,7 +219,7 @@ function Groupaccess() {
                                                 <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>My-Stores</label>
+                                                        <label className='acces-user'>My-Stores</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -259,13 +243,13 @@ function Groupaccess() {
                                                     </td>
 
                                                 </tr>
-                                                
-                                                
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                     <div className="tab-pane fade" id="Offers" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <table class="table table-hover">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th> <input type='checkbox' /></th>
@@ -274,10 +258,10 @@ function Groupaccess() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                                <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>All-Offers</label>
+                                                        <label className='acces-user'>All-Offers</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -304,7 +288,7 @@ function Groupaccess() {
                                                 <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>My-Offers</label>
+                                                        <label className='acces-user'>My-Offers</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -328,13 +312,13 @@ function Groupaccess() {
                                                     </td>
 
                                                 </tr>
-                                                
-                                                
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                     <div className="tab-pane fade" id="Event" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                    <table class="table table-hover">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th> <input type='checkbox' /></th>
@@ -343,10 +327,10 @@ function Groupaccess() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                                <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>All-Event</label>
+                                                        <label className='acces-user'>All-Event</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -373,7 +357,7 @@ function Groupaccess() {
                                                 <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>My-Event</label>
+                                                        <label className='acces-user'>My-Event</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -397,13 +381,13 @@ function Groupaccess() {
                                                     </td>
 
                                                 </tr>
-                                                
-                                                
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                     <div className="tab-pane fade" id="Booking" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                    <table class="table table-hover">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th> <input type='checkbox' /></th>
@@ -412,10 +396,10 @@ function Groupaccess() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                                <tr>
                                                     <td>
                                                         <input type='checkbox' />
-                                                      <label className='acces-user'>All-Booking</label>
+                                                        <label className='acces-user'>All-Booking</label>
                                                     </td>
                                                     <td>
                                                         <input type='checkbox' />
@@ -439,19 +423,19 @@ function Groupaccess() {
                                                     </td>
 
                                                 </tr>
-                                               
-                                                
-                                                
+
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <div className="modal-footer">
-                            <div className='user-head'>
-                                                    <Button> Confirm</Button>
-                                                    <Button>Cansel</Button>
-                                                </div>
+                                <div className='user-head'>
+                                    <Button> Confirm</Button>
+                                    <Button>Cansal</Button>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -3,14 +3,26 @@ import Sidebar from '../directives/sidebar'
 import Navbar from '../directives/navbar'
 import { CanvasJSChart } from 'canvasjs-react-charts'
 import Footer from '../directives/footer'
+import axios, { all } from 'axios'
+
+import { Bar } from 'react-chartjs-2';
+// import axios from 'axios';
+import { Chart, CategoryScale, LinearScale, BarElement } from 'chart.js';
+// Register the required elements and scales
+Chart.register(CategoryScale, LinearScale, BarElement);
 
 
 function Dashboard() {
 
-    const[storecont,setStorecont]=useState("")
-    const[offercont,setOffercont]=useState("")
-    const[eventcont,setEventcont]=useState("")
-    const[usercont,setUsercont]=useState("")
+    const [storecont, setStorecont] = useState("")
+    const [offercont, setOffercont] = useState("")
+    const [eventcont, setEventcont] = useState("")
+    const [usercont, setUsercont] = useState("")
+    const [reversedata, setReverseData] = useState([])
+    const [reverslast, setReverselast] = useState([])
+    const[confirmed,setconfirmed]=useState([])
+    const [pending,setpending]=useState([])
+
     const optionOne = {
         animationEnabled: true,
         exportEnabled: true,
@@ -82,15 +94,56 @@ function Dashboard() {
     }
 
 
+    const [graphData, setGraphData] = useState([]);
+    useEffect(() => {
+        // Fetch the graph data from the API
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://nearbyplaceadminpanner.onrender.com/api/v1/getgraphdata');
+                setGraphData(response.data.graphData);
+            } catch (error) {
+                console.error('Error fetching graph data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+    // Extract the labels and counts from the graph data
+    const labels = graphData.map((data) => data.label);
+    const counts = graphData.map((data) => data.count);
+    // Create the chart data
+    const chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Graph Data',
+                data: counts,
+                backgroundColor: '#5a189a',
+                borderColor: '#5a189a ',
+                borderWidth: 1,
+            },
+        ],
+    };
+    // Define chart options
+    const chartOptions = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    };
+
     useEffect(() => {
         allcounts()
+        allStore()
+        allreviewa()
+        myBooking()
     }, [])
     const allcounts = () => {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getdashboarddata`, {
             method: 'GET'
         }).then((res) => res.json())
             .then((response) => {
-                console.log("tarunall", response);
+                // console.log("tarunall", response);
                 setStorecont(response.store)
                 setOffercont(response.offer)
                 setEventcont(response.event)
@@ -99,6 +152,46 @@ function Dashboard() {
                 console.log(error);
             })
     }
+   
+    const allStore = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstorerev`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                // console.log("reversedata",responsive.store);
+                setReverseData(responsive.store)
+
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
+    const allreviewa = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allreview`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                console.log("reviewsreviewsreviewsreviews", responsive.reviews);
+                setReverselast(responsive.reviews)
+
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    
+    const myBooking = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/admin/bookings`)
+
+            .then((res) => res.json())
+            .then((response) => {
+                console.log("respo booking", response);
+               setconfirmed(response.confirmed)
+               setpending(response.pending)
+            }).catch((error) => {
+                console.log("error", error);
+            })
+    }
+    // console.log("reversedatareversedata",reversedata);
     return (
         <>
             <Navbar />
@@ -107,8 +200,9 @@ function Dashboard() {
                 <div className="main-panel-content">
                     <div className='section-panel'>
                         <div className='container'>
+
                             <div className='row'>
-                              
+
                                 <div className='col-lg-4 col-sm-6'>
                                     <div className='dash-box' style={{ color: '#dd4b39' }}>
                                         <div className='inner'>
@@ -188,33 +282,36 @@ function Dashboard() {
                             <div className='row'>
                                 <div className='col-lg-8'>
                                     <div className='chartOne'>
-                                        <CanvasJSChart options={optionTwo} />
+                                        {/* <Bar data={chartData} options={chartOptions} /> */}
+                                        {/* <CanvasJSChart options={optionTwo} /> */}
+                                        <Bar data={chartData} options={chartOptions} />
                                     </div>
                                 </div>
                                 <div className='col-lg-4 col-sm-12'>
                                     <div className='row'>
                                         <div className='col-sm-12'>
                                             <div className='chart-card' style={{ color: '#ff851b' }}>
-                                                <h3><b>0</b></h3>
+                                                <h3><b>{pending}</b></h3>
                                                 <p>Pending reservation(s)</p>
                                             </div>
                                         </div>
                                         <div className='col-sm-12'>
                                             <div className='chart-card' style={{ color: '#00a65a' }}>
-                                                <h3><b>0</b></h3>
-                                                <p>Pending reservation(s)</p>
+                                                <h3><b>{confirmed}</b></h3>
+                                                <p>Confirmed reservation(s)</p>
                                             </div>
                                         </div>
                                         <div className='col-sm-12'>
                                             <div className='chart-card' style={{ color: '#dd4b39' }}>
                                                 <h3><b>0</b></h3>
-                                                <p>Pending reservation(s)</p>
+                                                <p>Canceled reservation(s)
+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div className='row'>
                                 <div className='col-lg-6'>
@@ -224,72 +321,28 @@ function Dashboard() {
                                         </div>
                                         {/* /.box-header */}
                                         <div className="product-list-box-body">
-                                            <ul className="products-list product-list-in-box">
-                                                <li className="product-list-item">
-                                                    <div className="product-img">
-                                                        <img src="assets/images/img/img1.jpeg" />
-                                                    </div>
-                                                    <div className="product-info">
-                                                        <a href="" className="product-title">Beuty
-                                                            <span className="badge bg-green pull-right" style={{ color: '#dd15b9' }}>Beauty</span></a>
-                                                        <span className="product-description">
-                                                            london peris                                                  </span>
-                                                    </div>
-                                                </li>
-                                                <li className="product-list-item">
-                                                    <div className="product-img">
-                                                        <img src="https://demo.webox360.win/nearby-stores/uploads/images/168068927490561/200_200.jpeg" />
-                                                    </div>
-                                                    <div className="product-info">
-                                                        <a href="" className="product-title">Daliya
-                                                            <span className="badge bg-green pull-right" style={{ color: '#1a85ed' }}>Clothes</span></a>
-                                                        <span className="product-description">
-                                                            DEIRA DUBAI                                                  </span>
-                                                    </div>
-                                                </li>
-                                                <li className="product-list-item">
-                                                    <div className="product-img">
-                                                        <img src="https://demo.webox360.win/nearby-stores/uploads/images/168019326058125/200_200.png" />
-                                                    </div>
-                                                    <div className="product-info">
-                                                        <a href="" className="product-title">DMA IMÓVEIS
-                                                            <span className="badge bg-green pull-right" style={{ color: '#000000' }}>Gym</span></a>
-                                                        <span className="product-description">
-                                                            Avenida nossa senhora do Amparo
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                <li className="product-list-item">
-                                                    <div className="product-img">
-                                                        <img src="https://demo.webox360.win/nearby-stores/uploads/images/168011414943365/200_200.jpeg" />
-                                                    </div>
-                                                    <div className="product-info">
-                                                        <a href="" className="product-title">EZichoice
-                                                            <span className="badge bg-green pull-right" style={{ color: '#1a85ed' }}>Clothes</span></a>
-                                                        <span className="product-description">
-                                                            maha manaweriya,rajakadhaluwa,puttalam road,chilaw                                                  </span>
-                                                    </div>
-                                                </li>
-                                                <li className="product-list-item">
-                                                    <div className="product-img">
-                                                        <img src="https://demo.webox360.win/nearby-stores/uploads/images/167927113151032/200_200.jpeg" />
-                                                    </div>
-                                                    <div className="product-info">
-                                                        <a href="" className="product-title">Selim
-                                                            <span className="badge bg-green pull-right" style={{ color: '#e2800d' }}>Restaurant</span></a>
-                                                        <span className="product-description">
-                                                            BERGSLAGSVAGEN 42
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                {/* /.item */}
-                                            </ul>
+
+                                            <div className="product-list-box-body main-table">
+                                                <div className="table-responsive">
+                                                    <table className="table table-hover table-bordered">
+
+                                                        <tbody>
+                                                            {reversedata.map((items, index) => (
+                                                                <tr>
+                                                                    <td><img src={items.storephoto} alt='' /></td>
+                                                                    <td>{items.storeownername}</td>
+                                                                    <td>{items.latitude}</td>
+                                                                    <td><span className='Enabled-btn'>{items.category.categoryname}</span></td>
+                                                                </tr>
+                                                            ))}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
-                                        {/* /.box-body */}
                                         <div className="product-list-box-footer">
                                             <a href="">view more </a>
                                         </div>
-                                        {/* /.box-footer */}
                                     </div>
                                 </div>
                                 <div className='col-lg-6'>
@@ -302,74 +355,22 @@ function Dashboard() {
                                             <div className="table-responsive">
                                                 <table className="table table-hover table-bordered">
                                                     <tbody>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img6.png' /></td>
-                                                            <td>
-                                                                <a href='#'><b>Nihat</b></a><br />
-                                                                <a href='#'>Simple to Food</a><br />
-                                                                Super guzel
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img6.png' /></td>
-                                                            <td>
-                                                                <a href='#'><b>Sabri22</b></a><br />
-                                                                <a href='#'>Radisson Blu Hotel</a><br />
-                                                                test
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img6.png' /></td>
-                                                            <td>
-                                                                <a href='#'><b>Hind</b></a><br />
-                                                                <a href='#'>KFC Aîn Diab</a><br />
-                                                                Bad service
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><img src='assets/images/img/img6.png' /></td>
-                                                            <td>
-                                                                <a href='#'><b>Necati</b></a><br />
-                                                                <a href='#'>Yemen kahvesi antalya</a><br />
-                                                                vay amk
-                                                            </td>
-                                                            <td>
-                                                                <ul>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
+                                                        {reverslast.map((items, index) => (
+
+
+                                                            <tr key={index}>
+                                                                <td><img src={items.image} /></td>
+                                                                <td>
+                                                                    <a href='#'><b>{items.name}</b></a><br />
+                                                                    <a href='#'>{items.comment}</a><br />
+                                                                    Super guzel
+                                                                </td>
+                                                                <td>
+                                                                    {items.rating}
+                                                                </td>
+                                                            </tr>
+                                                        ))}
+
 
                                                     </tbody>
                                                 </table>
@@ -379,6 +380,7 @@ function Dashboard() {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

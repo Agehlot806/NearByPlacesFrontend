@@ -2,10 +2,30 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 
 function Allreservations() {
+
+    useEffect(() => {
+        getallreservation();
+    }, [])
+
+    const [reservations, setReservations] = useState([])
+    const getallreservation = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallreservation`)
+            .then((res) => res.json())
+            .then((responsive) => {
+                setReservations(responsive.orders)
+
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+
     return (
         <>
             <Navbar />
@@ -27,35 +47,45 @@ function Allreservations() {
 
                                                         <form className='text-right'>
                                                             <span className="input-group-btn ">
-                                                                <Link to='/event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
+                                                                {/* <Link to='/event-new-add' className="ml-2 btn btn-flat" data-toggle="modal" data-target="#FilterModel">
                                                                     <i class="fa fa-filter" aria-hidden="true"></i>
-                                                                </Link>
+                                                                </Link> */}
                                                             </span>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div className="product-list-box-body main-table">
                                             <div className="table-responsive">
                                                 <table className="table table-hover table-bordered">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Order ID</th>
+                                                            <th scope="col">Currency</th>
                                                             <th scope="col">Client</th>
                                                             <th scope="col">Business/Owner</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Payment</th>
-                                                            <th scope="col">Subtotal</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope='col' data-toggle="modal" data-target="#ExportModel">Export</th>
+                                                            <th scope="col">Amount</th>
+                                                            <th scope="col">Amount_Paid</th>
+                                                            <th scope="col">Amount_Due</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>No Data</tr>
-
-
+                                                        {reservations.map((items, index) => (
+                                                            <tr key={index}>
+                                                                <td>{items.id}</td>
+                                                                <td>{items.currency}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>{items.status}</td>
+                                                                <td>{items.amount}</td>
+                                                                <td>{items.amount_paid}</td>
+                                                                <td>{items.amount_due}</td>
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </table>
                                             </div>

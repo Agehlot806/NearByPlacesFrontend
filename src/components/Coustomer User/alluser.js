@@ -12,15 +12,10 @@ const options = [
     { id: 'user', role: 'User' },
     { id: 'staff', role: 'Staff' }
 ]
-function Users() {
+function Alluser() {
 
-    const [Id, setId] = useState(null);
-    const [model, setModel] = useState(false)
-    const [rolevalue, setRolevalue] = useState("")
-    const [updateRole, setupdateRole] = useState(false)
-    const [role, setRole] = useState("");
-    const [sucMsg, setSucMsg] = useState(false);
-    const [msg, setMsg] = useState("");
+  
+  
 
     const [UserData, setuserDaTa] = useState([])
 
@@ -40,41 +35,10 @@ function Users() {
                 console.log("error", error);
             })
     }
-    const handleUpdateRole = (id) => {
-        var headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        };
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateuserrole/${id}`, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify({
-                role: role
-            }),
-            headers: headers,
-        })
-            .then((res) => res.json())
-            .then((responsive) => {
-                setSucMsg(responsive.success);
-                setMsg(responsive.message);
-                allUser();
-            })
-            .catch((error) => {
-                console.log("error", error);
-            })
-    }
+  
 
-
-    const handleChange = (event) => {
-        setRolevalue(true);
-        setRole(event.target.value);
-
-    };
-    const openModel = (data) => {
-        setId(data._id);
-        setRole(data.role);
-        setModel(!model);
-    }
+   
+ 
     const AlluserDownload=(e)=>{
         e.preventDefault()
       axios({
@@ -99,6 +63,23 @@ const userDownload =(id, e)=>{
     })
 
 }
+
+
+// const [currentpage, setCurrentPage] = useState(1)
+//     const recordpage = 10;
+//     const Lastindex = currentpage * recordpage;
+//     const Firstindex = Lastindex - recordpage;
+//     const records = UserData.slice(Firstindex, Lastindex);
+//     const npage = Math.ceil(UserData.length / recordpage)
+//     const numbers = [...Array(npage + 1).keys()].slice(1)
+
+
+//     const chnacPage = (pageNo) => {
+//         setCurrentPage(pageNo);
+//         const startIndex = (pageNo - 1) * recordpage;
+//         const pagined = (UserData).slice(startIndex).take(recordpage).value();
+//         setCurrentPage(pagined)
+//     }
 
     return (
         <>
@@ -127,7 +108,7 @@ const userDownload =(id, e)=>{
                                                                     <a className="btn btn-flat">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
-                                                                    <Link to='/User-add' className="ml-2 btn btn-flat">
+                                                                    <Link to='/user-new-add' className="ml-2 btn btn-flat">
                                                                         <i className="fa fa-plus" aria-hidden="true" />
                                                                     </Link>
                                                                     <span className="ml-2 btn btn-flat"><i onClick={(e)=>AlluserDownload(e)} className="fa fa-download" aria-hidden="true" /></span>
@@ -147,7 +128,6 @@ const userDownload =(id, e)=>{
                                                             <th scope='col'>Image</th>
                                                             <th scope="col">User Name</th>
                                                             <th scope="col">User email</th>
-                                                            <th scope="col">User role</th>
                                                             <th scope="col">Dowanload</th>
 
                                                         </tr>
@@ -160,11 +140,6 @@ const userDownload =(id, e)=>{
                                                                 /></td>
                                                                 <td>{items.name}</td>
                                                                 <td>{items.email}</td>
-                                                                <td>{items.role}
-                                                                    <i className="fa fa-pencil-square-o" style={{ margin: "20px" }} onClick={() => openModel(items)} />
-                                                                    <i className="text-green fa fa-check"></i>
-                                                                  
-                                                                </td>
                                                                 <td>
                                                                 <span><i onClick={(e)=>userDownload(items._id,e)} className="fa fa-download" aria-hidden="true" /></span>
                                                                 </td>
@@ -175,35 +150,25 @@ const userDownload =(id, e)=>{
                                                             </tr>
                                                         ))}
                                                     </tbody>
+                                                        {/* <nav className='d-flex  justify-content-center' >
+                                                        <ul className='pagination  table-pagination'>
+
+                                                            {
+                                                                numbers.map((nn, ii) => (
+                                                                    <li className={`page-link ${currentpage === nn ? 'active' : "page-item"}`} key={ii}>
+                                                                        <a onClick={() => chnacPage(nn)}>{nn}</a>
+                                                                    </li>
+                                                                ))
+                                                            }
+
+
+                                                        </ul>
+                                                    </nav> */}
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <Modal isOpen={model} toggle={openModel}>
-                                        <ModalHeader toggle={openModel}>User Edit Role</ModalHeader>
-                                        <ModalBody>
-                                            <div><span className='text-danger'>{msg ? msg : ""}</span></div>
-                                            <div className="select-container">
-                                                <select value={role} onChange={handleChange}>
-                                                    {options.map((option) => (
-                                                        <option value={option.id}>{option.role}</option>
-                                                    ))}
-                                                </select>
-                                            </div>
-
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <div className='user-head'>
-                                                <Button color="primary" onClick={() => handleUpdateRole(Id)}>
-                                                    Update
-                                                </Button>
-                                                <Button color="secondary" onClick={openModel}>
-                                                    Cancel
-                                                </Button>
-                                            </div>
-
-                                        </ModalFooter>
-                                    </Modal>
+                               
                                 </div>
                             </div>
                         </div>
@@ -216,4 +181,4 @@ const userDownload =(id, e)=>{
     )
 }
 
-export default Users;
+export default Alluser;

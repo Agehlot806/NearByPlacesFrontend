@@ -6,6 +6,7 @@ import { useState } from 'react'
 import axios from 'axios';
 import {Button} from "reactstrap";
 import toast, { Toaster } from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 function Eventnewadd() {
     
     const [response, setResponse] = useState([]);
@@ -36,7 +37,7 @@ function Eventnewadd() {
             const reqcountryrowdata1 = await reqCountryrowdata1.json();
             // console.log("hiiii",reqcountryrowdata1.stores)
             setGetrowdata1(await reqcountryrowdata1.stores);
-            setImgdata(await reqcountryrowdata1.stores[0].storephoto)
+            // setImgdata(await reqcountryrowdata1.stores[0].storephoto)
         };
         getCountryrowdata1();
     }, [getCountryid1]);
@@ -46,6 +47,7 @@ function Eventnewadd() {
 
 
     const [eventname, setEventname] = useState()
+    const [EventType, setEventType] = useState()
     const [phonenumber, setPhonenumber] = useState()
     const [address, setAddress] = useState()
     const [fileData, setFileData] = useState([]);
@@ -59,7 +61,8 @@ function Eventnewadd() {
     e.preventDefault();
     var formData = new FormData();
     formData.append('eventname', eventname);
-    formData.append('file', fileData);
+    formData.append('EventType',EventType)
+    formData.append('eventimage', fileData);
     formData.append('address', address);
     formData.append('description',description);
     formData.append('status',status);
@@ -130,7 +133,24 @@ function Eventnewadd() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Event name :</label>
+                                                   
                                                     <input type="text" value={eventname} onChange={(event) => setEventname(event.target.value)} className="form-control" placeholder="Enter..." />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>EventType :</label>
+                                                    <select
+                                                        name="country"
+                                                        className="form-control p-2"
+                                                        value={EventType}
+                                                        onChange={(event) => setEventType(event.target.value)}
+                                                    >
+                                                        <option value="">choose...</option>
+                                                            <option >Paid
+                                                            </option>
+                                                            <option >UnPaid
+                                                            </option>
+                                                    </select>
+                                                    <input type="text" value={EventType} onChange={(event) => setEventType(event.target.value)} className="form-control" placeholder="Enter..." />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Description</label>
@@ -186,6 +206,8 @@ function Eventnewadd() {
                                                     <br />
                                                     <div className='user-head'>
                                                         <Button onClick={handleSubmit} ><i className="fa fa-check-square-o" /> Create</Button>
+                                                <Link to='/all-events'>Cancel</Link>
+
                                                     </div>
                                                 </div>
                                             </div>

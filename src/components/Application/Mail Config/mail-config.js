@@ -2,11 +2,52 @@ import React from 'react'
 import Navbar from '../../../directives/navbar'
 import Sidebar from '../../../directives/sidebar'
 import Footer from '../../../directives/footer'
+import { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+
 
 
 function Mailconfig() {
+const[recipients,setrecipients]=useState('')
+const[title,settitle]=useState('')
+const[body,setbody]=useState('')
+
+    const MailConfig =  () => {
+    
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/sendemail`, {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify({
+                recipients:recipients,
+                title:title,
+                body:body
+            }),
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((Response) => {
+               console.log(Response);
+               setrecipients("")
+               setbody("")
+               settitle("")
+               if(Response.message  =='Emails sent successfully'){
+                toast.success('Emails sent successfully')
+               }
+               if(Response.message  =='Invalid recipient selection'){
+                toast.error('Invalid recipient selection')
+               }
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
     return (
         <>
+         <Toaster />
             <Navbar />
             <Sidebar />
             <div className='content-wrapper'>
@@ -21,21 +62,25 @@ function Mailconfig() {
                                             <h3><b>Mail Config</b></h3>
                                         </div>
                                         <div className="product-card-body">
-                                            <form>
+                                            {/* <form> */}
                                                 <div className="form-group">
-                                                    <label>Service Mailer :</label>
-                                                    <select id="inputState" className="form-control">
+                                                    <label>Send Email To :</label>
+                                                    <select id="inputState" className="form-control" value={recipients} onChange={(e)=>setrecipients(e.target.value)}>
                                                         <option selected>Choose...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
-                                                        <option>...</option>
+                                                        <option>admin</option>
+                                                        <option>user</option>
+                                                     
 
 
                                                     </select>
                                                 </div>
                                                 <div className="form-group">
-                                                    <label>Send Grid API Key :</label>
-                                                    <input type="email" className="form-control" placeholder="Enter..." />
+                                                    <label>Send title messages</label>
+                                                    <input type="email" className="form-control" placeholder="Enter..." value={title} onChange={(e)=>settitle(e.target.value)} />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Send Body messages</label>
+                                                    <input type="email" className="form-control" placeholder="Enter..."  value={body} onChange={(e)=>setbody(e.target.value)} />
                                                 </div>
                                                 <div className="form-group">
                                                     <p>Note: Make sure that you created Sender identity in your SendGrid account <br />
@@ -43,14 +88,15 @@ function Mailconfig() {
                                                 </div>
                                                 <br />
                                                 <div className='user-head'>
-                                                    <a href='#'> Text API</a>
+                                                    <button onClick={MailConfig}> Text API</button>
                                                 </div>
 
-                                            </form>
+                                            {/* </form> */}
+
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-lg-6'>
+                                {/* <div className='col-lg-6'>
                                     <div className='row'>
                                         <div className='col-sm-12'>
                                             <div className="product-list-box">
@@ -82,7 +128,7 @@ function Mailconfig() {
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

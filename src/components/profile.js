@@ -30,7 +30,19 @@ function Profile() {
             getProfileData();
         }
         getProfileData();
+        profilecreditdata();
     }, [])
+
+const profilecreditdata = () =>{
+   
+       axios.get(`https://saathi.techpanda.art/api/bankaccount/`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("profiledata",data);
+            
+        }).catch(error=>console.log(error))
+}
+
 
     const getProfileData = () => {
         const requestOptions = {
@@ -42,12 +54,13 @@ function Profile() {
         fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`, requestOptions)
             .then(response => response.json())
             .then(data => {
+                // console.log("profiledata",data);
                 setUserName(data.user.name);
                 setUserEmail(data.user.email)
                 setUserId(data.user._id)
-                setFileData(data.user.AdminAvatar.url)
-                localStorage.setItem('AdminAvatar', data.user.AdminAvatar.url);
-                localStorage.setItem('Name', data.user.name);
+                setFileData(data.user.adminavatar)
+                // localStorage.setItem('AdminAvatar', data.user.adminavatar);
+                // localStorage.setItem('Name', data.user.name);
             })
     }
 
@@ -77,25 +90,28 @@ function Profile() {
 
 
     const UpdateProfilerDetail = (e) => {
+  
         e.preventDefault();
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile`, {
-            method: 'PUT',
-            headers: { "Content-Type": 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({
-                name: userName,
-                email: userEmail,
-            }),
-
-        })
-            .then((res) => res.json())
-            .then((responsive) => {
-                toast.success("Profile Updated Successfully");
-                getProfileData();
+            var formData = new FormData();
+            formData.append('adminavatar', photo);
+            formData.append('name', userName);
+            formData.append('email', userEmail);
+            axios({
+                method: "put",
+                url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofile/${userId}`,
+                withCredentials: true,
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+                credentials: 'include'
             })
-            .catch((error) => {
-                console.log("error", error);
-            })
+                .then(response => {
+                    setMessage(response.data.message);
+                    getProfileData();
+                    toast.success("Image upload successfully");
+                })
+                .catch(error => {
+                    console.log(error);
+                });
     }
 
 
@@ -108,27 +124,27 @@ function Profile() {
     }
 
 
-    const handleUploadProfile = (e) => {
-        e.preventDefault();
-        var formData = new FormData();
-        formData.append('file', photo);
-        axios({
-            method: "put",
-            url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,
-            withCredentials: true,
-            data: formData,
-            headers: { "Content-Type": "multipart/form-data" },
-            credentials: 'include'
-        })
-            .then(response => {
-                setMessage(response.data.message);
-                getProfileData();
-                toast.success("Image upload successfully");
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    // const handleUploadProfile = (e) => {
+    //     e.preventDefault();
+    //     var formData = new FormData();
+    //     formData.append('file', photo);
+    //     axios({
+    //         method: "put",
+    //         url: `https://nearbyplaceadminpanner.onrender.com/api/v1/updateadminprofilepicture/${userId}`,
+    //         withCredentials: true,
+    //         data: formData,
+    //         headers: { "Content-Type": "multipart/form-data" },
+    //         credentials: 'include'
+    //     })
+    //         .then(response => {
+    //             setMessage(response.data.message);
+    //             getProfileData();
+    //             toast.success("Image upload successfully");
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
 
 
 
@@ -151,20 +167,22 @@ function Profile() {
 
                                                 </div>
                                                 <div className="product-card-body">
-                                                    <Form onSubmit={handleUploadProfile}>
+                                                    <Form 
+                                                    onSubmit={UpdateProfilerDetail}
+                                                    >
                                                         <div className="form-group image-size">
                                                             <Input type="file" className="form-control"
                                                                 placeholder="Enter..."
-                                                                onChange={handleFile} />
+                                                                onChange={handleFile}
+                                                                 />
                                                             {showImage ? <img src={file} alt='profile' /> : <img src={fileData} alt='profileimage'></img>}
 
                                                         </div>
-                                                        <div className='user-head'>
-                                                            <Button type='submit'>Upload</Button>
-                                                        </div>
-                                                    </Form>
+                                                        
+                                              
 
-                                                    <Form onSubmit={UpdateProfilerDetail}>
+                                                  
+                                                
                                                         <div className="form-group">
                                                             <label>Username :</label>
                                                             <Input type="text" className="form-control"
@@ -197,7 +215,9 @@ function Profile() {
                                                     <h3><b>Change Password</b></h3>
                                                 </div>
                                                 <div className="product-card-body">
-                                                    <Form onSubmit={handleSubmit}>
+                                                    <Form 
+                                                    onSubmit={handleSubmit}
+                                                    >
                                                         <div className="form-group">
                                                             <label>Old Password</label>
                                                             <Input

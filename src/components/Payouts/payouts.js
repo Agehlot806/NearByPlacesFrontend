@@ -2,10 +2,32 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 
 function Payouts() {
+    const [payout, setPayout] = useState([])
+
+    useEffect(() => {
+        AllPayout()
+    }, [])
+    const AllPayout = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallorders`)
+
+            .then((res) => res.json())
+            .then((response) => {
+                console.log("response payout", response);
+                setPayout(response.orders.items)
+                // console.log("respo booking", response);
+
+                // setBookinguser(response.bookings.userData.name)
+            }).catch((error) => {
+                console.log("error", error);
+            })
+    }
+    console.log("payoutpayout", payout);
     return (
         <>
             <Navbar />
@@ -43,29 +65,32 @@ function Payouts() {
                                                             <th scope="col">#</th>
                                                             <th scope="col">Amount</th>
                                                             <th scope="col">Client</th>
-                                                            <th scope="col">Method</th>
+                                                            <th scope="col">Amount_Paid</th>
+                                                            <th scope="col">Amount_Due</th>
                                                             <th scope="col">Note</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Date</th>
                                                             <th scope="col">Actions</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td>sdasdasd</td>
-                                                           <td className='action-btn'>
-                                                                <Link to='/payout-edit'><i class="fa fa-pencil-square-o" /></Link>
-                                                                <a href='' data-toggle="modal" data-target="#PayoutDeleteModel"><i class="fa fa-trash-o" /></a>
-                                                            </td>
-                                                        </tr>
+                                                        {payout.map((items, index) => (
 
+
+                                                            <tr>
+                                                                <td>{items.id}</td>
+                                                                <td>{items.amount}</td>
+                                                                <td>sdasdasd</td>
+                                                                <td>{items.amount_paid}</td>
+                                                                <td>{items.amount_due}</td>
+                                                                <td>good Orders </td>
+                                                                <td>{items.status}</td>
+                                                                <td className='action-btn'>
+                                                                    <Link to='/payout-edit'><i class="fa fa-pencil-square-o" /></Link>
+                                                                    <a href='' data-toggle="modal" data-target="#PayoutDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -80,8 +105,8 @@ function Payouts() {
 
             <Footer />
 
-             {/* Modal */}
-             <div className="modal fade" id="PayoutDeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {/* Modal */}
+            <div className="modal fade" id="PayoutDeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -91,7 +116,7 @@ function Payouts() {
                             </button>
                         </div>
                         <div className="modal-body">
-                        <p className="text-center text-red">Are you sure you want to delete concierto bad bunny ?</p>
+                            <p className="text-center text-red">Are you sure you want to delete concierto bad bunny ?</p>
                         </div>
                         <div className="modal-footer">
                             <div className='user-head'>

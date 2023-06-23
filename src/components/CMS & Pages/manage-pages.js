@@ -2,9 +2,60 @@ import React from 'react'
 import Navbar from '../../directives/navbar'
 import Sidebar from '../../directives/sidebar'
 import Footer from '../../directives/footer'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 
 
 function Managepages() {
+    
+const[cmsall,setCmsall]=useState([])
+const [modalstore, setModalStore] = useState(false);
+const [Id, setId] = useState("");
+
+    useEffect(() => {
+        allCms()
+    }, [])
+
+    const allCms = () => {
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/getallcms`)
+            .then((res) => res.json())
+            .then((responsive) => {
+            //  console.log("responsive",responsive)
+             setCmsall(responsive.cms)
+            })
+            .catch((error) => {
+                console.log("error", error);
+            })
+    }
+    const toggleStoreModel = (id) => {
+        setId(id)
+        setModalStore(!modalstore);
+    }
+
+    const Deleteall = async (id) => {
+        var headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'http://localhost:3000/',
+        };
+        await fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/managemenu/${id}`, {
+            method: 'DELETE',
+            headers: headers,
+        })
+            .then((Response) => Response.json())
+            .then((Response) => {
+         
+                console.log("ResponseResponseResponseResponse", Response)
+            
+            })
+            .catch((error) => {
+                console.error("ERROR FOUND---->>>>" + error);
+            })
+    }
+    // console.log("cmsallcmsallcmsall",cmsall);
   return (
     <>
     <Navbar />
@@ -45,21 +96,24 @@ function Managepages() {
                                         <table className="table table-hover table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Inbox List</th>
-                                                    <th scope="col">date</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Link</th>
                                                     <th scope="col">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Beuty</td>
-                                                    <td>20-03-2023</td>
+                                                {cmsall.map((items,index)=>( 
+
+                                            
+                                                <tr key={index}>
+                                                    <td>{items.Title}</td>
+                                                    <td>{items.Link}</td>
                                                     <td className='action-btn'>
-                                                        <a href='manage-pages-edit'><i class="fa fa-pencil-square-o" /></a>
-                                                        <a href='' data-toggle="modal" data-target="#managepagesDeleteModel"><i class="fa fa-trash-o" /></a>
+                                                        <Link to={'/manage-pages-edit/'+items._id}><i class="fa fa-pencil-square-o" /></Link>
+                                                        <button onClick={(e) => toggleStoreModel(items._id, e)}><i class="fa fa-trash-o" /></button>
                                                     </td>
                                                 </tr>
-
+    ))}
                                             </tbody>
                                         </table>
                                     </div>
@@ -75,6 +129,23 @@ function Managepages() {
     <Footer />
 
      {/* Modal */}
+     <Modal isOpen={modalstore}>
+                <ModalHeader toggle={toggleStoreModel}>Confirmation!</ModalHeader>
+                <ModalBody>
+                    <h3 className="text-center text-red">Are you sure? { }</h3>
+                </ModalBody>
+                <ModalFooter>
+                    <Button onClick={toggleStoreModel}><i className="fa fa-times" /> No</Button>
+                    <Button onClick={(e) => Deleteall(Id, e)}>
+                        <i className="fa fa-check" /> Yes
+                    </Button>
+                </ModalFooter>
+            </Modal>
+
+
+
+
+
      <div className="modal fade" id="managepagesDeleteModel" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">

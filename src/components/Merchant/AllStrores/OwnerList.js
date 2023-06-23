@@ -204,7 +204,7 @@ function AllMerchant() {
                                                     <tbody>
                                                         {storeData.map((items, index) => (
                                                             <tr>
-                                                                <td className='text-center'> <img src={items.storephoto.url} /></td>
+                                                                <td className='text-center'> <img src={items.storephoto} /></td>
                                                                 {/* <td className='text-center'>
                                                                     <img src={items.storegallery.url} />
                                                                 </td> */}
@@ -219,7 +219,7 @@ function AllMerchant() {
                                                                     <Link to=''><i className='mdi mdi-eye-outline' /></Link>
                                                                 </td>
                                                                 <td className='click-color'>
-                                                                    <Link to=''><u>{items.category}</u></Link>
+                                                                    <Link to=''><u>{items.category.categoryname}</u></Link>
                                                                 </td>
                                                                 <td>{items.status === true ? <span className='Enabled-btn'>Enabled</span> : <span className='Disabled-btn'>Disabled</span>}</td>
                                                                 <td>{items.ratings}</td>

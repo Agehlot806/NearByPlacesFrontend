@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import  logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo.png";
 import userPhoto from "../assets/images/img/user.jpeg";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Navbar = () => {
   const profileImage = localStorage.getItem("AdminAvatar");
@@ -17,7 +19,7 @@ const Navbar = () => {
       });
       if (response.ok) {
         localStorage.removeItem('token');
-        history.push('/');
+        history.push('/admin');
       } else {
         throw new Error('Logout failed');
       }
@@ -26,6 +28,30 @@ const Navbar = () => {
       // display an error message to the user
     }
   };
+  useEffect(() => {
+    getProfileData()
+  }, [])
+
+  const [username, setUserName] = useState([])
+  const [userprofile, setUserProfile] = useState([])
+
+  const getProfileData = () => {
+    const requestOptions = {
+      method: 'GET',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+
+    };
+    fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/myprofile`, requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        // console.log("profiledata",data);
+        setUserName(data.user.name);
+        setUserProfile(data.user.adminavatar)
+        // localStorage.setItem('AdminAvatar', data.user.adminavatar);
+        // localStorage.setItem('Name', data.user.name);
+      })
+  }
 
   return (
     <>
@@ -34,7 +60,7 @@ const Navbar = () => {
       <input type="checkbox" id="check" />
       <header>
         <div className='header-section'>
-          <img className='header-img' src={logo} alt="logo"/>
+          <img className='header-img' src={logo} alt="logo" />
         </div>
         {/* <label htmlFor="check">
           <i className="fa fa-bars" aria-hidden="true" id="sidebar_btn" />
@@ -42,7 +68,7 @@ const Navbar = () => {
         <div className="nav-right_area">
           <div className="btn-group">
             <button type="button" className="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <a href="#"><img src={profileImage ? profileImage:userPhoto} alt="user" />&nbsp;&nbsp; {name ? name:"Admin"}</a>
+              <a href="#"><img src={userprofile} alt="" />&nbsp;&nbsp; {username}</a>
             </button>
             <div className="dropdown-menu dropdown-menu-right">
               <Link to='/profile'><button className="dropdown-item" type="button"><i class="fa fa-pencil" /> Profile</button></Link>

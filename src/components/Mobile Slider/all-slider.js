@@ -28,7 +28,7 @@ function Allslider() {
                                                             <div className="input-group input-group-sm">
                                                                 <input className="form-control" size={30} name="search" type="text" placeholder="Search" />
                                                                 <span className="input-group-btn">
-                                                                    <a className="btn btn-flat">
+                                                                    <a className="btn btn-flat filterbysearch">
                                                                         <i className="mdi mdi-magnify" />
                                                                     </a>
                                                                     <Link to='/slider-add' className="ml-2 btn btn-flat">

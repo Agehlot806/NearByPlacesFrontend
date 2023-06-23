@@ -11,22 +11,36 @@ function Reviews() {
     const [storePhoto, setStorePhoto] = useState([]);
     const [ratings, setRatings] = useState("");
     const [category, setCategories] = useState("")
+    const [reviewsdata, setReviewsdata] = useState([])
 
     useEffect(() => {
-        const requestOptions = {
-            method: 'PUT',
+        const requestOpti = {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
 
         };
-        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/stores/${_id}`, requestOptions)
+        fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/reviews?id=${_id}`, requestOpti)
             .then(response => response.json())
             .then(data => {
-                setStore(data.store.name);
-                setCategories(data.store.category)
-                setStorePhoto(data.store.storephoto.url);
-                setRatings(data.store.ratings);
+             console.log("dataatattataatatt",data);
+             setReviewsdata(data.reviews)
 
             })
+
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+    
+            };
+            fetch(`https://nearbyplaceadminpanner.onrender.com/api/v1/allstores/${_id}`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    setStore(data.stores.name);
+                    setCategories(data.stores.storeownername)
+                    setStorePhoto(data.stores.storephoto);
+                    setRatings(data.stores.ratings);
+    
+                })
     }, []);
 
     console.log(store);
@@ -146,9 +160,22 @@ function Reviews() {
                                         <div className="product-list-box-header">
                                             <h3><b> Reviews :</b></h3>
                                         </div>
-                                        <div className='p-3'>
-                                            No reviews
-                                        </div>
+                                        <tbody>
+                                            {reviewsdata.map((items,index)=>(
+
+                                            
+                                            <tr key={index}>
+                                                <td style={{ paddingRight: '10px' }}>
+                                                    <img src={items.image} width={80} height={80} />
+                                                </td>
+                                                <td>
+                                                    <strong className="font-size18px">{items.name}</strong><br />
+                                                    <span>{items.comment} </span><br />
+                                                    <span style={{ fontSize: '12px' }}><i className="fa fa-star text-yellow" />&nbsp;&nbsp;{items.rating}</span>
+                                                </td>
+                                            </tr>
+                                            ))}
+                                        </tbody>
                                     </div>
                                 </div>
                             </div>
